@@ -12,14 +12,16 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../SharedUI"),
-        .package(path: "../Network")
+        .package(path: "../Network"),
+        .package(path: "../Resources"),
     ],
     targets: [
         .target(
             name: "PlayBingo",
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
-                .product(name: "Network", package: "Network")
+                .product(name: "Network", package: "Network"),
+                .product(name: "Resources", package: "Resources"),
             ],
             path: "Sources"
         )

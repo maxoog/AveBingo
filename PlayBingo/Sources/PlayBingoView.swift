@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SharedUI
+import Resources
 
 public struct PlayBingoView: View {
     private let columns: [GridItem] = [
@@ -41,6 +42,18 @@ public struct PlayBingoView: View {
                             }
                         )
                     }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Image("copy_icon", bundle: .assets)
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.black)
+                        .scaledToFill()
+                        .frame(width: 34, height: 34)
+                        .clipShape(Rectangle())
+                        .onTapGesture {}
                 }
             }
         } else if viewModel.loading {

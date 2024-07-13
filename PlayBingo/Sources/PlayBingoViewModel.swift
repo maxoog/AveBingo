@@ -22,13 +22,13 @@ public final class PlayBingoViewModel: ObservableObject {
     }
     
     @Published private(set) var error: Error? = nil
-    @Published private(set) var loading: Bool = false
+    @Published private(set) var loading: Bool = true
     @Published private(set) var bingoCard: BingoCard? = nil
     
     func loadBingo() {
         loading = true
         
-        Task { [weak self] in
+        Task { @MainActor [weak self] in
             guard let self else {
                 return
             }

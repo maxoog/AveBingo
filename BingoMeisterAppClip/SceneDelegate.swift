@@ -21,7 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let activityUrl = connectionOptions.userActivities.first?.webpageURL
 
         let window = UIWindow(windowScene: scene)
-        window.rootViewController = UIHostingController(rootView: ScreenFactory.shared.playBingoView(bingoUrl: activityUrl))
+        let navigationController = UINavigationController(
+            rootViewController: UIHostingController(
+                rootView: ScreenFactory.shared.playBingoView(bingoUrl: activityUrl)
+            )
+        )
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
     }

@@ -22,6 +22,10 @@ public final class PlayBingoFetchService {
     }
     
     func getBingo(url: URL?) async throws -> BingoCardModel {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        
+        return BingoCardModel.defaultModel
+        
         guard let id = url.map({ urlParser.parseBingoId(url: $0) }) else {
             assertionFailure("Wrong bingo url")
             throw PlayBingoError.wrongUrl

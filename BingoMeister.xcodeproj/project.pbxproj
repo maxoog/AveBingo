@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */; };
 		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
-		B19AD6D82C41331F00A199C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6D72C41331F00A199C3 /* Assets.xcassets */; };
 		B19AD6DB2C41331F00A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6DA2C41331F00A199C3 /* Base */; };
 		B19AD6FF2C41337200A199C3 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */; };
 		B19AD7452C4144F400A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7442C4144F400A199C3 /* AppDelegate.swift */; };
 		B19AD7472C4144F400A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7462C4144F400A199C3 /* SceneDelegate.swift */; };
-		B19AD74E2C4144F500A199C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B19AD74D2C4144F500A199C3 /* Assets.xcassets */; };
 		B19AD7512C4144F500A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD7502C4144F500A199C3 /* Base */; };
 		B19AD76C2C4144F500A199C3 /* BingoMeisterAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B19AD77E2C4159B500A199C3 /* EditBingo */; };
@@ -51,14 +49,12 @@
 		B19AD6CB2C41331E00A199C3 /* BingoMeister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B19AD6D72C41331F00A199C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B19AD6DA2C41331F00A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B19AD6DC2C41331F00A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeisterAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19AD7442C4144F400A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B19AD7462C4144F400A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B19AD74D2C4144F500A199C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B19AD7502C4144F500A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B19AD7522C4144F500A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
@@ -67,6 +63,7 @@
 		B1EDC6A32C415C8C0088BE33 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		B1EDC6A42C41854C0088BE33 /* PlayBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlayBingo; sourceTree = "<group>"; };
 		B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
+		B1EDC6AC2C4262E50088BE33 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +90,7 @@
 		B19AD6C22C41331E00A199C3 = {
 			isa = PBXGroup;
 			children = (
+				B1EDC6AC2C4262E50088BE33 /* Resources */,
 				B1EDC6A42C41854C0088BE33 /* PlayBingo */,
 				B1EDC6A32C415C8C0088BE33 /* Network */,
 				B19AD7802C415A1800A199C3 /* SharedUI */,
@@ -119,7 +117,6 @@
 				B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */,
 				B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */,
 				B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */,
-				B19AD6D72C41331F00A199C3 /* Assets.xcassets */,
 				B19AD6D92C41331F00A199C3 /* LaunchScreen.storyboard */,
 				B19AD6DC2C41331F00A199C3 /* Info.plist */,
 			);
@@ -132,7 +129,6 @@
 				B19AD7442C4144F400A199C3 /* AppDelegate.swift */,
 				B19AD7462C4144F400A199C3 /* SceneDelegate.swift */,
 				B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */,
-				B19AD74D2C4144F500A199C3 /* Assets.xcassets */,
 				B19AD74F2C4144F500A199C3 /* LaunchScreen.storyboard */,
 				B19AD7522C4144F500A199C3 /* Info.plist */,
 				B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */,
@@ -237,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B19AD6D82C41331F00A199C3 /* Assets.xcassets in Resources */,
 				B19AD6DB2C41331F00A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B19AD74E2C4144F500A199C3 /* Assets.xcassets in Resources */,
 				B19AD7512C4144F500A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
