@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */; };
+		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
+		B19AD6D82C41331F00A199C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6D72C41331F00A199C3 /* Assets.xcassets */; };
+		B19AD6DB2C41331F00A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6DA2C41331F00A199C3 /* Base */; };
+		B19AD6FF2C41337200A199C3 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */; };
+		B19AD7452C4144F400A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7442C4144F400A199C3 /* AppDelegate.swift */; };
+		B19AD7472C4144F400A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7462C4144F400A199C3 /* SceneDelegate.swift */; };
+		B19AD74E2C4144F500A199C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B19AD74D2C4144F500A199C3 /* Assets.xcassets */; };
+		B19AD7512C4144F500A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD7502C4144F500A199C3 /* Base */; };
+		B19AD76C2C4144F500A199C3 /* BingoMeisterAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B19AD77E2C4159B500A199C3 /* EditBingo */; };
+		B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A62C4187210088BE33 /* PlayBingo */; };
+		B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A82C4187290088BE33 /* PlayBingo */; };
+		B1EDC6AB2C419A090088BE33 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B19AD76A2C4144F500A199C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B19AD6C32C41331E00A199C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B19AD7412C4144F400A199C3;
+			remoteInfo = BingoMeisterAppClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B19AD7372C41419A00A199C3 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				B19AD76C2C4144F500A199C3 /* BingoMeisterAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B19AD6CB2C41331E00A199C3 /* BingoMeister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeister.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B19AD6D72C41331F00A199C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B19AD6DA2C41331F00A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B19AD6DC2C41331F00A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
+		B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeisterAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B19AD7442C4144F400A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B19AD7462C4144F400A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B19AD74D2C4144F500A199C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B19AD7502C4144F500A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B19AD7522C4144F500A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
+		B19AD77C2C41586200A199C3 /* EditBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = EditBingo; sourceTree = "<group>"; };
+		B19AD7802C415A1800A199C3 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedUI; sourceTree = "<group>"; };
+		B1EDC6A32C415C8C0088BE33 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		B1EDC6A42C41854C0088BE33 /* PlayBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlayBingo; sourceTree = "<group>"; };
+		B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B19AD6C82C41331E00A199C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */,
+				B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B19AD73F2C4144F400A199C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B19AD6C22C41331E00A199C3 = {
+			isa = PBXGroup;
+			children = (
+				B1EDC6A42C41854C0088BE33 /* PlayBingo */,
+				B1EDC6A32C415C8C0088BE33 /* Network */,
+				B19AD7802C415A1800A199C3 /* SharedUI */,
+				B19AD77C2C41586200A199C3 /* EditBingo */,
+				B19AD6CD2C41331E00A199C3 /* BingoMeister */,
+				B19AD7432C4144F400A199C3 /* BingoMeisterAppClip */,
+				B19AD6CC2C41331E00A199C3 /* Products */,
+				B1EDC6A52C4187210088BE33 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B19AD6CC2C41331E00A199C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B19AD6CB2C41331E00A199C3 /* BingoMeister.app */,
+				B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B19AD6CD2C41331E00A199C3 /* BingoMeister */ = {
+			isa = PBXGroup;
+			children = (
+				B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */,
+				B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */,
+				B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */,
+				B19AD6D72C41331F00A199C3 /* Assets.xcassets */,
+				B19AD6D92C41331F00A199C3 /* LaunchScreen.storyboard */,
+				B19AD6DC2C41331F00A199C3 /* Info.plist */,
+			);
+			path = BingoMeister;
+			sourceTree = "<group>";
+		};
+		B19AD7432C4144F400A199C3 /* BingoMeisterAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				B19AD7442C4144F400A199C3 /* AppDelegate.swift */,
+				B19AD7462C4144F400A199C3 /* SceneDelegate.swift */,
+				B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */,
+				B19AD74D2C4144F500A199C3 /* Assets.xcassets */,
+				B19AD74F2C4144F500A199C3 /* LaunchScreen.storyboard */,
+				B19AD7522C4144F500A199C3 /* Info.plist */,
+				B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */,
+			);
+			path = BingoMeisterAppClip;
+			sourceTree = "<group>";
+		};
+		B1EDC6A52C4187210088BE33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B19AD6CA2C41331E00A199C3 /* BingoMeister */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B19AD6F52C41331F00A199C3 /* Build configuration list for PBXNativeTarget "BingoMeister" */;
+			buildPhases = (
+				B19AD6C72C41331E00A199C3 /* Sources */,
+				B19AD6C82C41331E00A199C3 /* Frameworks */,
+				B19AD6C92C41331E00A199C3 /* Resources */,
+				B19AD7372C41419A00A199C3 /* Embed App Clips */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B19AD76B2C4144F500A199C3 /* PBXTargetDependency */,
+			);
+			name = BingoMeister;
+			packageProductDependencies = (
+				B19AD77E2C4159B500A199C3 /* EditBingo */,
+				B1EDC6A62C4187210088BE33 /* PlayBingo */,
+			);
+			productName = BingoMeister;
+			productReference = B19AD6CB2C41331E00A199C3 /* BingoMeister.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B19AD7412C4144F400A199C3 /* BingoMeisterAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B19AD76D2C4144F500A199C3 /* Build configuration list for PBXNativeTarget "BingoMeisterAppClip" */;
+			buildPhases = (
+				B19AD73E2C4144F400A199C3 /* Sources */,
+				B19AD73F2C4144F400A199C3 /* Frameworks */,
+				B19AD7402C4144F400A199C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BingoMeisterAppClip;
+			packageProductDependencies = (
+				B1EDC6A82C4187290088BE33 /* PlayBingo */,
+			);
+			productName = BingoMeisterAppClip;
+			productReference = B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B19AD6C32C41331E00A199C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					B19AD6CA2C41331E00A199C3 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					B19AD7412C4144F400A199C3 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = B19AD6C62C41331E00A199C3 /* Build configuration list for PBXProject "BingoMeister" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B19AD6C22C41331E00A199C3;
+			packageReferences = (
+			);
+			productRefGroup = B19AD6CC2C41331E00A199C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B19AD6CA2C41331E00A199C3 /* BingoMeister */,
+				B19AD7412C4144F400A199C3 /* BingoMeisterAppClip */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B19AD6C92C41331E00A199C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B19AD6D82C41331F00A199C3 /* Assets.xcassets in Resources */,
+				B19AD6DB2C41331F00A199C3 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B19AD7402C4144F400A199C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B19AD74E2C4144F500A199C3 /* Assets.xcassets in Resources */,
+				B19AD7512C4144F500A199C3 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B19AD6C72C41331E00A199C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */,
+				B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */,
+				B19AD6FF2C41337200A199C3 /* ScreenFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B19AD73E2C4144F400A199C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B19AD7452C4144F400A199C3 /* AppDelegate.swift in Sources */,
+				B19AD7472C4144F400A199C3 /* SceneDelegate.swift in Sources */,
+				B1EDC6AB2C419A090088BE33 /* ScreenFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B19AD76B2C4144F500A199C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B19AD7412C4144F400A199C3 /* BingoMeisterAppClip */;
+			targetProxy = B19AD76A2C4144F500A199C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B19AD6D92C41331F00A199C3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B19AD6DA2C41331F00A199C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B19AD74F2C4144F500A199C3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B19AD7502C4144F500A199C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B19AD6F32C41331F00A199C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B19AD6F42C41331F00A199C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B19AD6F62C41331F00A199C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VNPYUB67HU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BingoMeister/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B19AD6F72C41331F00A199C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VNPYUB67HU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BingoMeister/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B19AD76E2C4144F500A199C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BingoMeisterAppClip/BingoMeisterAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VNPYUB67HU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BingoMeisterAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BingoMeister;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B19AD76F2C4144F500A199C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BingoMeisterAppClip/BingoMeisterAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VNPYUB67HU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BingoMeisterAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BingoMeister;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B19AD6C62C41331E00A199C3 /* Build configuration list for PBXProject "BingoMeister" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B19AD6F32C41331F00A199C3 /* Debug */,
+				B19AD6F42C41331F00A199C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B19AD6F52C41331F00A199C3 /* Build configuration list for PBXNativeTarget "BingoMeister" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B19AD6F62C41331F00A199C3 /* Debug */,
+				B19AD6F72C41331F00A199C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B19AD76D2C4144F500A199C3 /* Build configuration list for PBXNativeTarget "BingoMeisterAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B19AD76E2C4144F500A199C3 /* Debug */,
+				B19AD76F2C4144F500A199C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B19AD77E2C4159B500A199C3 /* EditBingo */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EditBingo;
+		};
+		B1EDC6A62C4187210088BE33 /* PlayBingo */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlayBingo;
+		};
+		B1EDC6A82C4187290088BE33 /* PlayBingo */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlayBingo;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B19AD6C32C41331E00A199C3 /* Project object */;
+}
