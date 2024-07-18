@@ -10,18 +10,18 @@ public struct BingoCardModel: Codable {
     public let tiles: [Tile]
     
     public static var defaultModel: BingoCardModel {
-        BingoCardModel(id: "", name: "Bingo huingo", tiles: [
-            .init(description: "Hello"),
-            .init(description: "Maan"),
-            .init(description: "i am a "),
-            
-            .init(description: "gooool"),
-            .init(description: "gooooal"),
-            .init(description: "huiase"),
+        BingoCardModel(id: "", name: "Успешный пет проект бинго", tiles: [
+            .init(description: "Подключиться к гиту куда же без него"),
+            .init(description: ""),
+            .init(description: "написать 3 строки кода"),
             
             .init(description: ""),
             .init(description: ""),
-            .init(description: "lol kek"),
+            .init(description: ""),
+            
+            .init(description: ""),
+            .init(description: ""),
+            .init(description: "забить на проект через 2 дня"),
         ])
     }
 }

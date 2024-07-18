@@ -19,33 +19,35 @@ public struct PlayBingoView: View {
     
     @ObservedObject var viewModel: PlayBingoViewModel
     
+    @State private var screenshotMaker: ScreenshotMaker?
+    
     public init(viewModel: PlayBingoViewModel) {
         self.viewModel = viewModel
     }
     
     public var body: some View {
-        if let bingoCard = viewModel.bingoCard {
-            VStack(alignment: .center) {
-                Text("Bingo-Huingo")
-                
-                LazyVGrid(
-                    columns: columns,
-                    spacing: 5
-                ) {
-                    ForEach(Array(bingoCard.tiles.enumerated()), id: \.1.id) { (index, tile) in
-                        BingoCardView(
-                            text: tile.text,
-                            selected: Binding {
-                                bingoCard.tiles[index].selected
-                            } set: { selected in
-                                viewModel.toggleSelected(index: index, selected: selected)
-                            }
-                        )
+        Group {
+            if let bingoCard = viewModel.bingoCard {
+                bingoCardView(card: bingoCard)
+                    .screenshotView { screenshotMaker in
+                        self.screenshotMaker = screenshotMaker
                     }
-                }
+            } else if viewModel.loading {
+                ProgressView().onAppear(perform: viewModel.loadBingo)
+            } else if let error = viewModel.error {
+                ErrorView(error)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    if viewModel.bingoCard != nil, 
+                       let screenshotMaker,
+                       let image = screenshotMaker.screenshot()
+                    {
+                        self.copyImageToClipboard(image: image)
+                    }
+                } label: {
                     Image("copy_icon", bundle: .assets)
                         .resizable()
                         .renderingMode(.template)
@@ -53,13 +55,30 @@ public struct PlayBingoView: View {
                         .scaledToFill()
                         .frame(width: 34, height: 34)
                         .clipShape(Rectangle())
-                        .onTapGesture {}
                 }
             }
-        } else if viewModel.loading {
-            ProgressView().onAppear(perform: viewModel.loadBingo)
-        } else if let error = viewModel.error {
-            ErrorView(error)
+        }
+    }
+    
+    private func bingoCardView(card bingoCard: BingoCard) -> some View {
+        VStack(alignment: .center) {
+            Text(bingoCard.title)
+            
+            LazyVGrid(
+                columns: columns,
+                spacing: 5
+            ) {
+                ForEach(Array(bingoCard.tiles.enumerated()), id: \.1.id) { (index, tile) in
+                    BingoCardView(
+                        text: tile.text,
+                        selected: Binding {
+                            bingoCard.tiles[index].selected
+                        } set: { selected in
+                            viewModel.toggleSelected(index: index, selected: selected)
+                        }
+                    )
+                }
+            }
         }
     }
 }
@@ -69,14 +88,16 @@ private struct BingoCardView: View {
     
     let text: String
     @Binding var selected: Bool
-    
+
     var body: some View {
         ZStack {
-            (selected ? Color.green : Color.gray)
+            (selected ? Color.green : Color.clear)
                 .clipShape(Rectangle())
+                .border(Color.black)
                 .frame(height: width)
             
             Text(text)
+                .padding(.horizontal, 8)
         }
         .widthChanged { newWidth in
             width = newWidth
@@ -97,5 +118,21 @@ private struct ErrorView: View {
     
     var body: some View {
         Text("Some error occured \(error.localizedDescription)")
+    }
+}
+
+extension View {
+    func copyImageToClipboard(image: UIImage) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.image = image
+        
+        // To check if the image was successfully set in the clipboard.
+        if pasteboard.image != nil {
+            // If the image is not nil, it means it was successfully copied to the clipboard.
+            print("Image copied to clipboard!")
+        } else {
+            // If the image is nil, print a failure message.
+            print("Failed to copy image to clipboard.")
+        }
     }
 }

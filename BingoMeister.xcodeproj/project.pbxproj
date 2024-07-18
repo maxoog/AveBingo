@@ -19,6 +19,8 @@
 		B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A62C4187210088BE33 /* PlayBingo */; };
 		B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A82C4187290088BE33 /* PlayBingo */; };
 		B1EDC6AB2C419A090088BE33 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */; };
+		B1EDC6AE2C428B200088BE33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */; };
+		B1EDC6B02C428B2D0088BE33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,9 @@
 		B1EDC6A42C41854C0088BE33 /* PlayBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlayBingo; sourceTree = "<group>"; };
 		B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		B1EDC6AC2C4262E50088BE33 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
+		B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1EDC6B12C428E1A0088BE33 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +119,7 @@
 		B19AD6CD2C41331E00A199C3 /* BingoMeister */ = {
 			isa = PBXGroup;
 			children = (
+				B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */,
 				B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */,
 				B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */,
 				B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */,
@@ -126,6 +132,8 @@
 		B19AD7432C4144F400A199C3 /* BingoMeisterAppClip */ = {
 			isa = PBXGroup;
 			children = (
+				B1EDC6B12C428E1A0088BE33 /* BingoMeisterAppClip.entitlements */,
+				B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */,
 				B19AD7442C4144F400A199C3 /* AppDelegate.swift */,
 				B19AD7462C4144F400A199C3 /* SceneDelegate.swift */,
 				B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */,
@@ -233,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1EDC6B02C428B2D0088BE33 /* Assets.xcassets in Resources */,
 				B19AD6DB2C41331F00A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1EDC6AE2C428B200088BE33 /* Assets.xcassets in Resources */,
 				B19AD7512C4144F500A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,7 +445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -462,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -477,6 +487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BingoMeisterAppClip/BingoMeisterAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNPYUB67HU;
@@ -487,17 +498,18 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.Clip;
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -507,6 +519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BingoMeisterAppClip/BingoMeisterAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNPYUB67HU;
@@ -517,17 +530,18 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.Clip;
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
