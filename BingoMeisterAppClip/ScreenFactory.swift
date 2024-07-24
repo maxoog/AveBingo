@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 import PlayBingo
-import Network
+import NetworkCore
+import BingoServices
 
 @MainActor
 final class ScreenFactory {
@@ -25,10 +26,10 @@ final class AppFactory {
     
     private lazy var networkClient = NetworkClient()
     
-    private lazy var bingoFetchService = PlayBingoFetchService(client: networkClient)
+    private lazy var bingoService = BingoService(client: networkClient)
     
     func playBingoViewModel(bingoUrl url: URL?) -> PlayBingoViewModel {
-        PlayBingoViewModel(bingoUrl: url, fetchService: bingoFetchService)
+        PlayBingoViewModel(bingoUrl: url, bingoService: bingoService)
     }
 }
 

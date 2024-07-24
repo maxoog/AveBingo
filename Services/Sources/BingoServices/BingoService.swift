@@ -1,0 +1,55 @@
+//
+//  File.swift
+//
+//
+//  Created by Maksim Zenkov on 13.07.2024.
+//
+
+import Foundation
+import NetworkCore
+import Alamofire
+
+public enum BingoError: Error {
+    case wrongUrl
+}
+
+public typealias BingoID = String
+
+public final class BingoService {
+    private let client: NetworkClient
+    private let urlParser = URLParser()
+    
+    public init(client: NetworkClient) {
+        self.client = client
+    }
+    
+    public func postBingo(bingo: BingoCardModel) async throws -> BingoID {
+        let addBingoRequest = AddBingoRequest(tiles: bingo.tiles.map { .init(description: $0.description) })
+        
+        let postBingoRequest = client.session.request(
+            "\(client.host)/api/v1/bingo",
+            method: .post,
+            parameters: addBingoRequest,
+            encoder: JSONParameterEncoder.default
+        )
+        
+        let response: AddBingoResponse = try await postBingoRequest.decodable()
+        return response.id
+    }
+    
+    public func getBingo(url: URL?) async throws -> BingoCardModel {
+        guard let id = url.flatMap({ urlParser.parseBingoId(url: $0) }) else {
+            assertionFailure("Wrong bingo url")
+            throw BingoError.wrongUrl
+        }
+        
+        let bingoCardRequest = client.session.request(
+            "\(client.host)/api/v1/bingo/\(id)"
+        )
+        
+        let bingoResponse = try await bingoCardRequest.decodable() as BingoResponse
+        
+        return bingoResponse.toBingoCardModel()
+    }
+}
+

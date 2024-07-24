@@ -117,7 +117,7 @@ private struct ErrorView: View {
     }
     
     var body: some View {
-        Text("Some error occured \(error.localizedDescription)")
+        Text("Some error occured \(error)")
     }
 }
 

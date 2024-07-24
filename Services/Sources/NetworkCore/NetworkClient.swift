@@ -8,10 +8,10 @@ final class Evaluator: ServerTrustEvaluating {
 }
 
 public class NetworkClient: SessionDelegate {
-    private let address: String = "51.250.105.228"
+    private let address: String = "avebingo.com"
 
     public var host: String {
-        "https://\(address):8080"
+        "https://avebingo.com"
     }
     
     public lazy var session: Session = {

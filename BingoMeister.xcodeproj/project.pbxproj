@@ -48,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B131E4922C4D297C00E7CCC5 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Services; sourceTree = "<group>"; };
+		B19AC24E2C4F8F260008D181 /* BingoMeister.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeister.entitlements; sourceTree = "<group>"; };
 		B19AD6CB2C41331E00A199C3 /* BingoMeister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
 		B19AD77C2C41586200A199C3 /* EditBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = EditBingo; sourceTree = "<group>"; };
 		B19AD7802C415A1800A199C3 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedUI; sourceTree = "<group>"; };
-		B1EDC6A32C415C8C0088BE33 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		B1EDC6A42C41854C0088BE33 /* PlayBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlayBingo; sourceTree = "<group>"; };
 		B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		B1EDC6AC2C4262E50088BE33 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
@@ -97,7 +98,7 @@
 			children = (
 				B1EDC6AC2C4262E50088BE33 /* Resources */,
 				B1EDC6A42C41854C0088BE33 /* PlayBingo */,
-				B1EDC6A32C415C8C0088BE33 /* Network */,
+				B131E4922C4D297C00E7CCC5 /* Services */,
 				B19AD7802C415A1800A199C3 /* SharedUI */,
 				B19AD77C2C41586200A199C3 /* EditBingo */,
 				B19AD6CD2C41331E00A199C3 /* BingoMeister */,
@@ -119,6 +120,7 @@
 		B19AD6CD2C41331E00A199C3 /* BingoMeister */ = {
 			isa = PBXGroup;
 			children = (
+				B19AC24E2C4F8F260008D181 /* BingoMeister.entitlements */,
 				B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */,
 				B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */,
 				B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */,
@@ -433,6 +435,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BingoMeister/BingoMeister.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNPYUB67HU;
@@ -460,6 +463,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BingoMeister/BingoMeister.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNPYUB67HU;

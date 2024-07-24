@@ -18,6 +18,9 @@ public struct EditBingoView: View {
     
     @ObservedObject var viewModel: EditBingoViewModel
     
+    @State var bingoTitle: String = ""
+    @State var bingoCards: [String] = .init(repeating: "", count: 9)
+    
     @State private var currentlySelectedCell: Int = 0
     
     public init(viewModel: EditBingoViewModel) {
@@ -26,7 +29,7 @@ public struct EditBingoView: View {
     
     public var body: some View {
         VStack(alignment: .center) {
-            TextField(text: $viewModel.bingoTitle, prompt: Text("Title").font(.title), label: {})
+            TextField(text: $bingoTitle, prompt: Text("Title").font(.title), label: {})
                 .font(.title)
                 .multilineTextAlignment(.center)
                 .tint(.black)
@@ -37,18 +40,33 @@ public struct EditBingoView: View {
                 columns: columns,
                 spacing: 5
             ) {
-                ForEach(Array(viewModel.cards.enumerated()), id: \.1.id) { (index, card) in
+                ForEach(Array(bingoCards.enumerated()), id: \.offset) { (index, card) in
                     BingoCardView(
                         currentlySelectedCell: $currentlySelectedCell, 
                         textValue: Binding {
-                            viewModel.cards[index].text
+                            bingoCards[index]
                         } set: { text in
-                            viewModel.onCardEdit(index: index, newText: text)
+                            bingoCards[index] = text
                         },
                         index: index
                     )
                 }
             }
+            
+            
+            Button(action: {
+                Task {
+                    await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
+                }
+            }, label: {
+                Text("Save bingo")
+                    .foregroundStyle(Color.white)
+                    .background {
+                        Color.secondary.frame(width: 200, height: 56)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+            })
+            .padding(.top, 24)
         }
     }
 }

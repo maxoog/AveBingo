@@ -1,4 +1,5 @@
 import Foundation
+import BingoServices
 
 struct BingoCard {
     let title: String
@@ -13,12 +14,12 @@ struct BingoCard {
 }
 
 public final class PlayBingoViewModel: ObservableObject {
-    private let fetchService: PlayBingoFetchService
+    private let bingoService: BingoService
     private let bingoUrl: URL?
 
-    public init(bingoUrl: URL?, fetchService: PlayBingoFetchService) {
+    public init(bingoUrl: URL?, bingoService: BingoService) {
         self.bingoUrl = bingoUrl
-        self.fetchService = fetchService
+        self.bingoService = bingoService
     }
     
     @Published private(set) var error: Error? = nil
@@ -33,7 +34,7 @@ public final class PlayBingoViewModel: ObservableObject {
                 return
             }
             do {
-                let bingoCardModel = try await self.fetchService.getBingo(url: self.bingoUrl)
+                let bingoCardModel = try await self.bingoService.getBingo(url: self.bingoUrl)
                 
                 self.bingoCard =  BingoCard(
                     title: bingoCardModel.name,
