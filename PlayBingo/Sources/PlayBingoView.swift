@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SharedUI
 import Resources
+import StoreKit
 
 public struct PlayBingoView: View {
     private let columns: [GridItem] = [
@@ -20,6 +21,8 @@ public struct PlayBingoView: View {
     @ObservedObject var viewModel: PlayBingoViewModel
     
     @State private var screenshotMaker: ScreenshotMaker?
+    
+    @State private var fullAppPromoPresented: Bool = false
     
     public init(viewModel: PlayBingoViewModel) {
         self.viewModel = viewModel
@@ -57,6 +60,28 @@ public struct PlayBingoView: View {
                         .clipShape(Rectangle())
                 }
             }
+            
+            ToolbarItem(placement: .principal) {
+                Button {
+                    showFullAppPromo()
+                } label: {
+                    Text("full app promo")
+                }
+
+            }
+        }
+        #if !APP_CLIP
+        .appStoreOverlay(isPresented: $fullAppPromoPresented) {
+            SKOverlay.AppConfiguration(appIdentifier: "6535681093", position: .bottom)
+        }
+        #endif
+    }
+    
+    private func showFullAppPromo() {
+        fullAppPromoPresented = true
+        Task {
+            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            fullAppPromoPresented = false
         }
     }
     

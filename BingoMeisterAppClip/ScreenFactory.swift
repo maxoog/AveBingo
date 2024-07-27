@@ -1,6 +1,5 @@
 //
 //  ScreenFactory.swift
-//  AvitoTest
 //
 //  Created by Maksim Zenkov on 11.07.2024.
 //
@@ -8,8 +7,7 @@
 import Foundation
 import SwiftUI
 import PlayBingo
-import NetworkCore
-import BingoServices
+import BingoServicesForAppClip
 
 @MainActor
 final class ScreenFactory {
@@ -24,12 +22,10 @@ final class ScreenFactory {
 final class AppFactory {
     static let shared = AppFactory()
     
-    private lazy var networkClient = NetworkClient()
-    
-    private lazy var bingoService = BingoService(client: networkClient)
+    private lazy var bingoService = BingoServiceForAppClip()
     
     func playBingoViewModel(bingoUrl url: URL?) -> PlayBingoViewModel {
-        PlayBingoViewModel(bingoUrl: url, bingoService: bingoService)
+        PlayBingoViewModel(bingoUrl: url, bingoProvider: bingoService)
     }
 }
 

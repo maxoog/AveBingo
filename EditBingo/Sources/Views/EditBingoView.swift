@@ -1,6 +1,5 @@
 //
 //  EditBingoView.swift
-//  AvitoTest
 //
 //  Created by Maksim Zenkov on 11.07.2024.
 //

@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Maksim Zenkov on 24.07.2024.
 //
@@ -19,3 +19,4 @@ extension BingoResponse {
         )
     }
 }
+

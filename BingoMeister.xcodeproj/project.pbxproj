@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */ = {isa = PBXBuildFile; productRef = B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */; };
+		B11EE8392C5558B300856436 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B11EE8382C5558B300856436 /* Assets.xcassets */; };
+		B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569A2C516F7C00CC0004 /* BingoHistory */; };
+		B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */; };
+		B17C56A02C5185C000CC0004 /* BingoServiceContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569F2C5185C000CC0004 /* BingoServiceContracts */; };
+		B17C56A22C5185CA00CC0004 /* BingoServiceContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A12C5185CA00CC0004 /* BingoServiceContracts */; };
+		B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */; };
 		B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */; };
 		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
 		B19AD6DB2C41331F00A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6DA2C41331F00A199C3 /* Base */; };
@@ -19,8 +26,6 @@
 		B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A62C4187210088BE33 /* PlayBingo */; };
 		B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B1EDC6A82C4187290088BE33 /* PlayBingo */; };
 		B1EDC6AB2C419A090088BE33 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */; };
-		B1EDC6AE2C428B200088BE33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */; };
-		B1EDC6B02C428B2D0088BE33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +53,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B11EE8382C5558B300856436 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B131E4922C4D297C00E7CCC5 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Services; sourceTree = "<group>"; };
+		B17C56992C516C5400CC0004 /* BingoHistory */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BingoHistory; sourceTree = "<group>"; };
+		B17C569C2C5182AA00CC0004 /* Contracts */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Contracts; sourceTree = "<group>"; };
 		B19AC24E2C4F8F260008D181 /* BingoMeister.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeister.entitlements; sourceTree = "<group>"; };
 		B19AD6CB2C41331E00A199C3 /* BingoMeister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingoMeister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,14 +69,11 @@
 		B19AD7462C4144F400A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B19AD7502C4144F500A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B19AD7522C4144F500A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
 		B19AD77C2C41586200A199C3 /* EditBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = EditBingo; sourceTree = "<group>"; };
 		B19AD7802C415A1800A199C3 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedUI; sourceTree = "<group>"; };
 		B1EDC6A42C41854C0088BE33 /* PlayBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlayBingo; sourceTree = "<group>"; };
 		B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		B1EDC6AC2C4262E50088BE33 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
-		B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1EDC6B12C428E1A0088BE33 /* BingoMeisterAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BingoMeisterAppClip.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,8 +82,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */,
 				B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */,
 				B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */,
+				B17C56A22C5185CA00CC0004 /* BingoServiceContracts in Frameworks */,
+				B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +94,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17C56A02C5185C000CC0004 /* BingoServiceContracts in Frameworks */,
 				B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */,
+				B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */,
+				B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +107,8 @@
 		B19AD6C22C41331E00A199C3 = {
 			isa = PBXGroup;
 			children = (
+				B17C569C2C5182AA00CC0004 /* Contracts */,
+				B17C56992C516C5400CC0004 /* BingoHistory */,
 				B1EDC6AC2C4262E50088BE33 /* Resources */,
 				B1EDC6A42C41854C0088BE33 /* PlayBingo */,
 				B131E4922C4D297C00E7CCC5 /* Services */,
@@ -121,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				B19AC24E2C4F8F260008D181 /* BingoMeister.entitlements */,
-				B1EDC6AF2C428B2D0088BE33 /* Assets.xcassets */,
+				B11EE8382C5558B300856436 /* Assets.xcassets */,
 				B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */,
 				B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */,
 				B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */,
@@ -135,13 +148,11 @@
 			isa = PBXGroup;
 			children = (
 				B1EDC6B12C428E1A0088BE33 /* BingoMeisterAppClip.entitlements */,
-				B1EDC6AD2C428B1F0088BE33 /* Assets.xcassets */,
 				B19AD7442C4144F400A199C3 /* AppDelegate.swift */,
 				B19AD7462C4144F400A199C3 /* SceneDelegate.swift */,
 				B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */,
 				B19AD74F2C4144F500A199C3 /* LaunchScreen.storyboard */,
 				B19AD7522C4144F500A199C3 /* Info.plist */,
-				B19AD7532C4144F500A199C3 /* BingoMeisterAppClip.entitlements */,
 			);
 			path = BingoMeisterAppClip;
 			sourceTree = "<group>";
@@ -174,6 +185,9 @@
 			packageProductDependencies = (
 				B19AD77E2C4159B500A199C3 /* EditBingo */,
 				B1EDC6A62C4187210088BE33 /* PlayBingo */,
+				B17C569A2C516F7C00CC0004 /* BingoHistory */,
+				B17C56A12C5185CA00CC0004 /* BingoServiceContracts */,
+				B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */,
 			);
 			productName = BingoMeister;
 			productReference = B19AD6CB2C41331E00A199C3 /* BingoMeister.app */;
@@ -194,6 +208,9 @@
 			name = BingoMeisterAppClip;
 			packageProductDependencies = (
 				B1EDC6A82C4187290088BE33 /* PlayBingo */,
+				B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */,
+				B17C569F2C5185C000CC0004 /* BingoServiceContracts */,
+				B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */,
 			);
 			productName = BingoMeisterAppClip;
 			productReference = B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */;
@@ -243,7 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1EDC6B02C428B2D0088BE33 /* Assets.xcassets in Resources */,
+				B11EE8392C5558B300856436 /* Assets.xcassets in Resources */,
 				B19AD6DB2C41331F00A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +269,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1EDC6AE2C428B200088BE33 /* Assets.xcassets in Resources */,
 				B19AD7512C4144F500A199C3 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,9 +524,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.5;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIPFLAGS = APP_CLIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -540,9 +558,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.5;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.BingoMeister.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIPFLAGS = APP_CLIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -582,6 +602,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BingoServicesForAppClip;
+		};
+		B17C569A2C516F7C00CC0004 /* BingoHistory */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BingoHistory;
+		};
+		B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScreenFactoryContracts;
+		};
+		B17C569F2C5185C000CC0004 /* BingoServiceContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BingoServiceContracts;
+		};
+		B17C56A12C5185CA00CC0004 /* BingoServiceContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BingoServiceContracts;
+		};
+		B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScreenFactoryContracts;
+		};
 		B19AD77E2C4159B500A199C3 /* EditBingo */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EditBingo;

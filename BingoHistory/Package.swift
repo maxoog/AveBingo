@@ -3,29 +3,32 @@
 import PackageDescription
 
 let package = Package(
-    name: "PlayBingo",
+    name: "BingoHistory",
     platforms: [.iOS(.v15)],
     products: [
         .library(
-            name: "PlayBingo",
-            targets: ["PlayBingo"]),
+            name: "BingoHistory",
+            targets: ["BingoHistory"]),
     ],
     dependencies: [
         .package(path: "../SharedUI"),
+        .package(path: "../Services"),
         .package(path: "../Resources"),
-        .package(path: "../Contracts"),
+        .package(path: "../Contracts")
     ],
     targets: [
         .target(
-            name: "PlayBingo",
+            name: "BingoHistory",
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
-                .product(name: "BingoServiceContracts", package: "Contracts"),
+                .product(name: "BingoServices", package: "Services"),
                 .product(name: "Resources", package: "Resources"),
+                .product(name: "ScreenFactoryContracts", package: "Contracts")
             ],
             path: "Sources"
         )
     ]
 )
+
 
 

@@ -6,16 +6,14 @@
 //
 
 import Foundation
-import NetworkCore
+import NetworkClient
 import Alamofire
-
-public enum BingoError: Error {
-    case wrongUrl
-}
+import BingoServiceContracts
+import NetworkCore
 
 public typealias BingoID = String
 
-public final class BingoService {
+public final class BingoService: BingoProviderProtocol {
     private let client: NetworkClient
     private let urlParser = URLParser()
     
@@ -23,7 +21,7 @@ public final class BingoService {
         self.client = client
     }
     
-    public func postBingo(bingo: BingoCardModel) async throws -> BingoID {
+    public func postBingo(bingo: BingoModel) async throws -> BingoID {
         let addBingoRequest = AddBingoRequest(tiles: bingo.tiles.map { .init(description: $0.description) })
         
         let postBingoRequest = client.session.request(
@@ -37,8 +35,8 @@ public final class BingoService {
         return response.id
     }
     
-    public func getBingo(url: URL?) async throws -> BingoCardModel {
-        guard let id = url.flatMap({ urlParser.parseBingoId(url: $0) }) else {
+    public func getBingo(url: URL?) async throws -> BingoModel {
+        guard let id = url.flatMap({ urlParser.bingoId(from: $0) }) else {
             assertionFailure("Wrong bingo url")
             throw BingoError.wrongUrl
         }

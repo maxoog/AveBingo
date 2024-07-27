@@ -1,12 +1,12 @@
 //
 //  EditBingoViewModel.swift
-//  AvitoTest
 //
 //  Created by Maksim Zenkov on 11.07.2024.
 //
 
 import Foundation
 import BingoServices
+import BingoServiceContracts
 
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
@@ -20,7 +20,7 @@ public final class EditBingoViewModel: ObservableObject {
 
     @MainActor
     func postBingo(title: String, tiles: [String]) async {
-        let bingoModel = BingoCardModel(
+        let bingoModel = BingoModel(
             name: title,
             tiles: tiles.map { .init(description: $0) }
         )

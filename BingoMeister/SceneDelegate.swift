@@ -1,6 +1,5 @@
 //
 //  SceneDelegate.swift
-//  AvitoTest
 //
 //  Created by Maksim Zenkov on 10.07.2024.
 //
@@ -17,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         let window = UIWindow(windowScene: scene)
-        window.rootViewController = UIHostingController(rootView: ScreenFactory.shared.editBingoView())
+        window.rootViewController = UIHostingController(rootView: ScreenFactory.shared.bingoHistoryView())
         window.makeKeyAndVisible()
         self.window = window
     }

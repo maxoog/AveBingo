@@ -16,7 +16,8 @@ let package = Package(
         .target(
             name: "Resources",
             dependencies: [],
-            path: "Sources"
+            path: "Sources",
+            resources: [.process("Fonts")]
         )
     ]
 )

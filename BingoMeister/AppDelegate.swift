@@ -1,6 +1,5 @@
 //
 //  AppDelegate.swift
-//  AvitoTest
 //
 //  Created by Maksim Zenkov on 10.07.2024.
 //
