@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import BingoServiceContracts
+import ServicesContracts
 import NetworkCore
 
 extension BingoResponse {

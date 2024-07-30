@@ -22,6 +22,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
                 .product(name: "BingoServices", package: "Services"),
+                .product(name: "Analytics", package: "Services"),
                 .product(name: "Resources", package: "Resources"),
                 .product(name: "ScreenFactoryContracts", package: "Contracts")
             ],

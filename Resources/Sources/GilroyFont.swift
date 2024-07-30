@@ -1,23 +1,5 @@
 import SwiftUI
 
-public enum AppFont {
-    public static let headline1: Font = GilroyFontFactory.font(
-        size: 28,
-        weight: .gilroyBlack,
-        fallback: .boldSystemFont(ofSize: 28)
-    )
-    public static let headline2: Font = GilroyFontFactory.font(
-        size: 18,
-        weight: .gilroySemiBold,
-        fallback: .boldSystemFont(ofSize: 18)
-    )
-    public static let body: Font = GilroyFontFactory.font(
-        size: 14,
-        weight: .gilroyRegular,
-        fallback: .boldSystemFont(ofSize: 14)
-    )
-}
-
 fileprivate struct FontName {
     private let name: String
     
@@ -32,11 +14,11 @@ fileprivate struct FontName {
 
 public enum GilroyFont: String, CaseIterable {
     case gilroyRegular = "Gilroy-Regular"
-    case gilroyLight = "Gilroy-Light"
-    case gilroyMedium = "Gilroy-Medium"
-    case gilroySemiBold = "Gilroy-Semibold"
+    case gilroyLight = "Gilroy-Light" // weight == 300
+    case gilroyMedium = "Gilroy-Medium" // weight == 500
+    case gilroySemiBold = "Gilroy-Semibold" // weight == 600
     case gilroyBold = "Gilroy-Bold"
-    case gilroyBlack = "Gilroy-Black"
+    case gilroyBlack = "Gilroy-Black" // weight == 900
     
     public static func registerFonts() {
         Self.allCases.forEach { font in

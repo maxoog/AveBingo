@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public protocol ScreenFactoryProtocol {
     func editBingoView() -> AnyView
     func playBingoView() -> AnyView

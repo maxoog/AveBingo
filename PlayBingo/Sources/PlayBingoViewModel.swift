@@ -1,5 +1,5 @@
 import Foundation
-import BingoServiceContracts
+import ServicesContracts
 
 struct BingoCard {
     let title: String

@@ -6,7 +6,7 @@
 
 import Foundation
 import BingoServices
-import BingoServiceContracts
+import ServicesContracts
 
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService

@@ -17,11 +17,15 @@ let package = Package(
             targets: ["BingoServicesForAppClip"]),
         .library(
             name: "NetworkCore",
-            targets: ["NetworkCore"])
+            targets: ["NetworkCore"]),
+        .library(
+            name: "Analytics",
+            targets: ["Analytics"])
     ],
     dependencies: [
         .package(path: "../Contracts"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.9.1")
+        .package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.9.1"),
+        .package(url: "https://github.com/mixpanel/mixpanel-swift.git", exact: "4.3.0"),
     ],
     targets: [
         .target(
@@ -29,7 +33,7 @@ let package = Package(
             dependencies: [
                 "NetworkClient",
                 .product(name: "Alamofire", package: "Alamofire"),
-                .product(name: "BingoServiceContracts", package: "Contracts"),
+                .product(name: "ServicesContracts", package: "Contracts"),
                 "NetworkCore"
             ],
             path: "Sources/BingoServices"
@@ -45,7 +49,7 @@ let package = Package(
         .target(
             name: "BingoServicesForAppClip",
             dependencies: [
-                .product(name: "BingoServiceContracts", package: "Contracts"),
+                .product(name: "ServicesContracts", package: "Contracts"),
                 "NetworkCore"
             ],
             path: "Sources/BingoServicesForAppClip"
@@ -54,6 +58,14 @@ let package = Package(
             name: "NetworkCore",
             dependencies: [],
             path: "Sources/NetworkCore"
+        ),
+        .target(
+            name: "Analytics",
+            dependencies: [
+                .product(name: "Mixpanel", package: "mixpanel-swift"),
+                .product(name: "ServicesContracts", package: "Contracts"),
+            ],
+            path: "Sources/Analytics"
         )
     ]
 )

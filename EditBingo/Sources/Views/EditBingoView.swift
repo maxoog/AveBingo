@@ -28,6 +28,11 @@ public struct EditBingoView: View {
     
     public var body: some View {
         VStack(alignment: .center) {
+            HStack {
+                
+            }
+            
+            
             TextField(text: $bingoTitle, prompt: Text("Title").font(.title), label: {})
                 .font(.title)
                 .multilineTextAlignment(.center)

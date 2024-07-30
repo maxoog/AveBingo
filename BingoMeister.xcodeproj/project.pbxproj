@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */ = {isa = PBXBuildFile; productRef = B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */; };
 		B11EE8392C5558B300856436 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B11EE8382C5558B300856436 /* Assets.xcassets */; };
+		B11EE83B2C5583C500856436 /* ServicesContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B11EE83A2C5583C500856436 /* ServicesContracts */; };
+		B11EE83D2C5583D100856436 /* ServicesContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B11EE83C2C5583D100856436 /* ServicesContracts */; };
 		B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569A2C516F7C00CC0004 /* BingoHistory */; };
 		B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */; };
-		B17C56A02C5185C000CC0004 /* BingoServiceContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569F2C5185C000CC0004 /* BingoServiceContracts */; };
-		B17C56A22C5185CA00CC0004 /* BingoServiceContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A12C5185CA00CC0004 /* BingoServiceContracts */; };
 		B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */; };
 		B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */; };
 		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
@@ -83,9 +83,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */,
+				B11EE83B2C5583C500856436 /* ServicesContracts in Frameworks */,
 				B1EDC6A72C4187210088BE33 /* PlayBingo in Frameworks */,
 				B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */,
-				B17C56A22C5185CA00CC0004 /* BingoServiceContracts in Frameworks */,
 				B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,9 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17C56A02C5185C000CC0004 /* BingoServiceContracts in Frameworks */,
 				B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */,
 				B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */,
+				B11EE83D2C5583D100856436 /* ServicesContracts in Frameworks */,
 				B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,8 +186,8 @@
 				B19AD77E2C4159B500A199C3 /* EditBingo */,
 				B1EDC6A62C4187210088BE33 /* PlayBingo */,
 				B17C569A2C516F7C00CC0004 /* BingoHistory */,
-				B17C56A12C5185CA00CC0004 /* BingoServiceContracts */,
 				B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */,
+				B11EE83A2C5583C500856436 /* ServicesContracts */,
 			);
 			productName = BingoMeister;
 			productReference = B19AD6CB2C41331E00A199C3 /* BingoMeister.app */;
@@ -209,8 +209,8 @@
 			packageProductDependencies = (
 				B1EDC6A82C4187290088BE33 /* PlayBingo */,
 				B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */,
-				B17C569F2C5185C000CC0004 /* BingoServiceContracts */,
 				B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */,
+				B11EE83C2C5583D100856436 /* ServicesContracts */,
 			);
 			productName = BingoMeisterAppClip;
 			productReference = B19AD7422C4144F400A199C3 /* BingoMeisterAppClip.app */;
@@ -606,6 +606,14 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BingoServicesForAppClip;
 		};
+		B11EE83A2C5583C500856436 /* ServicesContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ServicesContracts;
+		};
+		B11EE83C2C5583D100856436 /* ServicesContracts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ServicesContracts;
+		};
 		B17C569A2C516F7C00CC0004 /* BingoHistory */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BingoHistory;
@@ -613,14 +621,6 @@
 		B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ScreenFactoryContracts;
-		};
-		B17C569F2C5185C000CC0004 /* BingoServiceContracts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BingoServiceContracts;
-		};
-		B17C56A12C5185CA00CC0004 /* BingoServiceContracts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BingoServiceContracts;
 		};
 		B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */ = {
 			isa = XCSwiftPackageProductDependency;

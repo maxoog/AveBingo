@@ -12,9 +12,9 @@ import BingoServices
 import BingoHistory
 import PlayBingo
 import ScreenFactoryContracts
+import Analytics
 
-let screenFactory = ScreenFactory()
-
+@MainActor
 final class ScreenFactory: ScreenFactoryProtocol {
     static let shared = ScreenFactory()
     fileprivate let appFactory = AppFactory()
@@ -29,7 +29,8 @@ final class ScreenFactory: ScreenFactoryProtocol {
         AnyView(
             BingoHistoryView(
                 screenFactory: self,
-                viewModel: appFactory.bingoHistoryViewModel()
+                viewModel: appFactory.bingoHistoryViewModel(),
+                analyticsService: appFactory.analyticsService
             )
         )
     }
@@ -41,10 +42,13 @@ final class ScreenFactory: ScreenFactoryProtocol {
     }
 }
 
+@MainActor
 fileprivate final class AppFactory {
     private lazy var networkClient = NetworkClient()
     
     private lazy var bingoService = BingoService(client: networkClient)
+    
+    lazy var analyticsService = AnalyticsService()
     
     func editBingoViewModel() -> EditBingoViewModel {
         EditBingoViewModel(bingoService: bingoService)

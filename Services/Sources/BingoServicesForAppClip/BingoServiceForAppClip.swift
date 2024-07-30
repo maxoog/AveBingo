@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import BingoServiceContracts
+import ServicesContracts
 import NetworkCore
 
 public final class BingoServiceForAppClip: BingoProviderProtocol {

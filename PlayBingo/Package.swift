@@ -20,7 +20,7 @@ let package = Package(
             name: "PlayBingo",
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
-                .product(name: "BingoServiceContracts", package: "Contracts"),
+                .product(name: "ServicesContracts", package: "Contracts"),
                 .product(name: "Resources", package: "Resources"),
             ],
             path: "Sources"

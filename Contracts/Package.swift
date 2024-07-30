@@ -7,8 +7,8 @@ let package = Package(
     platforms: [.iOS(.v15)],
     products: [
         .library(
-            name: "BingoServiceContracts",
-            targets: ["BingoServiceContracts"]),
+            name: "ServicesContracts",
+            targets: ["ServicesContracts"]),
         .library(
             name: "ScreenFactoryContracts",
             targets: ["ScreenFactoryContracts"]),
@@ -17,9 +17,9 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "BingoServiceContracts",
+            name: "ServicesContracts",
             dependencies: [],
-            path: "Sources/BingoServiceContracts"
+            path: "Sources/ServicesContracts"
         ),
         .target(
             name: "ScreenFactoryContracts",

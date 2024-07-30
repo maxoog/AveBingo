@@ -11,11 +11,14 @@ let package = Package(
             targets: ["SharedUI"]),
     ],
     dependencies: [
+        .package(path: "../Resources")
     ],
     targets: [
         .target(
             name: "SharedUI",
-            dependencies: [],
+            dependencies: [
+                .product(name: "Resources", package: "Resources")
+            ],
             path: "Sources"
         )
     ]

@@ -9,6 +9,7 @@ public struct BingoModel {
         }
     }
     
+    public let id = UUID().uuidString
     public let name: String
     public let tiles: [Tile]
     

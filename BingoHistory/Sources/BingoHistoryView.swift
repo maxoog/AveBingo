@@ -9,60 +9,81 @@ import Foundation
 import SwiftUI
 import ScreenFactoryContracts
 import Resources
+import SharedUI
+import ServicesContracts
 
 public struct BingoHistoryView: View {
+    let analyticsService: AnalyticsServiceProtocol
     let screenFactory: ScreenFactoryProtocol
     @ObservedObject var viewModel: BingoHistoryViewModel
     
+    @State var editViewPresented: Bool = false
+    
     public init(
         screenFactory: ScreenFactoryProtocol,
-        viewModel: BingoHistoryViewModel
+        viewModel: BingoHistoryViewModel,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.screenFactory = screenFactory
         self.viewModel = viewModel
+        self.analyticsService = analyticsService
     }
     
     public var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                HStack(alignment: .top, spacing: 0) {
-                    Text("MY\nBINGOS")
-                        .font(AppFont.headline1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Button(action: {}, label: {
-                        HStack(spacing: 10) {
-                            Image("add_icon", bundle: .assets)
-                            
-                            Text("Add new")
-                                .font(AppFont.body)
-                                .foregroundStyle(Color.white)
-                        }
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 20)
-                        .background {
-                            Color.blue
-                                .clipShape(RoundedRectangle(cornerRadius: 40))
-                        }
+        VStack(spacing: 0) {
+            Text("MY BINGOS")
+                .font(AveFont.headline1)
+                .foregroundStyle(AveColor.content)
+                .padding(.top, 8)
+            
+            
+            switch viewModel.state {
+            case .loading:
+               centeredView { ProgressView() }
+            case .error(_):
+                centeredView {
+                    ErrorView(onReloadTap: {
+                        viewModel.reload()
                     })
                 }
-                .padding(.horizontal, 14)
-
-                Spacer()
-                
-                Image("empty_state_illustration", bundle: .assets)
-                    .resizable()
-                    .scaledToFill()
-                    .padding(.leading, 40)
-                    .padding(.trailing, 20)
-                    .padding(.top, 144)
-                
-                Text("NOTHING HERE")
-                    .font(AppFont.headline2)
-                    .padding(.top, -12)
-                
-                Spacer()
+            case .content(let cards):
+                if cards.isEmpty {
+                    centeredView {
+                        EmptyHistoryView(onAddBingoTap: {
+                            editViewPresented = true
+                            analyticsService.logEvent(.openBingoCreation)
+                        })
+                    }
+                } else {
+                    cardsListView(cards: cards)
+                }
             }
+        }
+        .fullScreenCover(isPresented: $editViewPresented) {
+            screenFactory.editBingoView()
+        }
+        .onFirstAppear {
+            viewModel.reload()
+        }
+    }
+    
+    @ViewBuilder
+    private func cardsListView(cards: Cards) -> some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(cards, id: \.id) { card in
+                    BingoSnippetView(model: card)
+                }
+            }
+            .padding(.top, 22)
+        }
+    }
+    
+    private func centeredView<Content: View>(content: () -> Content) -> some View {
+        VStack(spacing: 0) {
+            Spacer()
+            content()
+            Spacer()
         }
     }
 }

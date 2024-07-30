@@ -8,7 +8,7 @@
 import Foundation
 import NetworkClient
 import Alamofire
-import BingoServiceContracts
+import ServicesContracts
 import NetworkCore
 
 public typealias BingoID = String
@@ -48,6 +48,11 @@ public final class BingoService: BingoProviderProtocol {
         let bingoResponse = try await bingoCardRequest.decodable() as BingoResponse
         
         return bingoResponse.toBingoCardModel()
+    }
+    
+    public func getBingoHistory() async throws -> [BingoModel] {
+        try? await Task.sleep(nanoseconds: 1_000_000)
+        return [.defaultModel, .defaultModel, .defaultModel]
     }
 }
 
