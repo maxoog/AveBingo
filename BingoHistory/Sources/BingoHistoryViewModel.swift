@@ -32,8 +32,9 @@ public final class BingoHistoryViewModel: ObservableObject {
         self.bingoService = bingoService
     }
     
-    func reload() {
+    func reload() async {
         guard loadingTask == nil else {
+            await loadingTask?.value
             return
         }
         
@@ -55,5 +56,11 @@ public final class BingoHistoryViewModel: ObservableObject {
                 self.state = .error(error)
             }
         }
+        
+        await loadingTask?.value
+    }
+    
+    func removeBingo() {
+        
     }
 }

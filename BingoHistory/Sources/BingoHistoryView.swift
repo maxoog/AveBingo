@@ -18,6 +18,7 @@ public struct BingoHistoryView: View {
     @ObservedObject var viewModel: BingoHistoryViewModel
     
     @State var editViewPresented: Bool = false
+    @State var playViewPresented: Bool = false
     
     public init(
         screenFactory: ScreenFactoryProtocol,
@@ -43,7 +44,9 @@ public struct BingoHistoryView: View {
             case .error(_):
                 centeredView {
                     ErrorView(onReloadTap: {
-                        viewModel.reload()
+                        Task {
+                            await viewModel.reload()
+                        }
                     })
                 }
             case .content(let cards):
@@ -62,8 +65,13 @@ public struct BingoHistoryView: View {
         .fullScreenCover(isPresented: $editViewPresented) {
             screenFactory.editBingoView()
         }
+        .fullScreenCover(isPresented: $playViewPresented) {
+            screenFactory.playBingoView()
+        }
         .onFirstAppear {
-            viewModel.reload()
+            Task {
+                await viewModel.reload()
+            }
         }
     }
     
@@ -73,9 +81,15 @@ public struct BingoHistoryView: View {
             LazyVStack {
                 ForEach(cards, id: \.id) { card in
                     BingoSnippetView(model: card)
+                        .onTapGesture {
+                            playViewPresented = true
+                        }
                 }
             }
             .padding(.top, 22)
+        }
+        .refreshable {
+            await viewModel.reload()
         }
     }
     

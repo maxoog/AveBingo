@@ -51,7 +51,7 @@ public final class BingoService: BingoProviderProtocol {
     }
     
     public func getBingoHistory() async throws -> [BingoModel] {
-        try? await Task.sleep(nanoseconds: 1_000_000)
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
         return [.defaultModel, .defaultModel, .defaultModel]
     }
 }
