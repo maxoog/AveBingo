@@ -15,19 +15,26 @@ import CommonModels
 
 public struct BingoHistoryView: View {
     let analyticsService: AnalyticsServiceProtocol
-    let screenFactory: ScreenFactoryProtocol
     @ObservedObject var viewModel: BingoHistoryViewModel
+    let screenFactory: ScreenFactoryProtocol
     
-    @State var editViewOpenItem: EditBingoOpenType? = nil
+    @State var openScreenItem: ScreenType? = nil {
+        didSet {
+            if openScreenItem != nil {
+                shouldOpenScreen = true
+            }
+        }
+    }
+    @State var shouldOpenScreen: Bool = false
     
     public init(
-        screenFactory: ScreenFactoryProtocol,
         viewModel: BingoHistoryViewModel,
-        analyticsService: AnalyticsServiceProtocol
+        analyticsService: AnalyticsServiceProtocol,
+        screenFactory: ScreenFactoryProtocol
     ) {
-        self.screenFactory = screenFactory
         self.viewModel = viewModel
         self.analyticsService = analyticsService
+        self.screenFactory = screenFactory
     }
     
     public var body: some View {
@@ -36,7 +43,6 @@ public struct BingoHistoryView: View {
                 .font(AveFont.headline1)
                 .foregroundStyle(AveColor.content)
                 .padding(.top, 8)
-            
             
             switch viewModel.state {
             case .loading:
@@ -53,7 +59,7 @@ public struct BingoHistoryView: View {
                 if cards.isEmpty {
                     centeredView {
                         EmptyHistoryView(onAddBingoTap: {
-                            editViewOpenItem = .createNew
+                            self.openScreenItem = .editBingo(.createNew)
                             analyticsService.logEvent(.openBingoCreation)
                         })
                     }
@@ -62,14 +68,24 @@ public struct BingoHistoryView: View {
                 }
             }
         }
-        .fullScreenCover(item: $editViewOpenItem) { openType in
-            screenFactory.editBingoView(openType: openType)
+        .overlay {
+            NavigationLink(isActive: $shouldOpenScreen) {
+                if let openScreenItem {
+                    switch openScreenItem {
+                    case .editBingo(let openType):
+                        screenFactory.editBingoView(openType: openType)
+                    case .playBingo(let openType):
+                        screenFactory.playBingoView(openType: openType)
+                    }
+                }
+            } label: {}
         }
         .onFirstAppear {
             Task {
                 await viewModel.reload()
             }
         }
+        .onChange(of: shouldOpenScreen, perform: { _ in })
     }
     
     @ViewBuilder
@@ -78,19 +94,20 @@ public struct BingoHistoryView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(cards, id: \.id) { card in
-                        NavigationLink {
-                            screenFactory.playBingoView(openType: .card(card))
-                        } label: {
-                            BingoSnippetView(
-                                model: card,
-                                onEdit: {
-                                    self.editViewOpenItem = .edit(card)
-                                },
-                                onDelete: {
-                                    
-                                }
-                            )
-                        }
+                        BingoSnippetView(
+                            model: card,
+                            onTap: {
+                                self.openScreenItem = .playBingo(.card(card))
+//                                router?.openPlayBingoView(openType: .card(card))
+                            },
+                            onEdit: {
+                                self.openScreenItem = .editBingo(.edit(card))
+//                                router?.openEditBingoView(openType: .edit(card))
+                            },
+                            onDelete: {
+                                viewModel.deleteBingo(model: card)
+                            }
+                        )
                     }
                 }
                 .padding(.top, 22)

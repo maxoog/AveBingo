@@ -61,6 +61,10 @@ public final class BingoHistoryViewModel: ObservableObject {
         await loadingTask?.value
     }
     
+    func deleteBingo(model: BingoModel) {
+        
+    }
+    
     func removeBingo() {
         
     }

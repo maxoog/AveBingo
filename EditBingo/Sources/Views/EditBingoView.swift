@@ -15,6 +15,8 @@ public struct EditBingoView: View {
         GridItem(.flexible())
     ]
     
+    @Environment(\.dismiss) private var dismiss
+    
     @ObservedObject var viewModel: EditBingoViewModel
     
     @State var bingoTitle: String = ""
@@ -28,11 +30,6 @@ public struct EditBingoView: View {
     
     public var body: some View {
         VStack(alignment: .center) {
-            HStack {
-                
-            }
-            
-            
             TextField(text: $bingoTitle, prompt: Text("Title").font(.title), label: {})
                 .font(.title)
                 .multilineTextAlignment(.center)
@@ -57,7 +54,6 @@ public struct EditBingoView: View {
                 }
             }
             
-            
             Button(action: {
                 Task {
                     await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
@@ -71,6 +67,14 @@ public struct EditBingoView: View {
                     }
             })
             .padding(.top, 24)
+        }
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationButton(iconName: "chevron_left_icon") {
+                    dismiss()
+                }
+            }
         }
     }
 }
@@ -106,4 +110,3 @@ struct BingoCardView: View {
         return index == currentlySelectedCell
     }
 }
-

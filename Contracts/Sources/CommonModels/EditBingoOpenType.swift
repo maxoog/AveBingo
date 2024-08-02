@@ -7,16 +7,7 @@
 
 import Foundation
 
-public enum EditBingoOpenType: Identifiable {
+public enum EditBingoOpenType {
     case createNew
     case edit(BingoModel)
-    
-    public var id: String {
-        switch self {
-        case .createNew:
-            "CREATE_NEW"
-        case .edit(let bingoModel):
-            bingoModel.id
-        }
-    }
 }
