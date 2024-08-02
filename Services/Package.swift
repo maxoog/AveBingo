@@ -34,6 +34,7 @@ let package = Package(
                 "NetworkClient",
                 .product(name: "Alamofire", package: "Alamofire"),
                 .product(name: "ServicesContracts", package: "Contracts"),
+                .product(name: "CommonModels", package: "Contracts"),
                 "NetworkCore"
             ],
             path: "Sources/BingoServices"
@@ -50,6 +51,7 @@ let package = Package(
             name: "BingoServicesForAppClip",
             dependencies: [
                 .product(name: "ServicesContracts", package: "Contracts"),
+                .product(name: "CommonModels", package: "Contracts"),
                 "NetworkCore"
             ],
             path: "Sources/BingoServicesForAppClip"

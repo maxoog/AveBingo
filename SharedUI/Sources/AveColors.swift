@@ -17,4 +17,13 @@ public enum AveColor {
     
     public static let red = Color(red: 0.96, green: 0.31, blue: 0.31)
     public static let lilac = Color(red: 0.64, green: 0.72, blue: 1)
+    
+    
+    // Colors for bingo cells
+    public static let lilac2 = Color(red: 0.73, green: 0.77, blue: 1) // BBC4FF
+    public static let orange = Color(red: 1, green: 0.77, blue: 0.40) // FFC567
+    public static let pang = Color(red: 0.82, green: 0.95, blue: 0.91) // D2F1E9
+    public static let green = Color(red: 0.16, green: 0.56, blue: 0.36) // 2A8E5C
+    public static let pink = Color(red: 0.99, green: 0.49, blue: 0.66) // FC7DA8
+    public static let red2 = Color(red: 1, green: 0.38, blue: 0.31) // FF614E
 }

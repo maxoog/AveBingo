@@ -7,6 +7,7 @@
 import Foundation
 import BingoServices
 import ServicesContracts
+import CommonModels
 
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
@@ -14,7 +15,7 @@ public final class EditBingoViewModel: ObservableObject {
     @Published var error: Error?
     @Published var bingoID: String? = nil
     
-    public init(bingoService: BingoService) {
+    public init(openType: EditBingoOpenType, bingoService: BingoService) {
         self.bingoService = bingoService
     }
 

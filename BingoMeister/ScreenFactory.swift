@@ -13,31 +13,34 @@ import BingoHistory
 import PlayBingo
 import ScreenFactoryContracts
 import Analytics
+import CommonModels
 
 @MainActor
 final class ScreenFactory: ScreenFactoryProtocol {
     static let shared = ScreenFactory()
     fileprivate let appFactory = AppFactory()
     
-    func editBingoView() -> AnyView {
+    func editBingoView(openType: EditBingoOpenType) -> AnyView {
         AnyView(
-            EditBingoView(viewModel: appFactory.editBingoViewModel())
+            EditBingoView(viewModel: appFactory.editBingoViewModel(openType: openType))
         )
     }
     
     func bingoHistoryView() -> AnyView {
         AnyView(
-            BingoHistoryView(
-                screenFactory: self,
-                viewModel: appFactory.bingoHistoryViewModel(),
-                analyticsService: appFactory.analyticsService
-            )
+            NavigationView {
+                BingoHistoryView(
+                    screenFactory: self,
+                    viewModel: appFactory.bingoHistoryViewModel(),
+                    analyticsService: appFactory.analyticsService
+                )
+            }
         )
     }
     
-    func playBingoView() -> AnyView {
+    func playBingoView(openType: PlayBingoOpenType) -> AnyView {
         AnyView(
-            PlayBingoView(viewModel: appFactory.playBingoViewModel(bingoUrl: nil)) // TODO
+            PlayBingoView(viewModel: appFactory.playBingoViewModel(openType: openType))
         )
     }
 }
@@ -50,15 +53,15 @@ fileprivate final class AppFactory {
     
     lazy var analyticsService = AnalyticsService()
     
-    func editBingoViewModel() -> EditBingoViewModel {
-        EditBingoViewModel(bingoService: bingoService)
+    func editBingoViewModel(openType type: EditBingoOpenType) -> EditBingoViewModel {
+        EditBingoViewModel(openType: type, bingoService: bingoService)
     }
     
     func bingoHistoryViewModel() -> BingoHistoryViewModel {
         BingoHistoryViewModel(bingoService: bingoService)
     }
     
-    func playBingoViewModel(bingoUrl url: URL?) -> PlayBingoViewModel {
-        PlayBingoViewModel(bingoUrl: url, bingoProvider: bingoService)
+    func playBingoViewModel(openType type: PlayBingoOpenType) -> PlayBingoViewModel {
+        PlayBingoViewModel(openType: type, bingoProvider: bingoService)
     }
 }

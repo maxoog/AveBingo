@@ -10,71 +10,90 @@ import SwiftUI
 import SharedUI
 import Resources
 import StoreKit
+import CommonModels
 
 public struct PlayBingoView: View {
-    private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: PlayBingoViewModel
     
     @State private var screenshotMaker: ScreenshotMaker?
-    
     @State private var fullAppPromoPresented: Bool = false
+    @State private var shareActivityPresented: Bool = false
     
     public init(viewModel: PlayBingoViewModel) {
         self.viewModel = viewModel
     }
     
     public var body: some View {
-        Group {
-            if let bingoCard = viewModel.bingoCard {
-                bingoCardView(card: bingoCard)
+        VStack(spacing: 0) {
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+                    .onAppear(perform: viewModel.loadBingo)
+            case .error(let error):
+                ErrorView(error)
+            case .content(let bingoModel):
+                bingoCardView(card: bingoModel)
                     .screenshotView { screenshotMaker in
                         self.screenshotMaker = screenshotMaker
                     }
-            } else if viewModel.loading {
-                ProgressView().onAppear(perform: viewModel.loadBingo)
-            } else if let error = viewModel.error {
-                ErrorView(error)
             }
         }
+        .padding(.horizontal, 16)
+        .navigationBarBackButtonHidden()
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    if viewModel.bingoCard != nil, 
-                       let screenshotMaker,
-                       let image = screenshotMaker.screenshot()
-                    {
-                        self.copyImageToClipboard(image: image)
+            ToolbarItem(placement: .topBarLeading) {
+                HStack(spacing: 16) {
+                    NavigationButton(iconName: "chevron_left_icon") {
+                        dismiss()
                     }
-                } label: {
-                    Image("copy_icon", bundle: .assets)
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(Color.black)
-                        .scaledToFill()
-                        .frame(width: 34, height: 34)
-                        .clipShape(Rectangle())
+                    
+                    Text("My bingos")
+                        .font(AveFont.headline3)
+                        .foregroundStyle(AveColor.content)
                 }
             }
             
-            ToolbarItem(placement: .principal) {
-                Button {
-                    showFullAppPromo()
-                } label: {
-                    Text("full app promo")
+            ToolbarItem(placement: .topBarTrailing) {
+                HStack(spacing: 6) {
+                    NavigationButton(
+                        iconName: "pencil_icon",
+                        onTap: editBingo
+                    )
+                    NavigationButton(
+                        iconName: "share_icon",
+                        onTap: {
+                            shareActivityPresented = true
+                        }
+                    )
                 }
-
             }
+        }
+        .sheet(isPresented: $shareActivityPresented) {
+            ShareBingoViewController(bingoURL: viewModel.bingoURL, image: bingoImage())
+                .ignoresSafeArea(edges: .bottom)
         }
         #if !APP_CLIP
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6535681093", position: .bottom)
         }
         #endif
+    }
+    
+    private func bingoImage() -> UIImage? {
+        return screenshotMaker?.screenshot()
+    }
+    
+    private func makeScreenshot() {
+        if case .content = viewModel.state,
+           let image = bingoImage()
+        {
+            self.copyImageToClipboard(image: image)
+        }
+    }
+    
+    private func editBingo() {
+        
     }
     
     private func showFullAppPromo() {
@@ -85,51 +104,30 @@ public struct PlayBingoView: View {
         }
     }
     
-    private func bingoCardView(card bingoCard: BingoCard) -> some View {
+    private func bingoCardView(card bingoModel: BingoModel) -> some View {
         VStack(alignment: .center) {
-            Text(bingoCard.title)
+            Image("app_logo", bundle: .assets)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 66)
             
-            LazyVGrid(
-                columns: columns,
-                spacing: 5
-            ) {
-                ForEach(Array(bingoCard.tiles.enumerated()), id: \.1.id) { (index, tile) in
-                    BingoCardView(
-                        text: tile.text,
-                        selected: Binding {
-                            bingoCard.tiles[index].selected
-                        } set: { selected in
-                            viewModel.toggleSelected(index: index, selected: selected)
-                        }
-                    )
-                }
+            Text(bingoModel.name)
+                .font(AveFont.content)
+                .foregroundStyle(AveColor.content)
+                .padding(.top, 32)
+            
+            BingoGridView(
+                model: bingoModel,
+                style: .basic,
+                size: ._3x3
+            ) { (index, tile) in
+                Text(tile.description)
+                    .font(AveFont.content2)
+                    .foregroundStyle(AveColor.content)
+                    .padding(8)
+                    .multilineTextAlignment(.center)
             }
-        }
-    }
-}
-
-private struct BingoCardView: View {
-    @State private var width: CGFloat = 0
-    
-    let text: String
-    @Binding var selected: Bool
-
-    var body: some View {
-        ZStack {
-            (selected ? Color.green : Color.clear)
-                .clipShape(Rectangle())
-                .border(Color.black)
-                .frame(height: width)
-            
-            Text(text)
-                .padding(.horizontal, 8)
-        }
-        .widthChanged { newWidth in
-            width = newWidth
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            selected.toggle()
+            .padding(.top, 32)
         }
     }
 }

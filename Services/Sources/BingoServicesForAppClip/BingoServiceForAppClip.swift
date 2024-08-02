@@ -8,6 +8,7 @@
 import Foundation
 import ServicesContracts
 import NetworkCore
+import CommonModels
 
 public final class BingoServiceForAppClip: BingoProviderProtocol {
     private let urlParser = URLParser()

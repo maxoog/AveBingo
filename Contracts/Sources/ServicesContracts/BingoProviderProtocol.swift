@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonModels
 
 public protocol BingoProviderProtocol {
     func getBingo(url: URL?) async throws -> BingoModel

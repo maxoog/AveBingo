@@ -10,6 +10,7 @@ import NetworkClient
 import Alamofire
 import ServicesContracts
 import NetworkCore
+import CommonModels
 
 public typealias BingoID = String
 

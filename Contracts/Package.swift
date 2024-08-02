@@ -12,19 +12,33 @@ let package = Package(
         .library(
             name: "ScreenFactoryContracts",
             targets: ["ScreenFactoryContracts"]),
+        .library(
+            name: "CommonModels",
+            targets: ["CommonModels"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
             name: "ServicesContracts",
-            dependencies: [],
+            dependencies: [
+                "CommonModels"
+            ],
             path: "Sources/ServicesContracts"
         ),
         .target(
             name: "ScreenFactoryContracts",
-            dependencies: [],
+            dependencies: [
+                "ServicesContracts",
+                "CommonModels"
+            ],
             path: "Sources/ScreenFactoryContracts"
+        ),
+        .target(
+            name: "CommonModels",
+            dependencies: [
+            ],
+            path: "Sources/CommonModels"
         )
     ]
 )

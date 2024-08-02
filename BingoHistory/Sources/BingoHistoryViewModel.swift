@@ -8,6 +8,7 @@
 import Foundation
 import BingoServices
 import ServicesContracts
+import CommonModels
 
 typealias Cards = [BingoModel]
 

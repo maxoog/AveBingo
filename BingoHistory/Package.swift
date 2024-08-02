@@ -24,7 +24,8 @@ let package = Package(
                 .product(name: "BingoServices", package: "Services"),
                 .product(name: "Analytics", package: "Services"),
                 .product(name: "Resources", package: "Resources"),
-                .product(name: "ScreenFactoryContracts", package: "Contracts")
+                .product(name: "ScreenFactoryContracts", package: "Contracts"),
+                .product(name: "CommonModels", package: "Contracts")
             ],
             path: "Sources"
         )

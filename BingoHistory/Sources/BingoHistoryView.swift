@@ -11,14 +11,14 @@ import ScreenFactoryContracts
 import Resources
 import SharedUI
 import ServicesContracts
+import CommonModels
 
 public struct BingoHistoryView: View {
     let analyticsService: AnalyticsServiceProtocol
     let screenFactory: ScreenFactoryProtocol
     @ObservedObject var viewModel: BingoHistoryViewModel
     
-    @State var editViewPresented: Bool = false
-    @State var playViewPresented: Bool = false
+    @State var editViewOpenItem: EditBingoOpenType? = nil
     
     public init(
         screenFactory: ScreenFactoryProtocol,
@@ -53,7 +53,7 @@ public struct BingoHistoryView: View {
                 if cards.isEmpty {
                     centeredView {
                         EmptyHistoryView(onAddBingoTap: {
-                            editViewPresented = true
+                            editViewOpenItem = .createNew
                             analyticsService.logEvent(.openBingoCreation)
                         })
                     }
@@ -62,11 +62,8 @@ public struct BingoHistoryView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $editViewPresented) {
-            screenFactory.editBingoView()
-        }
-        .fullScreenCover(isPresented: $playViewPresented) {
-            screenFactory.playBingoView()
+        .fullScreenCover(item: $editViewOpenItem) { openType in
+            screenFactory.editBingoView(openType: openType)
         }
         .onFirstAppear {
             Task {
@@ -77,19 +74,30 @@ public struct BingoHistoryView: View {
     
     @ViewBuilder
     private func cardsListView(cards: Cards) -> some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(cards, id: \.id) { card in
-                    BingoSnippetView(model: card)
-                        .onTapGesture {
-                            playViewPresented = true
+        SwipeViewGroup {
+            ScrollView {
+                LazyVStack {
+                    ForEach(cards, id: \.id) { card in
+                        NavigationLink {
+                            screenFactory.playBingoView(openType: .card(card))
+                        } label: {
+                            BingoSnippetView(
+                                model: card,
+                                onEdit: {
+                                    self.editViewOpenItem = .edit(card)
+                                },
+                                onDelete: {
+                                    
+                                }
+                            )
                         }
+                    }
                 }
+                .padding(.top, 22)
             }
-            .padding(.top, 22)
-        }
-        .refreshable {
-            await viewModel.reload()
+            .refreshable {
+                await viewModel.reload()
+            }
         }
     }
     

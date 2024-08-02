@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftUI
+import ServicesContracts
+import CommonModels
 
 @MainActor
 public protocol ScreenFactoryProtocol {
-    func editBingoView() -> AnyView
-    func playBingoView() -> AnyView
+    func editBingoView(openType: EditBingoOpenType) -> AnyView
+    func playBingoView(openType: PlayBingoOpenType) -> AnyView
 }

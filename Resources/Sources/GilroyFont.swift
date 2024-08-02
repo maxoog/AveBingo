@@ -79,10 +79,9 @@ public enum GilroyFontFactory {
 
     public static func font(
         size: CGFloat,
-        weight: GilroyFont,
-        fallback: UIFont
+        weight: GilroyFont
     ) -> Font {
-        let font = uiFont(size: size, weight: weight, fallback: fallback)
+        let font = uiFont(size: size, weight: weight, fallback: .systemFont(ofSize: size))
 
         return Font(font)
     }

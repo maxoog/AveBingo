@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 import PlayBingo
 import BingoServicesForAppClip
+import CommonModels
 
 @MainActor
 final class ScreenFactory {
@@ -25,7 +26,7 @@ final class AppFactory {
     private lazy var bingoService = BingoServiceForAppClip()
     
     func playBingoViewModel(bingoUrl url: URL?) -> PlayBingoViewModel {
-        PlayBingoViewModel(bingoUrl: url, bingoProvider: bingoService)
+        PlayBingoViewModel(openType: .deeplink(url), bingoProvider: bingoService)
     }
 }
 
