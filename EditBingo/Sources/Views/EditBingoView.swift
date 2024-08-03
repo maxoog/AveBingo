@@ -48,7 +48,6 @@ public struct EditBingoView: View {
                     selectable: false
                 ) { (index, tile) in
                     BingoCardView(
-                        currentlySelectedCell: $currentlySelectedCell,
                         textValue: Binding {
                             bingoCards[index]
                         } set: { text in
@@ -91,15 +90,12 @@ public struct EditBingoView: View {
 struct BingoCardView: View {
     @State private var height: CGFloat = 36
 
-    @Binding var currentlySelectedCell: Int
     @Binding var textValue: String
     var index: Int
     
     var body: some View {
         BingoCellTextView(
             text: $textValue,
-            currentlySelectedCell: $currentlySelectedCell,
-            isFirstResponder: responder,
             index: index,
             onPreferredHeightUpdated: { height in
                 self.height = height
@@ -109,9 +105,5 @@ struct BingoCardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .padding(.horizontal, 8)
         .padding(.vertical, 1)
-    }
-    
-    private var responder: Bool {
-        return index == currentlySelectedCell
     }
 }

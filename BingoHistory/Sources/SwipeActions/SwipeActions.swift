@@ -679,7 +679,7 @@ struct SwipeActionsLayout: _VariadicView_UnaryViewRoot {
                 } else {
                     child
                         .frame(maxHeight: .infinity)
-                        .frame(width: width)
+                        .frame(width: ((width ?? 0) > 0 ? width : 0))
                         .opacity(shown ? 1 : 0)
                         .mask(
                             RoundedRectangle(cornerRadius: options.actionCornerRadius, style: .continuous)
