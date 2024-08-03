@@ -48,9 +48,9 @@ public enum BingoCellStyle {
     }
 }
 
-public enum BingoGridSize {
-    case _3x3
-    case _4x4
+public enum BingoGridSize: String, CaseIterable {
+    case _3x3 = "3x3"
+    case _4x4 = "4x4"
     
     static let colors3x3 = [
         AveColor.lilac2,

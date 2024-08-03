@@ -1,8 +1,7 @@
 import SwiftUI
 import UIKit
 
-struct CustomTextField: UIViewRepresentable {
-
+struct BingoCellTextField: UIViewRepresentable {
     class Coordinator: NSObject, UITextFieldDelegate {
         @Binding var text: String
         @Binding var currentlySelectedCell: Int
@@ -46,15 +45,15 @@ struct CustomTextField: UIViewRepresentable {
     var isFirstResponder: Bool = false
     let index: Int
 
-    func makeUIView(context: UIViewRepresentableContext<CustomTextField>) -> UITextField {
+    func makeUIView(context: UIViewRepresentableContext<BingoCellTextField>) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.delegate = context.coordinator
         textField.textAlignment = .center
-        textField.keyboardType = .decimalPad
+        textField.keyboardType = .default
         return textField
     }
 
-    func makeCoordinator() -> CustomTextField.Coordinator {
+    func makeCoordinator() -> BingoCellTextField.Coordinator {
         return Coordinator(
             text: $text,
             currentlySelectedCell: $currentlySelectedCell,
@@ -62,7 +61,7 @@ struct CustomTextField: UIViewRepresentable {
         )
     }
 
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<CustomTextField>) {
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<BingoCellTextField>) {
         uiView.text = text
         if isFirstResponder && !context.coordinator.didBecomeFirstResponder  {
             uiView.becomeFirstResponder()

@@ -15,6 +15,7 @@ public struct BingoGridView<Content: View>: View {
     let model: BingoModel
     let style: BingoCellStyle
     let size: BingoGridSize
+    let selectable: Bool
     let cellContent: (CellModel) -> Content
     
     private let columns: [GridItem] = [
@@ -27,24 +28,27 @@ public struct BingoGridView<Content: View>: View {
         model: BingoModel,
         style: BingoCellStyle,
         size: BingoGridSize,
+        selectable: Bool,
         cellContent: @escaping (CellModel) -> Content
     ) {
         self.model = model
         self.cellContent = cellContent
         self.style = style
         self.size = size
+        self.selectable = selectable
     }
     
     public var body: some View {
         LazyVGrid(
             columns: columns,
-            spacing: 5
+            spacing: 8
         ) {
             ForEach(Array(model.tiles.enumerated()), id: \.0) { cellModel in
                 BingoCellView(
                     style: style,
                     size: size,
-                    index: cellModel.offset
+                    index: cellModel.offset,
+                    selectable: selectable
                 ) {
                     cellContent(cellModel)
                 }
@@ -57,6 +61,7 @@ private struct BingoCellView<Content: View>: View {
     let style: BingoCellStyle
     let size: BingoGridSize
     let index: Int
+    let selectable: Bool
     let content: () -> Content
     
     @State private var width: CGFloat = 0
@@ -79,7 +84,9 @@ private struct BingoCellView<Content: View>: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            selected.toggle()
+            if selectable {
+                selected.toggle()
+            }
         }
         .overlay(alignment: .topLeading) {
             if selected {

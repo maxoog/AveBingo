@@ -118,8 +118,9 @@ public struct PlayBingoView: View {
             
             BingoGridView(
                 model: bingoModel,
-                style: .basic,
-                size: ._3x3
+                style: .retro,
+                size: ._3x3,
+                selectable: true
             ) { (index, tile) in
                 Text(tile.description)
                     .font(AveFont.content2)

@@ -21,6 +21,8 @@ public struct EditBingoView: View {
     
     @State var bingoTitle: String = ""
     @State var bingoCards: [String] = .init(repeating: "", count: 9)
+    @State var bingoSize: BingoGridSize = ._3x3
+    @State var bingoStyle: BingoCellStyle = .stroke
     
     @State private var currentlySelectedCell: Int = 0
     
@@ -29,21 +31,24 @@ public struct EditBingoView: View {
     }
     
     public var body: some View {
-        VStack(alignment: .center) {
-            TextField(text: $bingoTitle, prompt: Text("Title").font(.title), label: {})
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .tint(.black)
-                .frame(minWidth: 200, alignment: .center)
-                .padding(.horizontal, 16)
-            
-            LazyVGrid(
-                columns: columns,
-                spacing: 5
-            ) {
-                ForEach(Array(bingoCards.enumerated()), id: \.offset) { (index, card) in
+        ScrollView {
+            VStack(alignment: .center) {
+                EmojiView()
+                
+                TitleTextField(text: $bingoTitle)
+                    .padding(.top, 16)
+                
+                GridSizePickerView(sizeSelection: $bingoSize)
+                    .padding(.top, 24)
+                
+                BingoGridView(
+                    model: .defaultModel,
+                    style: bingoStyle,
+                    size: bingoSize,
+                    selectable: false
+                ) { (index, tile) in
                     BingoCardView(
-                        currentlySelectedCell: $currentlySelectedCell, 
+                        currentlySelectedCell: $currentlySelectedCell,
                         textValue: Binding {
                             bingoCards[index]
                         } set: { text in
@@ -52,21 +57,19 @@ public struct EditBingoView: View {
                         index: index
                     )
                 }
-            }
-            
-            Button(action: {
-                Task {
-                    await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
-                }
-            }, label: {
-                Text("Save bingo")
-                    .foregroundStyle(Color.white)
-                    .background {
-                        Color.secondary.frame(width: 200, height: 56)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(.top, 16)
+                
+                AveButton(
+                    iconName: nil,
+                    text: "Save changes",
+                    onTap: {
+                        Task {
+                            await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
+                        }
                     }
-            })
-            .padding(.top, 24)
+                )
+            }
+            .padding(.horizontal, 16)
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -74,6 +77,12 @@ public struct EditBingoView: View {
                 NavigationButton(iconName: "chevron_left_icon") {
                     dismiss()
                 }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Create new card")
+                    .font(AveFont.headline3)
+                    .foregroundStyle(AveColor.content)
             }
         }
     }
@@ -87,23 +96,12 @@ struct BingoCardView: View {
     var index: Int
     
     var body: some View {
-        ZStack {
-            Color.gray
-                .clipShape(Rectangle())
-                .frame(height: width)
-            
-            CustomTextField(
-                text: $textValue,
-                currentlySelectedCell: $currentlySelectedCell,
-                isFirstResponder: responder,
-                index: index
-            )
-            .tint(.black)
-        }
-        .frame(maxWidth: .infinity)
-        .widthChanged { newWidth in
-            width = newWidth
-        }
+        BingoCellTextField(
+            text: $textValue,
+            currentlySelectedCell: $currentlySelectedCell,
+            isFirstResponder: responder,
+            index: index
+        )
     }
     
     private var responder: Bool {
