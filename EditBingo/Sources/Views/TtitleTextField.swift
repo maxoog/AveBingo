@@ -24,6 +24,7 @@ struct TitleTextField: View {
                     .font(AveFont.content2).foregroundColor(AveColor.secondaryContent),
                 label: {}
             )
+            .tint(AveColor.content)
             .font(AveFont.content2)
             .foregroundStyle(AveColor.content)
             .tint(.black)

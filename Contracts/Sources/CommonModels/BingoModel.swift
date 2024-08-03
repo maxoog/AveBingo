@@ -21,7 +21,7 @@ public struct BingoModel: Identifiable, Equatable {
     public static var defaultModel: BingoModel {
         BingoModel(name: "Скуф бинго", tiles: [
             .init(description: "Лысеешь"),
-            .init(description: "Пьёшь пиво хотя бы раз в неделю"),
+            .init(description: "Пьёшь пиво хотя бы раз в неделю + у тебя есть питомец"),
             .init(description: "Мамкин политик"),
             
             .init(description: "Одеваешься во что попало"),

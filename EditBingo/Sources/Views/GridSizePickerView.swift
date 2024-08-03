@@ -25,7 +25,6 @@ struct GridSizePickerView: View {
                         .onTapGesture {
                             sizeSelection = size
                         }
-
                 }
             }
         }

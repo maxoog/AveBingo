@@ -89,19 +89,26 @@ public struct EditBingoView: View {
 }
 
 struct BingoCardView: View {
-    @State private var width: CGFloat = 0
+    @State private var height: CGFloat = 36
 
     @Binding var currentlySelectedCell: Int
     @Binding var textValue: String
     var index: Int
     
     var body: some View {
-        BingoCellTextField(
+        BingoCellTextView(
             text: $textValue,
             currentlySelectedCell: $currentlySelectedCell,
             isFirstResponder: responder,
-            index: index
+            index: index,
+            onPreferredHeightUpdated: { height in
+                self.height = height
+            }
         )
+        .frame(height: height)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(.horizontal, 8)
+        .padding(.vertical, 1)
     }
     
     private var responder: Bool {

@@ -22,4 +22,8 @@ public enum AveFont {
         size: 16,
         weight: .gilroyMedium
     )
+    public static let content2_uifont: UIFont = GilroyFontFactory.uiFont(
+        size: 16,
+        weight: .gilroyMedium
+    )
 }
