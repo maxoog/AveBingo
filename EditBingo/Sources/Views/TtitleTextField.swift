@@ -28,8 +28,7 @@ struct TitleTextField: View {
             .font(AveFont.content2)
             .foregroundStyle(AveColor.content)
             .tint(.black)
-            .frame(minWidth: 200, alignment: .center)
-            .padding(.vertical, 16)
+            .frame(height: 51)
             .padding(.leading, 24)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background {
@@ -38,15 +37,5 @@ struct TitleTextField: View {
             }
             .contentShape(Rectangle())
         }
-    }
-}
-
-struct Preview: PreviewProvider {
-    static var previews: some View {
-        TitleTextField(text: .init(get: {
-            ""
-        }, set: { _ in
-            
-        }))
     }
 }

@@ -120,7 +120,8 @@ public struct PlayBingoView: View {
                 model: bingoModel,
                 style: .retro,
                 size: ._3x3,
-                selectable: true
+                selectable: true,
+                passTouchesToContent: false
             ) { (index, tile) in
                 Text(tile.description)
                     .font(AveFont.content2)

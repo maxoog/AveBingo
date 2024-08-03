@@ -16,6 +16,7 @@ public struct BingoGridView<Content: View>: View {
     let style: BingoCellStyle
     let size: BingoGridSize
     let selectable: Bool
+    let passTouchesToContent: Bool
     let cellContent: (CellModel) -> Content
     
     private let columns: [GridItem] = [
@@ -29,13 +30,15 @@ public struct BingoGridView<Content: View>: View {
         style: BingoCellStyle,
         size: BingoGridSize,
         selectable: Bool,
+        passTouchesToContent: Bool,
         cellContent: @escaping (CellModel) -> Content
     ) {
         self.model = model
-        self.cellContent = cellContent
         self.style = style
         self.size = size
         self.selectable = selectable
+        self.passTouchesToContent = passTouchesToContent
+        self.cellContent = cellContent
     }
     
     public var body: some View {

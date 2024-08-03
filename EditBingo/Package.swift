@@ -13,7 +13,7 @@ let package = Package(
     dependencies: [
         .package(path: "../SharedUI"),
         .package(path: "../Services"),
-        .package(path: "../Contracts"),
+        .package(path: "../Contracts")
     ],
     targets: [
         .target(
@@ -21,7 +21,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
                 .product(name: "BingoServices", package: "Services"),
-                .product(name: "CommonModels", package: "Contracts"),
+                .product(name: "CommonModels", package: "Contracts")
             ],
             path: "Sources"
         )

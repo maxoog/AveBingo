@@ -7,6 +7,7 @@
 import Foundation
 import SwiftUI
 import SharedUI
+import Combine
 
 public struct EditBingoView: View {
     private let columns: [GridItem] = [
@@ -45,30 +46,32 @@ public struct EditBingoView: View {
                     model: .defaultModel,
                     style: bingoStyle,
                     size: bingoSize,
-                    selectable: false
+                    selectable: false,
+                    passTouchesToContent: true
                 ) { (index, tile) in
                     BingoCardView(
                         textValue: Binding {
                             bingoCards[index]
                         } set: { text in
                             bingoCards[index] = text
-                        },
-                        index: index
+                        }
                     )
                 }
                 .padding(.top, 16)
-                
-                AveButton(
-                    iconName: nil,
-                    text: "Save changes",
-                    onTap: {
-                        Task {
-                            await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
-                        }
-                    }
-                )
             }
             .padding(.horizontal, 16)
+        }
+        .overlay(alignment: .bottom) {
+            AveButton(
+                iconName: nil,
+                text: "Save changes",
+                onTap: {
+                    Task {
+                        await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
+                    }
+                }
+            )
+            .padding(.vertical, 16)
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -88,22 +91,31 @@ public struct EditBingoView: View {
 }
 
 struct BingoCardView: View {
-    @State private var height: CGFloat = 36
+    @State private var height: CGFloat = 40
+    @State private var firstResponder: Bool = false
+    @State var onTapPublisher = PassthroughSubject<Void, Never>()
 
     @Binding var textValue: String
-    var index: Int
     
     var body: some View {
-        BingoCellTextView(
-            text: $textValue,
-            index: index,
-            onPreferredHeightUpdated: { height in
-                self.height = height
-            }
-        )
-        .frame(height: height)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .padding(.horizontal, 8)
-        .padding(.vertical, 1)
+        ZStack {
+            Color.clear
+            
+            BingoCellTextView(
+                text: $textValue,
+                onTapPublisher: onTapPublisher.eraseToAnyPublisher(),
+                onPreferredHeightUpdated: { height in
+                    self.height = height
+                }
+            )
+            .frame(height: height)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding(.horizontal, 8)
+            .padding(.vertical, 1)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onTapPublisher.send(())
+        }
     }
 }
