@@ -8,14 +8,14 @@ struct BingoCellTextView: UIViewRepresentable {
         @Binding var text: String
         let onPreferredHeightUpdated: ((CGFloat) -> Void)
         var didBecomeFirstResponder = false
-        let placeholder: UILabel?
+        let placeholder: UILabel
         
         var onTapPublisherCancellable: AnyCancellable? = nil
 
         init(
             text: Binding<String>,
             onPreferredHeightUpdated: @escaping ((CGFloat) -> Void),
-            placeholder: UILabel?
+            placeholder: UILabel
         ) {
             _text = text
             self.onPreferredHeightUpdated = onPreferredHeightUpdated
@@ -24,16 +24,16 @@ struct BingoCellTextView: UIViewRepresentable {
         
         func textViewDidEndEditing(_ textView: UITextView) {
             textView.resignFirstResponder()
-            placeholder?.isHidden = !textView.text.isEmpty
+            placeholder.isHidden = !textView.text.isEmpty
         }
         
         func textViewDidChange(_ textView: UITextView) {
             onPreferredHeightUpdated(textView.sizeThatFits(textView.frame.size).height)
-            placeholder?.isHidden = !textView.text.isEmpty
+            placeholder.isHidden = !textView.text.isEmpty
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            placeholder?.isHidden = true
+            placeholder.isHidden = true
         }
 
         func textViewDidChangeSelection(_ textView: UITextView) {
@@ -83,6 +83,7 @@ struct BingoCellTextView: UIViewRepresentable {
         textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         textView.textAlignment = .center
         textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.backgroundColor = .clear
         
         context.coordinator.onTapPublisherCancellable = onTapPublisher.sink { _ in
             textView.becomeFirstResponder()

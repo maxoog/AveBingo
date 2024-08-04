@@ -58,6 +58,11 @@ public struct EditBingoView: View {
                     )
                 }
                 .padding(.top, 16)
+                .animation(.default, value: bingoStyle)
+                
+                StylePickerView(sizeSelection: $bingoStyle)
+                    .padding(.top, 24)
+                    .padding(.bottom, 132)
             }
             .padding(.horizontal, 16)
         }

@@ -8,10 +8,21 @@
 import Foundation
 import SwiftUI
 
-public enum BingoCellStyle {
+public enum BingoCellStyle: String, CaseIterable {
     case basic
     case stroke
     case retro
+    
+    public var previewImageName: String {
+        switch self {
+        case .basic:
+            "basic_style"
+        case .stroke:
+            "stroke_style"
+        case .retro:
+            "retro_style"
+        }
+    }
     
     var strokeColor: Color {
         switch self {
@@ -51,6 +62,15 @@ public enum BingoCellStyle {
 public enum BingoGridSize: String, CaseIterable {
     case _3x3 = "3x3"
     case _4x4 = "4x4"
+    
+    var rowSize: Int {
+        switch self {
+        case ._3x3:
+            3
+        case ._4x4:
+            4
+        }
+    }
     
     static let colors3x3 = [
         AveColor.lilac2,

@@ -19,11 +19,9 @@ public struct BingoGridView<Content: View>: View {
     let passTouchesToContent: Bool
     let cellContent: (CellModel) -> Content
     
-    private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        .init(repeating: GridItem(.flexible()), count: size.rowSize)
+    }
     
     public init(
         model: BingoModel,
