@@ -7,7 +7,6 @@
 
 import Foundation
 import ServicesContracts
-import NetworkCore
 import CommonModels
 
 public extension BingoResponse {

@@ -22,10 +22,3 @@ struct EmojiView: View {
             }
     }
 }
-
-
-struct Enmoji_Preview: PreviewProvider {
-    static var previews: some View {
-        EmojiView()
-    }
-}

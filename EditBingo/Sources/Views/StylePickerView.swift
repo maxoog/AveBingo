@@ -59,10 +59,3 @@ private struct BingoStyleView: View {
         .contentShape(Rectangle())
     }
 }
-
-
-struct Preview: PreviewProvider {
-    static var previews: some View {
-        StylePickerView(sizeSelection: .constant(.basic))
-    }
-}

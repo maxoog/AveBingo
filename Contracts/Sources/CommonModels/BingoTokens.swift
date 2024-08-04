@@ -21,8 +21,10 @@ public enum BingoGridSize: String, CaseIterable {
     public init?(numberOfTiles: Int) {
         if numberOfTiles == 9 {
             self = ._3x3
+            return
         } else if numberOfTiles == 16 {
             self = ._4x4
+            return
         }
         
         return nil

@@ -42,6 +42,7 @@ public struct PlayBingoView: View {
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden()
         .toolbar {
+            #if !APP_CLIP
             ToolbarItem(placement: .topBarLeading) {
                 HStack(spacing: 16) {
                     NavigationButton(iconName: "chevron_left_icon") {
@@ -53,13 +54,16 @@ public struct PlayBingoView: View {
                         .foregroundStyle(AveColor.content)
                 }
             }
+            #endif
             
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 6) {
+                    #if !APP_CLIP
                     NavigationButton(
                         iconName: "pencil_icon",
                         onTap: editBingo
                     )
+                    #endif
                     NavigationButton(
                         iconName: "share_icon",
                         onTap: {
@@ -118,8 +122,8 @@ public struct PlayBingoView: View {
             
             BingoGridView(
                 tiles: bingoModel.tiles,
-                style: .retro,
-                size: ._3x3,
+                style: bingoModel.style,
+                size: bingoModel.size,
                 selectable: true,
                 passTouchesToContent: false
             ) { (index, tile) in

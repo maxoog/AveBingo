@@ -86,6 +86,7 @@ public struct BingoHistoryView: View {
             }
         }
         .onChange(of: shouldOpenScreen, perform: { _ in })
+        .ignoresSafeArea(.keyboard)
     }
     
     @ViewBuilder

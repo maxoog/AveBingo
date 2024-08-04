@@ -7,7 +7,6 @@ struct BingoCellTextView: UIViewRepresentable {
     class Coordinator: NSObject, UITextViewDelegate {
         @Binding var text: String
         let onPreferredHeightUpdated: ((CGFloat) -> Void)
-        var didBecomeFirstResponder = false
         let placeholder: UILabel
         
         var onTapPublisherCancellable: AnyCancellable? = nil
@@ -23,7 +22,6 @@ struct BingoCellTextView: UIViewRepresentable {
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
-            textView.resignFirstResponder()
             placeholder.isHidden = !textView.text.isEmpty
         }
         
@@ -83,7 +81,6 @@ struct BingoCellTextView: UIViewRepresentable {
         textView.textAlignment = .center
         textView.keyboardType = .default
         
-        
         textView.font = AveFont.content2_uifont
         textView.tintColor = UIColor(AveColor.content)
         textView.textContainer.maximumNumberOfLines = 5
@@ -116,11 +113,6 @@ struct BingoCellTextView: UIViewRepresentable {
                 onPreferredHeightUpdated(uiView.sizeThatFits(uiView.frame.size).height)
                 heightUpdated = true
             }
-        }
-        
-        if !context.coordinator.didBecomeFirstResponder  {
-            uiView.becomeFirstResponder()
-            context.coordinator.didBecomeFirstResponder = true
         }
     }
 }

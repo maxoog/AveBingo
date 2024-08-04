@@ -52,9 +52,13 @@ public final class BingoService: BingoProviderProtocol {
     }
     
     public func getBingoHistory() async throws -> [BingoModel] {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        return []
-        return [.defaultModel, .defaultModel, .defaultModel]
+        let bingoHistoryRequest = client.session.request(
+            "\(client.host)/api/v1/bingo"
+        )
+        
+        let historyResponse = try await bingoHistoryRequest.decodable() as [BingoResponse]
+        
+        return historyResponse.map { $0.toBingoCardModel() }
     }
 }
 
