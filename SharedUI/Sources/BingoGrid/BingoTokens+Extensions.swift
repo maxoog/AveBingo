@@ -7,12 +7,9 @@
 
 import Foundation
 import SwiftUI
+import CommonModels
 
-public enum BingoCellStyle: String, CaseIterable {
-    case basic
-    case stroke
-    case retro
-    
+ extension BingoCellStyle {
     public var previewImageName: String {
         switch self {
         case .basic:
@@ -59,52 +56,40 @@ public enum BingoCellStyle: String, CaseIterable {
     }
 }
 
-public enum BingoGridSize: String, CaseIterable {
-    case _3x3 = "3x3"
-    case _4x4 = "4x4"
+extension BingoGridSize {
+    static let colors3x3: [Color] = [
+            AveColor.lilac2,
+            AveColor.orange,
+            AveColor.pang,
+            
+            AveColor.orange,
+            AveColor.green,
+            AveColor.pink,
+            
+            AveColor.red2,
+            AveColor.lilac2,
+            AveColor.orange
+        ]
     
-    var rowSize: Int {
-        switch self {
-        case ._3x3:
-            3
-        case ._4x4:
-            4
-        }
-    }
-    
-    static let colors3x3 = [
-        AveColor.lilac2,
-        AveColor.orange,
-        AveColor.pang,
-        
-        AveColor.orange,
-        AveColor.green,
-        AveColor.pink,
-        
-        AveColor.red2,
-        AveColor.lilac2,
-        AveColor.orange
-    ]
-    
-    static let colors4x4 = [
-        AveColor.lilac2,
-        AveColor.orange,
-        AveColor.green,
-        AveColor.orange,
-        
-        AveColor.lilac2,
-        AveColor.pink,
-        AveColor.orange,
-        AveColor.red2,
-        
-        AveColor.red2,
-        AveColor.orange,
-        AveColor.lilac2,
-        AveColor.pang,
-        
-        AveColor.pink,
-        AveColor.orange,
-        AveColor.pink,
-        AveColor.green
-    ]
+    static let colors4x4: [Color] = [
+            AveColor.lilac2,
+            AveColor.orange,
+            AveColor.green,
+            AveColor.orange,
+            
+            AveColor.lilac2,
+            AveColor.pink,
+            AveColor.orange,
+            AveColor.red2,
+            
+            AveColor.red2,
+            AveColor.orange,
+            AveColor.lilac2,
+            AveColor.pang,
+            
+            AveColor.pink,
+            AveColor.orange,
+            AveColor.pink,
+            AveColor.green
+        ]
 }

@@ -11,12 +11,13 @@ import SharedUI
 
 struct TitleTextField: View {
     @Binding var text: String
+    let error: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Name")
                 .font(AveFont.content2)
-                .foregroundStyle(AveColor.content)
+                .foregroundStyle(error ? AveColor.red : AveColor.content)
             
             TextField(
                 text: $text,
@@ -34,6 +35,12 @@ struct TitleTextField: View {
             .background {
                 AveColor.backgroundLight
                     .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .overlay {
+                if error {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(AveColor.red)
+                }
             }
             .contentShape(Rectangle())
         }

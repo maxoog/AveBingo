@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SharedUI
 import Resources
+import CommonModels
 
 struct GridSizePickerView: View {
     @Binding var sizeSelection: BingoGridSize

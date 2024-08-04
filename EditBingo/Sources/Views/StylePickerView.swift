@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SharedUI
+import CommonModels
 
 struct StylePickerView: View {
     @Binding var sizeSelection: BingoCellStyle

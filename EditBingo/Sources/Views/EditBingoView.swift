@@ -8,22 +8,12 @@ import Foundation
 import SwiftUI
 import SharedUI
 import Combine
+import CommonModels
 
 public struct EditBingoView: View {
-    private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: EditBingoViewModel
-    
-    @State var bingoTitle: String = ""
-    @State var bingoCards: [String] = .init(repeating: "", count: 9)
-    @State var bingoSize: BingoGridSize = ._3x3
-    @State var bingoStyle: BingoCellStyle = .stroke
     
     @State private var currentlySelectedCell: Int = 0
     
@@ -36,31 +26,31 @@ public struct EditBingoView: View {
             VStack(alignment: .center) {
                 EmojiView()
                 
-                TitleTextField(text: $bingoTitle)
+                TitleTextField(text: $viewModel.model.title, error: viewModel.bingoValidationError)
                     .padding(.top, 16)
                 
-                GridSizePickerView(sizeSelection: $bingoSize)
+                GridSizePickerView(sizeSelection: $viewModel.model.size)
                     .padding(.top, 24)
                 
                 BingoGridView(
                     model: .defaultModel,
-                    style: bingoStyle,
-                    size: bingoSize,
+                    style: viewModel.model.style,
+                    size: viewModel.model.size,
                     selectable: false,
                     passTouchesToContent: true
                 ) { (index, tile) in
                     BingoCardView(
                         textValue: Binding {
-                            bingoCards[index]
+                            viewModel.model.tiles[index]
                         } set: { text in
-                            bingoCards[index] = text
+                            viewModel.model.tiles[index] = text
                         }
                     )
                 }
                 .padding(.top, 16)
-                .animation(.default, value: bingoStyle)
+                .animation(.default, value: viewModel.model.style)
                 
-                StylePickerView(sizeSelection: $bingoStyle)
+                StylePickerView(sizeSelection: $viewModel.model.style)
                     .padding(.top, 24)
                     .padding(.bottom, 132)
             }
@@ -72,7 +62,7 @@ public struct EditBingoView: View {
                 text: "Save changes",
                 onTap: {
                     Task {
-                        await viewModel.postBingo(title: bingoTitle, tiles: bingoCards)
+                        await viewModel.postBingo()
                     }
                 }
             )

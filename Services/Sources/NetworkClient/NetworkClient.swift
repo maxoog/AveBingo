@@ -1,6 +1,7 @@
 import Alamofire
 import Foundation
 import NetworkCore
+import TokenStorage
 
 final class Evaluator: ServerTrustEvaluating {
     func evaluate(_ trust: SecTrust, forHost host: String) throws {
@@ -9,6 +10,8 @@ final class Evaluator: ServerTrustEvaluating {
 }
 
 public class NetworkClient: SessionDelegate {
+    private let tokenLoader: TokenLoader = TokenLoader()
+    
     public var host: String {
         NetworkConstants.apiBaseAddress
     }
@@ -24,7 +27,7 @@ public class NetworkClient: SessionDelegate {
 
         let session = Session(
             delegate: self,
-            interceptor: RequestInterceptor(),
+            interceptor: RequestInterceptor(tokenLoader: tokenLoader),
             serverTrustManager: trustManager
         )
         return session
@@ -32,10 +35,17 @@ public class NetworkClient: SessionDelegate {
 }
 
 final class RequestInterceptor: Alamofire.RequestInterceptor {
+    let tokenLoader: TokenLoader
+    
+    init(tokenLoader: TokenLoader) {
+        self.tokenLoader = tokenLoader
+    }
+    
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(tokenLoader.loadedToken, forHTTPHeaderField: "x-api-key")
 
         completion(.success(urlRequest))
     }

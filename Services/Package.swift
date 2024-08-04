@@ -43,7 +43,8 @@ let package = Package(
             name: "NetworkClient",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
-                "NetworkCore"
+                "NetworkCore",
+                "TokenStorage"
             ],
             path: "Sources/NetworkClient"
         ),
@@ -68,6 +69,11 @@ let package = Package(
                 .product(name: "ServicesContracts", package: "Contracts"),
             ],
             path: "Sources/Analytics"
+        ),
+        .target(
+            name: "TokenStorage",
+            dependencies: [],
+            path: "Sources/TokenStorage"
         )
     ]
 )

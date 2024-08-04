@@ -11,13 +11,15 @@ let package = Package(
             targets: ["SharedUI"]),
     ],
     dependencies: [
-        .package(path: "../Resources")
+        .package(path: "../Resources"),
+        .package(path: "../Contracts")
     ],
     targets: [
         .target(
             name: "SharedUI",
             dependencies: [
-                .product(name: "Resources", package: "Resources")
+                .product(name: "Resources", package: "Resources"),
+                .product(name: "CommonModels", package: "Contracts")
             ],
             path: "Sources"
         )

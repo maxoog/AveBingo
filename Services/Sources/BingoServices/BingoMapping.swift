@@ -13,7 +13,9 @@ import CommonModels
 extension BingoResponse {
     func toBingoCardModel() -> BingoModel {
         BingoModel(
-            name: "some random name",
+            name: "",
+            style: .basic,
+            size: ._3x3,
             tiles: tiles.map {
                 .init(description: $0.description)
             }

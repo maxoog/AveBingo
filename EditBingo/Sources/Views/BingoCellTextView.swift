@@ -29,7 +29,7 @@ struct BingoCellTextView: UIViewRepresentable {
         
         func textViewDidChange(_ textView: UITextView) {
             onPreferredHeightUpdated(textView.sizeThatFits(textView.frame.size).height)
-            placeholder.isHidden = !textView.text.isEmpty
+            placeholder.isHidden = !textView.text.isEmpty || textView.isFirstResponder
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
@@ -37,6 +37,8 @@ struct BingoCellTextView: UIViewRepresentable {
         }
 
         func textViewDidChangeSelection(_ textView: UITextView) {
+            placeholder.isHidden = !textView.text.isEmpty || textView.isFirstResponder
+            
             DispatchQueue.main.async {
                 self.text = textView.text ?? ""
             }
