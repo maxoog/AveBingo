@@ -13,10 +13,8 @@ fileprivate struct FontName {
 }
 
 public enum GilroyFont: String, CaseIterable {
-    case gilroyRegular = "Gilroy-Regular"
     case gilroyMedium = "Gilroy-Medium" // weight == 500
     case gilroySemiBold = "Gilroy-Semibold" // weight == 600
-    case gilroyBold = "Gilroy-Bold"
     case gilroyBlack = "Gilroy-Black" // weight == 900
     
     public static func registerFonts() {
