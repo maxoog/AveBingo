@@ -23,7 +23,7 @@ public final class BingoService: BingoProviderProtocol {
     }
     
     public func postBingo(bingo: BingoModel) async throws -> BingoID {
-        let addBingoRequest = AddBingoRequest(tiles: bingo.tiles.map { .init(description: $0.description) })
+        let addBingoRequest = bingo.toAddBingoRequest()
         
         let postBingoRequest = client.session.request(
             "\(client.host)/api/v1/bingo",

@@ -13,17 +13,20 @@ public struct BingoModel: Identifiable, Equatable {
     public let name: String
     public let style: BingoCellStyle
     public let size: BingoGridSize
+    public let emoji: String
     public let tiles: [Tile]
     
     public init(
         name: String,
         style: BingoCellStyle,
         size: BingoGridSize,
+        emoji: String,
         tiles: [Tile]
     ) {
         self.name = name
         self.style = style
         self.size = size
+        self.emoji = emoji
         self.tiles = tiles
     }
     
@@ -32,6 +35,7 @@ public struct BingoModel: Identifiable, Equatable {
             name: "Скуф бинго",
             style: .basic,
             size: ._3x3,
+            emoji: "p",
             tiles: [
                 .init(description: "Лысеешь"),
                 .init(description: "Пьёшь пиво хотя бы раз в неделю + у тебя есть питомец"),

@@ -10,6 +10,7 @@ struct EditableBingoModel {
             adjustTiles(for: newValue)
         }
     }
+    var emoji: String
     var style: BingoCellStyle
     
     static var initDefault: EditableBingoModel {
@@ -19,7 +20,8 @@ struct EditableBingoModel {
             title: "",
             tiles: .init(repeating: "", count: size.numberOfCells),
             size: size,
-            style: .basic
+            style: .basic,
+            emoji: ""
         )
     }
     
@@ -27,12 +29,14 @@ struct EditableBingoModel {
         title: String,
         tiles: [String],
         size: BingoGridSize,
-        style: BingoCellStyle
+        style: BingoCellStyle,
+        emoji: String
     ) {
         self.title = title
         self.tiles = tiles
         self.size = size
         self.style = style
+        self.emoji = emoji
     }
     
     init(from model: BingoModel) {
@@ -40,6 +44,7 @@ struct EditableBingoModel {
         self.tiles = model.tiles.map { $0.description }
         self.size = model.size
         self.style = model.style
+        self.emoji = model.emoji
     }
     
     func toBingoModel() -> BingoModel {
@@ -47,6 +52,7 @@ struct EditableBingoModel {
             name: title,
             style: style,
             size: size,
+            emoji: emoji,
             tiles: tiles.map { .init(description: $0) }
         )
     }

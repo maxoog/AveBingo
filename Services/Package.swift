@@ -59,7 +59,9 @@ let package = Package(
         ),
         .target(
             name: "NetworkCore",
-            dependencies: [],
+            dependencies: [
+                .product(name: "CommonModels", package: "Contracts")
+            ],
             path: "Sources/NetworkCore"
         ),
         .target(
