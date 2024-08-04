@@ -117,7 +117,7 @@ public struct PlayBingoView: View {
                 .padding(.top, 32)
             
             BingoGridView(
-                model: bingoModel,
+                tiles: bingoModel.tiles,
                 style: .retro,
                 size: ._3x3,
                 selectable: true,

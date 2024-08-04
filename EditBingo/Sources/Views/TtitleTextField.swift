@@ -10,6 +10,8 @@ import SwiftUI
 import SharedUI
 
 struct TitleTextField: View {
+    @FocusState var isFocused
+    
     @Binding var text: String
     let error: Bool
     
@@ -25,6 +27,7 @@ struct TitleTextField: View {
                     .font(AveFont.content2).foregroundColor(AveColor.secondaryContent),
                 label: {}
             )
+            .focused($isFocused)
             .tint(AveColor.content)
             .font(AveFont.content2)
             .foregroundStyle(AveColor.content)
@@ -42,7 +45,10 @@ struct TitleTextField: View {
                         .stroke(AveColor.red)
                 }
             }
-            .contentShape(Rectangle())
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isFocused = true
         }
     }
 }

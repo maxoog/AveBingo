@@ -50,6 +50,9 @@ struct BingoCellTextView: UIViewRepresentable {
     let onTapPublisher: AnyPublisher<Void, Never>
     let placeholderLabel: UILabel = UILabel()
     
+    @BoolStaticState
+    private var heightUpdated: Bool
+    
     init(
         text: Binding<String>,
         onTapPublisher: AnyPublisher<Void, Never>,
@@ -79,10 +82,13 @@ struct BingoCellTextView: UIViewRepresentable {
         textView.delegate = context.coordinator
         textView.textAlignment = .center
         textView.keyboardType = .default
+        
+        
         textView.font = AveFont.content2_uifont
         textView.tintColor = UIColor(AveColor.content)
         textView.textContainer.maximumNumberOfLines = 5
         textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        textView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         textView.textAlignment = .center
         textView.textContainer.lineBreakMode = .byTruncatingTail
         textView.backgroundColor = .clear
@@ -104,6 +110,13 @@ struct BingoCellTextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<BingoCellTextView>) {
         uiView.text = text
+        
+        if !text.isEmpty && !heightUpdated {
+            Task { @MainActor in
+                onPreferredHeightUpdated(uiView.sizeThatFits(uiView.frame.size).height)
+                heightUpdated = true
+            }
+        }
         
         if !context.coordinator.didBecomeFirstResponder  {
             uiView.becomeFirstResponder()

@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 import CommonModels
 
-public typealias CellModel = (Int, BingoModel.Tile)
-
-public struct BingoGridView<Content: View>: View {
-    let model: BingoModel
+public struct BingoGridView<Content: View, Tile>: View {
+    public typealias CellModel = (Int, Tile)
+    
+    let tiles: [Tile]
     let style: BingoCellStyle
     let size: BingoGridSize
     let selectable: Bool
@@ -24,14 +24,14 @@ public struct BingoGridView<Content: View>: View {
     }
     
     public init(
-        model: BingoModel,
+        tiles: [Tile],
         style: BingoCellStyle,
         size: BingoGridSize,
         selectable: Bool,
         passTouchesToContent: Bool,
         cellContent: @escaping (CellModel) -> Content
     ) {
-        self.model = model
+        self.tiles = tiles
         self.style = style
         self.size = size
         self.selectable = selectable
@@ -44,7 +44,7 @@ public struct BingoGridView<Content: View>: View {
             columns: columns,
             spacing: 8
         ) {
-            ForEach(Array(model.tiles.enumerated()), id: \.0) { cellModel in
+            ForEach(Array(tiles.enumerated()), id: \.0) { cellModel in
                 BingoCellView(
                     style: style,
                     size: size,

@@ -33,22 +33,19 @@ public struct EditBingoView: View {
                     .padding(.top, 24)
                 
                 BingoGridView(
-                    model: .defaultModel,
+                    tiles: viewModel.model.tiles,
                     style: viewModel.model.style,
                     size: viewModel.model.size,
                     selectable: false,
                     passTouchesToContent: true
                 ) { (index, tile) in
                     BingoCardView(
-                        textValue: Binding {
-                            viewModel.model.tiles[index]
-                        } set: { text in
-                            viewModel.model.tiles[index] = text
-                        }
+                        textValue: $viewModel.model.tiles[index]
                     )
                 }
                 .padding(.top, 16)
                 .animation(.default, value: viewModel.model.style)
+                .animation(.default, value: viewModel.model.size)
                 
                 StylePickerView(sizeSelection: $viewModel.model.style)
                     .padding(.top, 24)
