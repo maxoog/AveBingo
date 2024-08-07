@@ -47,8 +47,9 @@ struct EditableBingoModel {
         self.emoji = model.emoji
     }
     
-    func toBingoModel() -> BingoModel {
+    func toBingoModel(id: String) -> BingoModel {
         BingoModel(
+            id: id,
             name: title,
             style: style,
             size: size,

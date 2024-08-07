@@ -9,7 +9,7 @@ public struct BingoModel: Identifiable, Equatable {
         }
     }
     
-    public let id = UUID().uuidString
+    public let id: String
     public let name: String
     public let style: BingoCellStyle
     public let size: BingoGridSize
@@ -17,12 +17,14 @@ public struct BingoModel: Identifiable, Equatable {
     public let tiles: [Tile]
     
     public init(
+        id: String,
         name: String,
         style: BingoCellStyle,
         size: BingoGridSize,
         emoji: String,
         tiles: [Tile]
     ) {
+        self.id = id
         self.name = name
         self.style = style
         self.size = size
@@ -32,6 +34,7 @@ public struct BingoModel: Identifiable, Equatable {
     
     public static var defaultModel: BingoModel {
         BingoModel(
+            id: "some_id",
             name: "Скуф бинго",
             style: .basic,
             size: ._3x3,

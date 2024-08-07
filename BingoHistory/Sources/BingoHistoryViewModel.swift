@@ -16,6 +16,15 @@ enum HistoryState {
     case loading
     case error(Error)
     case content(Cards)
+    
+    var hasContent: Bool {
+        switch self {
+        case .loading, .error:
+            false
+        case .content(let cards):
+            !cards.isEmpty
+        }
+    }
 }
 
 enum SomeError: Error {
@@ -27,6 +36,7 @@ public final class BingoHistoryViewModel: ObservableObject {
     private let bingoService: BingoService
     
     @Published var state: HistoryState = .loading
+    @Published var bingoActionError: Error? = nil
     private var loadingTask: Task<Void, Never>? = nil
 
     public init(bingoService: BingoService) {
@@ -62,7 +72,13 @@ public final class BingoHistoryViewModel: ObservableObject {
     }
     
     func deleteBingo(model: BingoModel) {
-        
+        Task {
+            do {
+                try await bingoService.deleteBingo(id: model.id)
+            } catch {
+                bingoActionError = error
+            }
+        }
     }
     
     func removeBingo() {

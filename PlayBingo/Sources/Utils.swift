@@ -10,6 +10,6 @@ import CommonModels
 
 extension PlayBingoViewModel {
     static func makeBingoURL(bingo: BingoModel) -> URL? {
-        return URL(string: "https://avebingo.com/bingo/" + bingo.id)
+        return URL(string: "https://avebingo.com/bingo/" + bingo.id.lowercased())
     }
 }

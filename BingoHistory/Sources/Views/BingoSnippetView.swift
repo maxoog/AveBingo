@@ -73,14 +73,11 @@ struct BingoSnippetView: View {
         }
         .swipeMinimumDistance(10)
         .swipeActionWidth(72)
-        
         .swipeActionsStyle(.equalWidths)
         .swipeActionCornerRadius(16)
         .swipeSpacing(4)
         .swipeActionsMaskCornerRadius(0)
-        
-        .swipeActionsVisibleStartPoint(0)
-        .swipeActionsVisibleEndPoint(0)
+        .swipeActionsVisibleStartPoint(16)
         
         .transition(.swipeDelete)
         .padding(.horizontal, 16)

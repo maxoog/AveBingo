@@ -56,10 +56,10 @@ public struct EditBingoView: View {
         .overlay(alignment: .bottom) {
             AveButton(
                 iconName: nil,
-                text: "Save changes",
+                text: viewModel.isEditMode ? "Save changes" : "Create card",
                 onTap: {
                     Task {
-                        await viewModel.postBingo()
+                        await viewModel.saveBingo()
                     }
                 }
             )

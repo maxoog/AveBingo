@@ -80,6 +80,13 @@ public struct BingoHistoryView: View {
                 }
             } label: {}
         }
+        .overlay(alignment: .bottom) {
+            if viewModel.state.hasContent {
+                AveButton(iconName: "add_icon", text: "Add new") {
+                    self.openScreenItem = .editBingo(.createNew)
+                }
+            }
+        }
         .onFirstAppear {
             Task {
                 await viewModel.reload()
@@ -99,11 +106,9 @@ public struct BingoHistoryView: View {
                             model: card,
                             onTap: {
                                 self.openScreenItem = .playBingo(.card(card))
-//                                router?.openPlayBingoView(openType: .card(card))
                             },
                             onEdit: {
                                 self.openScreenItem = .editBingo(.edit(card))
-//                                router?.openEditBingoView(openType: .edit(card))
                             },
                             onDelete: {
                                 viewModel.deleteBingo(model: card)

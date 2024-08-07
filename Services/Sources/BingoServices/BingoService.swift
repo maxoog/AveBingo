@@ -22,18 +22,41 @@ public final class BingoService: BingoProviderProtocol {
         self.client = client
     }
     
-    public func postBingo(bingo: BingoModel) async throws -> BingoID {
-        let addBingoRequest = bingo.toAddBingoRequest()
+    public func createBingo(
+        name: String,
+        style: BingoCellStyle,
+        emoji: String,
+        tiles: [Tile]
+    ) async throws -> BingoID {
+        let addBingoRequestModel = AddBingoRequest(
+            title: name,
+            style: style.rawValue,
+            emoji: emoji,
+            tiles: tiles
+        )
         
-        let postBingoRequest = client.session.request(
+        let addBingoRequest = client.session.request(
             "\(client.host)/api/v1/bingo",
             method: .post,
-            parameters: addBingoRequest,
+            parameters: addBingoRequestModel,
             encoder: JSONParameterEncoder.default
         )
         
-        let response: AddBingoResponse = try await postBingoRequest.decodable()
+        let response: AddBingoResponse = try await addBingoRequest.decodable()
         return response.id
+    }
+    
+    public func editBingo(_ bingo: BingoModel) async throws {
+        let editBingoRequestModel = bingo.toAddBingoRequest()
+        
+        let editBingoRequesrt = client.session.request(
+            "\(client.host)/api/v1/bingo/\(bingo.id)",
+            method: .put,
+            parameters: editBingoRequestModel,
+            encoder: JSONParameterEncoder.default
+        )
+        
+        let _: Empty = try await editBingoRequesrt.decodable()
     }
     
     public func getBingo(url: URL?) async throws -> BingoModel {
@@ -60,5 +83,13 @@ public final class BingoService: BingoProviderProtocol {
         
         return historyResponse.map { $0.toBingoCardModel() }
     }
+    
+    public func deleteBingo(id: String) async throws{
+        let deleteRequest = client.session.request(
+            "\(client.host)/api/v1/bingo/\(id)",
+            method: .delete
+        )
+        
+        let _: Empty = try await deleteRequest.decodable()
+    }
 }
-

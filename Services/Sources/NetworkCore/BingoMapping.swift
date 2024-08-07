@@ -12,6 +12,7 @@ import CommonModels
 public extension BingoResponse {
     func toBingoCardModel() -> BingoModel {
         BingoModel(
+            id: id,
             name: title,
             style: BingoCellStyle(rawValue: style) ?? .basic,
             size: BingoGridSize(numberOfTiles: tiles.count) ?? ._3x3,
