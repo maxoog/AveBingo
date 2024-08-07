@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  BingoMeisterAppClip
+//  AveBingoAppClip
 //
 //  Created by Maksim Zenkov on 12.07.2024.
 //
