@@ -18,14 +18,10 @@ public struct BingoHistoryView: View {
     @ObservedObject var viewModel: BingoHistoryViewModel
     let screenFactory: ScreenFactoryProtocol
     
-    @State var openScreenItem: ScreenType? = nil {
-        didSet {
-            if openScreenItem != nil {
-                shouldOpenScreen = true
-            }
-        }
-    }
-    @State var shouldOpenScreen: Bool = false
+//    @State var currentValueContent: (ScreenType, AnyView)?
+    
+    @State var openEditBingoItem: EditBingoOpenType? = nil
+    @State var openPlayBingoItem: PlayBingoOpenType? = nil
     
     public init(
         viewModel: BingoHistoryViewModel,
@@ -39,6 +35,48 @@ public struct BingoHistoryView: View {
     
     public var body: some View {
         VStack(spacing: 0) {
+//            AveNavigationLink(currentValueContent: $currentValueContent, value: openScreenItem) { item in
+//                if let item {
+//                    switch item {
+//                    case .editBingo(let openType):
+//                        screenFactory.editBingoView(openType: openType)
+//                    case .playBingo(let openType):
+//                        screenFactory.playBingoView(openType: openType)
+//                    }
+//                } else { AnyView(EmptyView()) }
+//            }
+            
+            NavigationLink(
+                isActive: .init(get: {
+                    openEditBingoItem != nil
+                }, set: { active in
+                    if !active {
+                        openEditBingoItem = nil
+                    }
+                })) {
+                    if let openEditBingoItem {
+                        screenFactory.editBingoView(openType: openEditBingoItem)
+                    }
+                } label: {
+                    EmptyView()
+                }
+            
+            NavigationLink(
+                isActive: .init(get: {
+                    openPlayBingoItem != nil
+                }, set: { active in
+                    if !active {
+                        openPlayBingoItem = nil
+                    }
+                })) {
+                    if let openPlayBingoItem {
+                        screenFactory.playBingoView(openType: openPlayBingoItem)
+                    }
+                } label: {
+                    EmptyView()
+                }
+            
+            
             Text("MY BINGOS")
                 .font(AveFont.headline1)
                 .foregroundStyle(AveColor.content)
@@ -59,7 +97,7 @@ public struct BingoHistoryView: View {
                 if cards.isEmpty {
                     centeredView {
                         EmptyHistoryView(onAddBingoTap: {
-                            self.openScreenItem = .editBingo(.createNew)
+                            self.openEditBingoItem = .createNew
                             analyticsService.logEvent(.openBingoCreation)
                         })
                     }
@@ -68,22 +106,10 @@ public struct BingoHistoryView: View {
                 }
             }
         }
-        .overlay {
-            NavigationLink(isActive: $shouldOpenScreen) {
-                if let openScreenItem {
-                    switch openScreenItem {
-                    case .editBingo(let openType):
-                        screenFactory.editBingoView(openType: openType)
-                    case .playBingo(let openType):
-                        screenFactory.playBingoView(openType: openType)
-                    }
-                }
-            } label: {}
-        }
         .overlay(alignment: .bottom) {
             if viewModel.state.hasContent {
                 AveButton(iconName: "add_icon", text: "Add new") {
-                    self.openScreenItem = .editBingo(.createNew)
+                    self.openEditBingoItem = .createNew
                 }
             }
         }
@@ -92,8 +118,8 @@ public struct BingoHistoryView: View {
                 await viewModel.reload()
             }
         }
-        .onChange(of: shouldOpenScreen, perform: { _ in })
         .ignoresSafeArea(.keyboard)
+        .animation(.default, value: viewModel.state)
     }
     
     @ViewBuilder
@@ -105,10 +131,11 @@ public struct BingoHistoryView: View {
                         BingoSnippetView(
                             model: card,
                             onTap: {
-                                self.openScreenItem = .playBingo(.card(card))
+                                self.openPlayBingoItem = .card(card)
+                                viewModel.objectWillChange.send()
                             },
                             onEdit: {
-                                self.openScreenItem = .editBingo(.edit(card))
+                                self.openEditBingoItem = .edit(card)
                             },
                             onDelete: {
                                 viewModel.deleteBingo(model: card)

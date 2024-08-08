@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ScreenType {
+public enum ScreenType: Hashable {
     case playBingo(PlayBingoOpenType)
     case editBingo(EditBingoOpenType)
 }

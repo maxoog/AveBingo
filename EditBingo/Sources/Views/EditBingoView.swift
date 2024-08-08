@@ -13,18 +13,20 @@ import CommonModels
 public struct EditBingoView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var viewModel: EditBingoViewModel
+    @StateObject var viewModel: EditBingoViewModel
     
     @State private var currentlySelectedCell: Int = 0
-    
+
     public init(viewModel: EditBingoViewModel) {
-        self.viewModel = viewModel
+        _viewModel = .init(wrappedValue: viewModel)
     }
     
     public var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                EmojiView()
+                EmojiFieldView(text: $viewModel.model.emoji)
+                    .frame(width: 100, height: 100)
+                    .padding(.top, 16)
                 
                 TitleTextField(text: $viewModel.model.title, error: viewModel.bingoValidationError)
                     .padding(.top, 16)
@@ -52,6 +54,10 @@ public struct EditBingoView: View {
                     .padding(.bottom, 132)
             }
             .padding(.horizontal, 16)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         }
         .overlay(alignment: .bottom) {
             AveButton(
@@ -109,5 +115,11 @@ struct BingoCardView: View {
         .onTapGesture {
             onTapPublisher.send(())
         }
+    }
+}
+
+extension UIApplication {
+    fileprivate func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

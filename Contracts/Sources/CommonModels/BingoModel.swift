@@ -1,7 +1,7 @@
 import Foundation
 
-public struct BingoModel: Identifiable, Equatable {
-    public struct Tile: Equatable {
+public struct BingoModel: Identifiable, Equatable, Hashable {
+    public struct Tile: Equatable, Hashable {
         public let description: String
         
         public init(description: String) {

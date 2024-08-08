@@ -13,9 +13,15 @@ import CommonModels
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
     
-    @Published var error: Error?
-    @Published var model: EditableBingoModel
-    @Published var bingoValidationError: Bool = false
+    @Published var model: EditableBingoModel {
+        didSet {
+            if !model.title.isEmpty {
+                bingoValidationError = false
+            }
+        }
+    }
+    @Published private(set) var error: Error?
+    @Published private(set) var bingoValidationError: Bool = false
     
     var isEditMode: Bool {
         bingoID != nil

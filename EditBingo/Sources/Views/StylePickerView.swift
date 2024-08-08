@@ -20,7 +20,7 @@ struct StylePickerView: View {
                 .foregroundStyle(AveColor.content)
             
             HStack(spacing: 16) {
-                ForEach(BingoCellStyle.allCases, id: \.self) { style in
+                ForEach(BingoCellStyle.allCases, id: \.rawValue) { style in
                     BingoStyleView(
                         style: style,
                         selected: sizeSelection == style

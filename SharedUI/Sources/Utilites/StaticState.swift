@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 
 @propertyWrapper
-public struct BoolStaticState {
-    private var storage: BoolStorage = .init(value: false)
+public struct StaticState<Value> {
+    private let storage: InternalStorage<Value>
     
-    public init() {}
-    
-    public var wrappedValue: Bool {
+    public init(wrappedValue defaultValue: Value) {
+        self.storage = .init(value: defaultValue)
+    }
+
+    public var wrappedValue: Value {
         get {
             storage.value
         }
@@ -24,10 +26,10 @@ public struct BoolStaticState {
     }
 }
 
-private final class BoolStorage {
-    init(value: Bool) {
+private final class InternalStorage<Value> {
+    init(value: Value) {
         self.value = value
     }
     
-    var value: Bool
+    var value: Value
 }

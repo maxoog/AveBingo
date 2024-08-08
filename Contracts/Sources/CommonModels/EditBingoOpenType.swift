@@ -7,7 +7,16 @@
 
 import Foundation
 
-public enum EditBingoOpenType {
+public enum EditBingoOpenType: Hashable {
     case createNew
     case edit(BingoModel)
+    
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .createNew:
+            hasher.combine("createNew")
+        case .edit(let bingoModel):
+            hasher.combine(bingoModel)
+        }
+    }
 }

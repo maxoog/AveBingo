@@ -11,13 +11,19 @@ import Alamofire
 import ServicesContracts
 import NetworkCore
 import CommonModels
+import Combine
 
 public typealias BingoID = String
 
 public final class BingoService: BingoProviderProtocol {
     private let client: NetworkClient
     private let urlParser = URLParser()
-    
+    private let onChangeSubject = PassthroughSubject<Void, Never>()
+
+    public var onChangePublisher: AnyPublisher<Void, Never> {
+        onChangeSubject.eraseToAnyPublisher()
+    }
+
     public init(client: NetworkClient) {
         self.client = client
     }
@@ -28,6 +34,10 @@ public final class BingoService: BingoProviderProtocol {
         emoji: String,
         tiles: [Tile]
     ) async throws -> BingoID {
+        defer {
+            onChangeSubject.send()
+        }
+        
         let addBingoRequestModel = AddBingoRequest(
             title: name,
             style: style.rawValue,
@@ -47,16 +57,18 @@ public final class BingoService: BingoProviderProtocol {
     }
     
     public func editBingo(_ bingo: BingoModel) async throws {
+        defer {
+            onChangeSubject.send()
+        }
+        
         let editBingoRequestModel = bingo.toAddBingoRequest()
         
-        let editBingoRequesrt = client.session.request(
+        try await client.session.request(
             "\(client.host)/api/v1/bingo/\(bingo.id)",
             method: .put,
             parameters: editBingoRequestModel,
             encoder: JSONParameterEncoder.default
-        )
-        
-        let _: Empty = try await editBingoRequesrt.decodable()
+        ).emptyBodyResponse()
     }
     
     public func getBingo(url: URL?) async throws -> BingoModel {
@@ -84,12 +96,26 @@ public final class BingoService: BingoProviderProtocol {
         return historyResponse.map { $0.toBingoCardModel() }
     }
     
-    public func deleteBingo(id: String) async throws{
-        let deleteRequest = client.session.request(
+    public func deleteBingo(id: String) async throws {
+        try await client.session.request(
             "\(client.host)/api/v1/bingo/\(id)",
             method: .delete
-        )
-        
-        let _: Empty = try await deleteRequest.decodable()
+        ).emptyBodyResponse()
+    }
+}
+
+private extension DataRequest {
+    func emptyBodyResponse() async throws {
+        let _: Void = try await withCheckedThrowingContinuation { continuation in
+            self.response { response in
+                if let error = response.error {
+                    continuation.resume(throwing: error)
+                } else if response.response?.statusCode != 200 {
+                    continuation.resume(throwing: BingoError.unknownError)
+                } else {
+                    continuation.resume(returning: ())
+                }
+            }
+        }
     }
 }

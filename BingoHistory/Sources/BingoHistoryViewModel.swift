@@ -9,10 +9,11 @@ import Foundation
 import BingoServices
 import ServicesContracts
 import CommonModels
+import Combine
 
 typealias Cards = [BingoModel]
 
-enum HistoryState {
+enum HistoryState: Equatable {
     case loading
     case error(Error)
     case content(Cards)
@@ -23,6 +24,28 @@ enum HistoryState {
             false
         case .content(let cards):
             !cards.isEmpty
+        }
+    }
+    
+    var models: [BingoModel] {
+        switch self {
+        case .loading, .error:
+            []
+        case .content(let cards):
+            cards
+        }
+    }
+    
+    static func == (lhs: HistoryState, rhs: HistoryState) -> Bool {
+        switch (lhs, rhs) {
+        case (.loading, .loading):
+            true
+        case (.content(let lhsCards), .content(let rhsCards)):
+            lhsCards == rhsCards
+        case (.error, .error):
+            true
+        default:
+            false
         }
     }
 }
@@ -38,9 +61,16 @@ public final class BingoHistoryViewModel: ObservableObject {
     @Published var state: HistoryState = .loading
     @Published var bingoActionError: Error? = nil
     private var loadingTask: Task<Void, Never>? = nil
+    private var cancellable: AnyCancellable?
 
     public init(bingoService: BingoService) {
         self.bingoService = bingoService
+        
+        cancellable = bingoService.onChangePublisher.sink { [weak self] in
+            Task {
+                await self?.reload()
+            }
+        }
     }
     
     func reload() async {
@@ -72,16 +102,27 @@ public final class BingoHistoryViewModel: ObservableObject {
     }
     
     func deleteBingo(model: BingoModel) {
+        var contentModels = state.models
+
+        guard let deleteIndex = contentModels.firstIndex(where: {
+            model.id == $0.id
+        }) else {
+            assertionFailure("Cannot find bingo")
+            return
+        }
+        
         Task {
             do {
+                contentModels.remove(at: deleteIndex)
+                self.state = .content(contentModels)
                 try await bingoService.deleteBingo(id: model.id)
             } catch {
+                contentModels.insert(model, at: deleteIndex)
+                self.state = .content(contentModels)
                 bingoActionError = error
             }
+            
+            self.state = .content(contentModels)
         }
-    }
-    
-    func removeBingo() {
-        
     }
 }

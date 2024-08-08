@@ -48,8 +48,8 @@ struct BingoCellTextView: UIViewRepresentable {
     let onTapPublisher: AnyPublisher<Void, Never>
     let placeholderLabel: UILabel = UILabel()
     
-    @BoolStaticState
-    private var heightUpdated: Bool
+    @StaticState
+    private var heightUpdated: Bool = false
     
     init(
         text: Binding<String>,
