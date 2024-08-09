@@ -18,8 +18,6 @@ public struct BingoHistoryView: View {
     @ObservedObject var viewModel: BingoHistoryViewModel
     let screenFactory: ScreenFactoryProtocol
     
-//    @State var currentValueContent: (ScreenType, AnyView)?
-    
     @State var openEditBingoItem: EditBingoOpenType? = nil
     @State var openPlayBingoItem: PlayBingoOpenType? = nil
     
@@ -35,47 +33,19 @@ public struct BingoHistoryView: View {
     
     public var body: some View {
         VStack(spacing: 0) {
-//            AveNavigationLink(currentValueContent: $currentValueContent, value: openScreenItem) { item in
-//                if let item {
-//                    switch item {
-//                    case .editBingo(let openType):
-//                        screenFactory.editBingoView(openType: openType)
-//                    case .playBingo(let openType):
-//                        screenFactory.playBingoView(openType: openType)
-//                    }
-//                } else { AnyView(EmptyView()) }
-//            }
             
-            NavigationLink(
-                isActive: .init(get: {
-                    openEditBingoItem != nil
-                }, set: { active in
-                    if !active {
-                        openEditBingoItem = nil
-                    }
-                })) {
-                    if let openEditBingoItem {
-                        screenFactory.editBingoView(openType: openEditBingoItem)
-                    }
-                } label: {
-                    EmptyView()
+            AveNavigationLink(
+                item: $openEditBingoItem) { item in
+                    screenFactory.editBingoView(openType: item)
                 }
             
-            NavigationLink(
-                isActive: .init(get: {
-                    openPlayBingoItem != nil
-                }, set: { active in
-                    if !active {
-                        openPlayBingoItem = nil
-                    }
-                })) {
-                    if let openPlayBingoItem {
-                        screenFactory.playBingoView(openType: openPlayBingoItem)
-                    }
-                } label: {
-                    EmptyView()
+            AveNavigationLink(
+                item: $openPlayBingoItem) { item in
+                    EditablePlayBingoView(
+                        screenFactory: screenFactory,
+                        openType: item
+                    ).anyView()
                 }
-            
             
             Text("MY BINGOS")
                 .font(AveFont.headline1)

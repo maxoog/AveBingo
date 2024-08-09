@@ -9,27 +9,22 @@ import Foundation
 import SwiftUI
 import SharedUI
 
-struct AveNavigationLink<Value: Hashable>: View {
-    @Binding
-    var currentValueContent: (Value, AnyView)?
-
-    let value: Value?
-    let destinations: (Value?) -> AnyView
+struct AveNavigationLink<Item>: View {
+    @Binding var item: Item?
+    let destination: (Item) -> AnyView
     
     var body: some View {
-        if let value, value.hashValue != currentValueContent?.0.hashValue {
-            currentValueContent = (value, destinations(value))
-        }
-        
-        return NavigationLink(
+        NavigationLink(
             isActive: .init(get: {
-                currentValueContent != nil
+                item != nil
             }, set: { active in
                 if !active {
-                    currentValueContent = nil
+                    item = nil
                 }
             })) {
-                currentValueContent?.1 ?? AnyView(EmptyView())
+                if let item {
+                    destination(item)
+                }
             } label: {
                 EmptyView()
             }

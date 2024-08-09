@@ -16,6 +16,7 @@ public struct EditBingoView: View {
     @StateObject var viewModel: EditBingoViewModel
     
     @State private var currentlySelectedCell: Int = 0
+    @FocusState private var emojiFieldIsFocused: Bool
 
     public init(viewModel: EditBingoViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
@@ -27,6 +28,10 @@ public struct EditBingoView: View {
                 EmojiFieldView(text: $viewModel.model.emoji)
                     .frame(width: 100, height: 100)
                     .padding(.top, 16)
+                    .focused($emojiFieldIsFocused)
+                    .onTapGesture {
+                        emojiFieldIsFocused = true
+                    }
                 
                 TitleTextField(text: $viewModel.model.title, error: viewModel.bingoValidationError)
                     .padding(.top, 16)
@@ -63,8 +68,10 @@ public struct EditBingoView: View {
             AveButton(
                 iconName: nil,
                 text: viewModel.isEditMode ? "Save changes" : "Create card",
+                isLoading: viewModel.isLoading,
                 onTap: {
                     Task {
+                        UIApplication.shared.endEditing()
                         await viewModel.saveBingo()
                     }
                 }

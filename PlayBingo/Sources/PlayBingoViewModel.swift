@@ -15,6 +15,15 @@ enum PlayBingoViewState {
             return false
         }
     }
+    
+    var bingo: BingoModel? {
+        switch self {
+        case .loading, .error:
+            nil
+        case .content(let bingoModel):
+            bingoModel
+        }
+    }
 }
 
 public final class PlayBingoViewModel: ObservableObject {

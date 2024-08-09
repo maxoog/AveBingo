@@ -53,9 +53,6 @@ final class EmojiInputField: UIView, UIKeyInput {
             imageView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
         ])
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        backgroundView.addGestureRecognizer(tap)
     }
     
     required init?(coder: NSCoder) {
@@ -79,10 +76,6 @@ final class EmojiInputField: UIView, UIKeyInput {
             }
         }
         return nil
-    }
-    
-    @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        self.becomeFirstResponder()
     }
 }
 

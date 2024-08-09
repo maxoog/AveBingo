@@ -22,27 +22,26 @@ final class ScreenFactory: ScreenFactoryProtocol {
     static let shared = ScreenFactory()
     
     func editBingoView(openType: EditBingoOpenType) -> AnyView {
-        AnyView(
-            EditBingoView(viewModel: appFactory.editBingoViewModel(openType: openType))
-        )
+        EditBingoView(
+            viewModel: appFactory.editBingoViewModel(openType: openType)
+        ).anyView()
     }
     
     func bingoHistoryView() -> AnyView {
-        AnyView(
-            NavigationView {
-                BingoHistoryView(
-                    viewModel: appFactory.bingoHistoryViewModel(),
-                    analyticsService: appFactory.analyticsService,
-                    screenFactory: self
-                )
-            }
-        )
+        NavigationView {
+            BingoHistoryView(
+                viewModel: appFactory.bingoHistoryViewModel(),
+                analyticsService: appFactory.analyticsService,
+                screenFactory: self
+            )
+        }.anyView()
     }
     
-    func playBingoView(openType: PlayBingoOpenType) -> AnyView {
-        AnyView(
-            PlayBingoView(viewModel: appFactory.playBingoViewModel(openType: openType))
-        )
+    func playBingoView(openType: PlayBingoOpenType, onEdit: ((BingoModel) -> Void)?) -> AnyView {
+        PlayBingoView(
+            viewModel: appFactory.playBingoViewModel(openType: openType),
+            onEdit: onEdit
+        ).anyView()
     }
 }
 

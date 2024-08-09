@@ -13,5 +13,5 @@ import CommonModels
 @MainActor
 public protocol ScreenFactoryProtocol {
     func editBingoView(openType: EditBingoOpenType) -> AnyView
-    func playBingoView(openType: PlayBingoOpenType) -> AnyView
+    func playBingoView(openType: PlayBingoOpenType, onEdit: ((BingoModel) -> Void)?) -> AnyView
 }

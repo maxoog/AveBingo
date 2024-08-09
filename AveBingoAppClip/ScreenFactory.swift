@@ -15,7 +15,10 @@ final class ScreenFactory {
     static let shared = ScreenFactory()
     
     func playBingoView(bingoUrl url: URL?) -> some View {
-        PlayBingoView(viewModel: AppFactory.shared.playBingoViewModel(bingoUrl: url))
+        PlayBingoView(
+            viewModel: AppFactory.shared.playBingoViewModel(bingoUrl: url),
+            onEdit: nil
+        )
     }
 }
 

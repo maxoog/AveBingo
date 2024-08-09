@@ -21,6 +21,7 @@ public final class EditBingoViewModel: ObservableObject {
         }
     }
     @Published private(set) var error: Error?
+    @Published private(set) var isLoading: Bool = false
     @Published private(set) var bingoValidationError: Bool = false
     
     var isEditMode: Bool {
@@ -45,6 +46,12 @@ public final class EditBingoViewModel: ObservableObject {
         guard !model.title.isEmpty else {
             bingoValidationError = true
             return
+        }
+        
+        isLoading = true
+        
+        defer {
+            isLoading = false
         }
         
         do {

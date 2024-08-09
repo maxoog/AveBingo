@@ -20,8 +20,11 @@ public struct PlayBingoView: View {
     @State private var fullAppPromoPresented: Bool = false
     @State private var shareActivityPresented: Bool = false
     
-    public init(viewModel: PlayBingoViewModel) {
+    private let onEdit: ((BingoModel) -> Void)?
+    
+    public init(viewModel: PlayBingoViewModel, onEdit: ((BingoModel) -> Void)?) {
         self.viewModel = viewModel
+        self.onEdit = onEdit
     }
     
     public var body: some View {
@@ -97,7 +100,11 @@ public struct PlayBingoView: View {
     }
     
     private func editBingo() {
-        
+        guard let bingo = viewModel.state.bingo else {
+            assertionFailure("Cannot find bingo")
+            return
+        }
+        onEdit?(bingo)
     }
     
     private func showFullAppPromo() {
