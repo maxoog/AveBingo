@@ -58,13 +58,16 @@ enum SomeError: Error {
 public final class BingoHistoryViewModel: ObservableObject {
     private let bingoService: BingoService
     
+    let bingoURLToOpen: URL?
+    
     @Published var state: HistoryState = .loading
     @Published var bingoActionError: Error? = nil
     private var loadingTask: Task<Void, Never>? = nil
     private var cancellable: AnyCancellable?
 
-    public init(bingoService: BingoService) {
+    public init(bingoService: BingoService, bingoURLToOpen: URL?) {
         self.bingoService = bingoService
+        self.bingoURLToOpen = bingoURLToOpen
         
         cancellable = bingoService.onChangePublisher.sink { [weak self] in
             Task {

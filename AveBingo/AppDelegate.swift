@@ -31,6 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupApplication() {
+        
+        // Initializing Mixpanel
+
+        #if DEBUG
+            Mixpanel.initialize(
+                token: "c7ba3e1f543561d977a2b217f14d0bc2",
+                trackAutomaticEvents: false
+            )
+        #else
+            Mixpanel.initialize(
+                token: "e60ba5c18fa543ebec29c038ed60179e",
+                trackAutomaticEvents: false
+            )
+        #endif
     }
 }
 

@@ -27,10 +27,10 @@ final class ScreenFactory: ScreenFactoryProtocol {
         ).anyView()
     }
     
-    func bingoHistoryView() -> AnyView {
+    func bingoHistoryView(bingoURLToOpen: URL?) -> AnyView {
         NavigationView {
             BingoHistoryView(
-                viewModel: appFactory.bingoHistoryViewModel(),
+                viewModel: appFactory.bingoHistoryViewModel(bingoURLToOpen: bingoURLToOpen),
                 analyticsService: appFactory.analyticsService,
                 screenFactory: self
             )
@@ -57,8 +57,8 @@ fileprivate final class AppFactory {
         EditBingoViewModel(openType: openType, bingoService: bingoService)
     }
     
-    func bingoHistoryViewModel() -> BingoHistoryViewModel {
-        BingoHistoryViewModel(bingoService: bingoService)
+    func bingoHistoryViewModel(bingoURLToOpen: URL?) -> BingoHistoryViewModel {
+        BingoHistoryViewModel(bingoService: bingoService, bingoURLToOpen: bingoURLToOpen)
     }
     
     func playBingoViewModel(openType type: PlayBingoOpenType) -> PlayBingoViewModel {

@@ -27,7 +27,7 @@ struct BingoSnippetView: View {
                         .frame(height: 72)
                     
                     HStack(spacing: 16) {
-                        Image("emoji_example", bundle: .assets)
+                        bingoEmojiImage
                             .resizable()
                             .frame(width: 20, height: 20)
                             .background {
@@ -81,6 +81,16 @@ struct BingoSnippetView: View {
         
         .transition(.swipeDelete)
         .padding(.horizontal, 16)
+    }
+    
+    private var bingoEmojiImage: Image {
+        if !model.emoji.isEmpty,
+           let uiImage = model.emoji.toUIImage()
+        {
+            return Image(uiImage: uiImage)
+        } else {
+            return Image("emoji_example", bundle: .assets)
+        }
     }
 }
 

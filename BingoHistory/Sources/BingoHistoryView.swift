@@ -29,6 +29,10 @@ public struct BingoHistoryView: View {
         self.viewModel = viewModel
         self.analyticsService = analyticsService
         self.screenFactory = screenFactory
+        
+        if let bingoURL = viewModel.bingoURLToOpen {
+            _openPlayBingoItem = .init(initialValue: .deeplink(bingoURL))
+        }
     }
     
     public var body: some View {

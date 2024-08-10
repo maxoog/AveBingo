@@ -1,10 +1,13 @@
 import SwiftUI
-import SharedUI
 
-struct ErrorView: View {
+public struct ErrorView: View {
     let onReloadTap: () -> Void
     
-    var body: some View {
+    public init(onReloadTap: @escaping () -> Void) {
+        self.onReloadTap = onReloadTap
+    }
+    
+    public var body: some View {
         VStack(spacing: 0) {
             Image("error_state_illustration", bundle: .assets)
                 .resizable()
@@ -26,3 +29,4 @@ struct ErrorView: View {
         }
     }
 }
+

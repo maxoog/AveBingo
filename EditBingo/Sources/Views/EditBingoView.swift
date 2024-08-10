@@ -47,7 +47,8 @@ public struct EditBingoView: View {
                     passTouchesToContent: true
                 ) { (index, tile) in
                     BingoCardView(
-                        textValue: $viewModel.model.tiles[index]
+                        textValue: $viewModel.model.tiles[index],
+                        gridSize: viewModel.model.size
                     )
                 }
                 .padding(.top, 16)
@@ -84,6 +85,7 @@ public struct EditBingoView: View {
                 NavigationButton(iconName: "chevron_left_icon") {
                     dismiss()
                 }
+                .padding(.bottom, 2)
             }
             
             ToolbarItem(placement: .principal) {
@@ -101,6 +103,7 @@ struct BingoCardView: View {
     @State var onTapPublisher = PassthroughSubject<Void, Never>()
 
     @Binding var textValue: String
+    let gridSize: BingoGridSize
     
     var body: some View {
         ZStack {
@@ -108,6 +111,7 @@ struct BingoCardView: View {
             
             BingoCellTextView(
                 text: $textValue,
+                gridSize: gridSize,
                 onTapPublisher: onTapPublisher.eraseToAnyPublisher(),
                 onPreferredHeightUpdated: { height in
                     self.height = height
@@ -115,12 +119,21 @@ struct BingoCardView: View {
             )
             .frame(height: height)
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            .padding(.horizontal, 8)
+            .padding(.horizontal, horizontalPadding)
             .padding(.vertical, 1)
         }
         .contentShape(Rectangle())
         .onTapGesture {
             onTapPublisher.send(())
+        }
+    }
+    
+    private var horizontalPadding: CGFloat {
+        switch gridSize {
+        case ._3x3:
+            8
+        case ._4x4:
+            6
         }
     }
 }

@@ -3,12 +3,6 @@ import Foundation
 import NetworkCore
 import TokenStorage
 
-final class Evaluator: ServerTrustEvaluating {
-    func evaluate(_ trust: SecTrust, forHost host: String) throws {
-        // does not throw
-    }
-}
-
 public class NetworkClient: SessionDelegate {
     private let tokenLoader: TokenLoader = TokenLoader()
     

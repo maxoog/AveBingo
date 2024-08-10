@@ -11,10 +11,19 @@ public final class URLParser {
     public init() {}
     
     public func bingoId(from url: URL?) -> String? {
-        guard let url else {
+        guard let url, isBingoURL(url) else {
             return nil
         }
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        return components?.queryItems?.first(where: { $0.name == "id" })?.value
+        return url.pathComponents.last
+    }
+    
+    public func isBingoURL(_ url: URL) -> Bool {
+        let components = url.pathComponents
+        
+        if components.count == 3, components.dropLast() == ["/", "bingo"] {
+            return components.last?.isEmpty == false
+        }
+        
+        return components.isEmpty
     }
 }

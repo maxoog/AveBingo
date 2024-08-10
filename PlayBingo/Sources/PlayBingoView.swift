@@ -33,8 +33,10 @@ public struct PlayBingoView: View {
             case .loading:
                 ProgressView()
                     .onAppear(perform: viewModel.loadBingo)
-            case .error(let error):
-                ErrorView(error)
+            case .error:
+                ErrorView {
+                    viewModel.loadBingo()
+                }
             case .content(let bingoModel):
                 bingoCardView(card: bingoModel)
                     .screenshotView { screenshotMaker in
@@ -45,28 +47,29 @@ public struct PlayBingoView: View {
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden()
         .toolbar {
-            #if !APP_CLIP
+//            #if !APP_CLIP
             ToolbarItem(placement: .topBarLeading) {
                 HStack(spacing: 16) {
                     NavigationButton(iconName: "chevron_left_icon") {
                         dismiss()
                     }
+                    .padding(.bottom, 2)
                     
                     Text("My bingos")
                         .font(AveFont.headline3)
                         .foregroundStyle(AveColor.content)
                 }
             }
-            #endif
+//            #endif
             
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 6) {
-                    #if !APP_CLIP
+//                    #if !APP_CLIP
                     NavigationButton(
                         iconName: "pencil_icon",
                         onTap: editBingo
                     )
-                    #endif
+//                    #endif
                     NavigationButton(
                         iconName: "share_icon",
                         onTap: {
@@ -80,11 +83,11 @@ public struct PlayBingoView: View {
             ShareBingoViewController(bingoURL: viewModel.bingoURL, image: bingoImage())
                 .ignoresSafeArea(edges: .bottom)
         }
-        #if !APP_CLIP
+//        #if !APP_CLIP
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6535681093", position: .bottom)
         }
-        #endif
+//        #endif
     }
     
     private func bingoImage() -> UIImage? {
@@ -98,7 +101,7 @@ public struct PlayBingoView: View {
             self.copyImageToClipboard(image: image)
         }
     }
-    
+     
     private func editBingo() {
         guard let bingo = viewModel.state.bingo else {
             assertionFailure("Cannot find bingo")
@@ -142,18 +145,6 @@ public struct PlayBingoView: View {
             }
             .padding(.top, 32)
         }
-    }
-}
-
-private struct ErrorView: View {
-    let error: Error
-    
-    init(_ error: Error) {
-        self.error = error
-    }
-    
-    var body: some View {
-        Text("Some error occured \(error)")
     }
 }
 

@@ -8,6 +8,7 @@
 import Foundation
 import CommonModels
 
+@MainActor
 public protocol BingoProviderProtocol {
     func getBingo(url: URL?) async throws -> BingoModel
 }

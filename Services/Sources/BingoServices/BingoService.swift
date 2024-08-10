@@ -15,6 +15,7 @@ import Combine
 
 public typealias BingoID = String
 
+@MainActor
 public final class BingoService: BingoProviderProtocol {
     private let client: NetworkClient
     private let urlParser = URLParser()
