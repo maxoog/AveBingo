@@ -145,9 +145,10 @@ public struct PlayBingoView: View {
                 Text(tile.description)
                     .font(bingoModel.size.textFont)
                     .foregroundStyle(AveColor.content)
-                    .padding(8)
+                    .padding(.vertical, 1)
+                    .padding(.horizontal, bingoModel.size.horizontalPadding)
                     .multilineTextAlignment(.center)
-                    .lineLimit(bingoModel.size.maxNumberOfLinesInTextField)
+                    .lineLimit(5)
             }
             .padding(.top, 32)
         }

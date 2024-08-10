@@ -125,21 +125,12 @@ struct BingoCardView: View {
             )
             .frame(height: height)
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, gridSize.horizontalPadding)
             .padding(.vertical, 1)
         }
         .contentShape(Rectangle())
         .onTapGesture {
             onTapPublisher.send(())
-        }
-    }
-    
-    private var horizontalPadding: CGFloat {
-        switch gridSize {
-        case ._3x3:
-            8
-        case ._4x4:
-            6
         }
     }
 }

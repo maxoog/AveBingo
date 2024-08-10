@@ -121,4 +121,13 @@ extension BingoGridSize {
             4
         }
     }
+    
+    public var horizontalPadding: CGFloat {
+        switch self {
+        case ._3x3:
+            8
+        case ._4x4:
+            6
+        }
+    }
 }

@@ -35,7 +35,18 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
     }
-
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let activityUrl = userActivity.webpageURL,
+           urlParser.isBingoURL(activityUrl)
+        {
+            window?.rootViewController = UIHostingController(
+                rootView: ScreenFactory.shared.bingoHistoryView(
+                    bingoURLToOpen: activityUrl
+                )
+            )
+        }
+    }
 }
 
 
