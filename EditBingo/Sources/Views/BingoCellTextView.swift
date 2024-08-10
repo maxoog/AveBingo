@@ -5,7 +5,7 @@ import Combine
 import CommonModels
 
 struct BingoCellTextView: UIViewRepresentable {
-    class Coordinator: NSObject, UITextViewDelegate {
+    final class Coordinator: NSObject, UITextViewDelegate {
         @Binding var text: String
         let onPreferredHeightUpdated: ((CGFloat) -> Void)
         var placeholder: UILabel? = nil

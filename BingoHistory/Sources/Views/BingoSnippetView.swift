@@ -36,7 +36,7 @@ struct BingoSnippetView: View {
                                     .frame(width: 32, height: 32)
                             }
                         
-                        Text("Bingo name")
+                        Text(model.name)
                             .font(AveFont.content)
                             .foregroundStyle(AveColor.content)
                         

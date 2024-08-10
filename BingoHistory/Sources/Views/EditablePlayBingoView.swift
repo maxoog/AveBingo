@@ -36,6 +36,6 @@ public struct EditablePlayBingoView: View {
                     }
                 )
             }
-        }.animation(.default, value: bingoToEdit)
+        }.animation(.easeOut, value: bingoToEdit)
     }
 }

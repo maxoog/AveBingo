@@ -18,11 +18,16 @@ public final class EditBingoViewModel: ObservableObject {
             if !model.title.isEmpty {
                 bingoValidationError = false
             }
+            if model != oldValue {
+                hasChanges = true
+            }
         }
     }
-    @Published private(set) var error: Error?
+    @Published var savingError: Bool = false
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var bingoValidationError: Bool = false
+    
+    @Published var hasChanges: Bool = false
     
     var isEditMode: Bool {
         bingoID != nil
@@ -66,9 +71,9 @@ public final class EditBingoViewModel: ObservableObject {
                     tiles: model.tiles.map { .init(description: $0) }
                 )
             }
+            hasChanges = false
         } catch {
-            self.error = error
-            print(error)
+            self.savingError = true
         }
     }
 }

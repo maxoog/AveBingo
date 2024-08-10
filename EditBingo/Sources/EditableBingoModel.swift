@@ -2,7 +2,7 @@
 import Foundation
 import CommonModels
 
-struct EditableBingoModel {
+struct EditableBingoModel: Equatable {
     var title: String
     var tiles: [String]
     var size: BingoGridSize {

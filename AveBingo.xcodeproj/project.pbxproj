@@ -12,6 +12,7 @@
 		B11EE83B2C5583C500856436 /* ServicesContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B11EE83A2C5583C500856436 /* ServicesContracts */; };
 		B11EE83D2C5583D100856436 /* ServicesContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B11EE83C2C5583D100856436 /* ServicesContracts */; };
 		B15746BF2C63B3790091DF61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B15746BE2C63B3790091DF61 /* Assets.xcassets */; };
+		B15A47ED2C67FA2D00F212E4 /* AveBingoAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A47EC2C67FA2D00F212E4 /* AveBingoAppClipApp.swift */; };
 		B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569A2C516F7C00CC0004 /* BingoHistory */; };
 		B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */; };
 		B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */; };
@@ -19,8 +20,6 @@
 		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
 		B19AD6DB2C41331F00A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD6DA2C41331F00A199C3 /* Base */; };
 		B19AD6FF2C41337200A199C3 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */; };
-		B19AD7452C4144F400A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7442C4144F400A199C3 /* AppDelegate.swift */; };
-		B19AD7472C4144F400A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD7462C4144F400A199C3 /* SceneDelegate.swift */; };
 		B19AD7512C4144F500A199C3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B19AD7502C4144F500A199C3 /* Base */; };
 		B19AD76C2C4144F500A199C3 /* AveBingoAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = B19AD7422C4144F400A199C3 /* AveBingoAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B19AD77F2C4159B500A199C3 /* EditBingo in Frameworks */ = {isa = PBXBuildFile; productRef = B19AD77E2C4159B500A199C3 /* EditBingo */; };
@@ -57,6 +56,7 @@
 		B11EE8382C5558B300856436 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B131E4922C4D297C00E7CCC5 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Services; sourceTree = "<group>"; };
 		B15746BE2C63B3790091DF61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B15A47EC2C67FA2D00F212E4 /* AveBingoAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveBingoAppClipApp.swift; sourceTree = "<group>"; };
 		B17C56992C516C5400CC0004 /* BingoHistory */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BingoHistory; sourceTree = "<group>"; };
 		B17C569C2C5182AA00CC0004 /* Contracts */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Contracts; sourceTree = "<group>"; };
 		B19AC24E2C4F8F260008D181 /* AveBingo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AveBingo.entitlements; sourceTree = "<group>"; };
@@ -67,8 +67,6 @@
 		B19AD6DC2C41331F00A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19AD6FE2C41337200A199C3 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		B19AD7422C4144F400A199C3 /* AveBingoAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AveBingoAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B19AD7442C4144F400A199C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B19AD7462C4144F400A199C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B19AD7502C4144F500A199C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B19AD7522C4144F500A199C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19AD77C2C41586200A199C3 /* EditBingo */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = EditBingo; sourceTree = "<group>"; };
@@ -151,8 +149,7 @@
 			children = (
 				B15746BE2C63B3790091DF61 /* Assets.xcassets */,
 				B1EDC6B12C428E1A0088BE33 /* AveBingoAppClip.entitlements */,
-				B19AD7442C4144F400A199C3 /* AppDelegate.swift */,
-				B19AD7462C4144F400A199C3 /* SceneDelegate.swift */,
+				B15A47EC2C67FA2D00F212E4 /* AveBingoAppClipApp.swift */,
 				B1EDC6AA2C419A090088BE33 /* ScreenFactory.swift */,
 				B19AD74F2C4144F500A199C3 /* LaunchScreen.storyboard */,
 				B19AD7522C4144F500A199C3 /* Info.plist */,
@@ -294,8 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B19AD7452C4144F400A199C3 /* AppDelegate.swift in Sources */,
-				B19AD7472C4144F400A199C3 /* SceneDelegate.swift in Sources */,
+				B15A47ED2C67FA2D00F212E4 /* AveBingoAppClipApp.swift in Sources */,
 				B1EDC6AB2C419A090088BE33 /* ScreenFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,7 +464,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -496,7 +492,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -527,7 +523,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.10;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -561,7 +557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.10;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";

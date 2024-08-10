@@ -6,6 +6,7 @@ import SharedUI
 final class EmojiInputField: UIView, UIKeyInput {
     @Binding var text: String
     let imageView: UIImageView
+    let backgroundView = UIView()
     
     private let defaultImage = UIImage(named: "emoji_placeholder", in: .assets, with: .none)
     
@@ -15,6 +16,16 @@ final class EmojiInputField: UIView, UIKeyInput {
     
     override var canBecomeFirstResponder: Bool {
         true
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        backgroundView.layer.borderWidth = 1
+        return super.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        backgroundView.layer.borderWidth = 0
+        return super.resignFirstResponder()
     }
     
     override func draw(_ rect: CGRect) {
@@ -36,11 +47,11 @@ final class EmojiInputField: UIView, UIKeyInput {
 
         super.init(frame: .init())
         
-        let backgroundView = UIView()
         self.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(imageView)
         backgroundView.layer.cornerRadius = 50
+        backgroundView.layer.borderColor = UIColor(AveColor.content).cgColor
         backgroundView.backgroundColor = UIColor(AveColor.backgroundLight)
         
         NSLayoutConstraint.activate([

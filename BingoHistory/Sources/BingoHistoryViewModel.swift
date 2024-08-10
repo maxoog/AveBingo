@@ -50,10 +50,6 @@ enum HistoryState: Equatable {
     }
 }
 
-enum SomeError: Error {
-    case main
-}
-
 @MainActor
 public final class BingoHistoryViewModel: ObservableObject {
     private let bingoService: BingoService
@@ -61,7 +57,7 @@ public final class BingoHistoryViewModel: ObservableObject {
     let bingoURLToOpen: URL?
     
     @Published var state: HistoryState = .loading
-    @Published var bingoActionError: Error? = nil
+    @Published var bingoActionError: Bool = false
     private var loadingTask: Task<Void, Never>? = nil
     private var cancellable: AnyCancellable?
 
@@ -113,7 +109,7 @@ public final class BingoHistoryViewModel: ObservableObject {
             assertionFailure("Cannot find bingo")
             return
         }
-        
+
         Task {
             do {
                 contentModels.remove(at: deleteIndex)
@@ -122,7 +118,7 @@ public final class BingoHistoryViewModel: ObservableObject {
             } catch {
                 contentModels.insert(model, at: deleteIndex)
                 self.state = .content(contentModels)
-                bingoActionError = error
+                bingoActionError = true
             }
             
             self.state = .content(contentModels)

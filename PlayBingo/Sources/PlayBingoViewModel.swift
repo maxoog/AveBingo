@@ -28,16 +28,19 @@ enum PlayBingoViewState {
 
 public final class PlayBingoViewModel: ObservableObject {
     private let bingoProvider: BingoProviderProtocol
-    let bingoURL: URL?
+    var bingoURL: URL?
+    let isMyBingo: Bool
 
     public init(openType: PlayBingoOpenType, bingoProvider: BingoProviderProtocol) {
         self.bingoProvider = bingoProvider
         
         switch openType {
         case .card(let bingoModel):
+            isMyBingo = true
             bingoURL = Self.makeBingoURL(bingo: bingoModel)
             state = .content(bingoModel)
         case .deeplink(let url):
+            isMyBingo = false
             bingoURL = url
             state = .loading
         }

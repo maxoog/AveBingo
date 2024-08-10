@@ -13,12 +13,20 @@ public struct AveButton: View {
     private let iconName: String?
     private let text: String
     private let isLoading: Bool?
+    private var enabled: Bool
     private let onTap: () -> Void
     
-    public init(iconName: String?, text: String, isLoading: Bool? = nil, onTap: @escaping () -> Void) {
+    public init(
+        iconName: String?,
+        text: String,
+        isLoading: Bool? = nil,
+        enabled: Bool = true,
+        onTap: @escaping () -> Void
+    ) {
         self.iconName = iconName
         self.text = text
         self.isLoading = isLoading
+        self.enabled = enabled
         self.onTap = onTap
     }
     
@@ -40,10 +48,15 @@ public struct AveButton: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 48)
             .background {
-                AveColor.contentLight
+                backgroundColor
                     .clipShape(RoundedRectangle(cornerRadius: 40))
             }
         })
+        .disabled(!enabled)
         .animation(.default, value: isLoading)
+    }
+    
+    private var backgroundColor: Color {
+        enabled ? AveColor.contentLight : AveColor.background
     }
 }

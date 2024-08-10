@@ -29,15 +29,10 @@ public struct BingoHistoryView: View {
         self.viewModel = viewModel
         self.analyticsService = analyticsService
         self.screenFactory = screenFactory
-        
-        if let bingoURL = viewModel.bingoURLToOpen {
-            _openPlayBingoItem = .init(initialValue: .deeplink(bingoURL))
-        }
     }
     
     public var body: some View {
         VStack(spacing: 0) {
-            
             AveNavigationLink(
                 item: $openEditBingoItem) { item in
                     screenFactory.editBingoView(openType: item)
@@ -80,20 +75,31 @@ public struct BingoHistoryView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .center)
         .overlay(alignment: .bottom) {
-            if viewModel.state.hasContent {
-                AveButton(iconName: "add_icon", text: "Add new") {
-                    self.openEditBingoItem = .createNew
+            VStack(spacing: 24) {
+                PopupErrorView(visible: $viewModel.bingoActionError)
+                    .padding(.horizontal, 16)
+                
+                if viewModel.state.hasContent {
+                    AveButton(iconName: "add_icon", text: "Add new") {
+                        self.openEditBingoItem = .createNew
+                    }
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .center)
         }
+        .ignoresSafeArea(.keyboard)
+        .animation(.default, value: viewModel.state)
         .onFirstAppear {
             Task {
                 await viewModel.reload()
             }
+            
+            if let bingoURL = viewModel.bingoURLToOpen {
+                openPlayBingoItem = .deeplink(bingoURL)
+            }
         }
-        .ignoresSafeArea(.keyboard)
-        .animation(.default, value: viewModel.state)
     }
     
     @ViewBuilder

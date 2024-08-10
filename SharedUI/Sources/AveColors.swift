@@ -17,6 +17,7 @@ public enum AveColor {
     public static let backgroundLight = Color(red: 0.95, green: 0.96, blue: 0.99)
     
     public static let red = Color(red: 0.96, green: 0.31, blue: 0.31)
+    public static let redLight = Color(red: 1, green: 0.89, blue: 0.89)
     public static let lilac = Color(red: 0.64, green: 0.72, blue: 1)
     
     

@@ -16,6 +16,8 @@ public struct PlayBingoView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: PlayBingoViewModel
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State private var screenshotMaker: ScreenshotMaker?
     @State private var fullAppPromoPresented: Bool = false
     @State private var shareActivityPresented: Bool = false
@@ -32,7 +34,9 @@ public struct PlayBingoView: View {
             switch viewModel.state {
             case .loading:
                 ProgressView()
-                    .onAppear(perform: viewModel.loadBingo)
+                    .onAppear {
+                        viewModel.loadBingo()
+                    }
             case .error:
                 ErrorView {
                     viewModel.loadBingo()
@@ -47,29 +51,29 @@ public struct PlayBingoView: View {
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden()
         .toolbar {
-//            #if !APP_CLIP
             ToolbarItem(placement: .topBarLeading) {
-                HStack(spacing: 16) {
-                    NavigationButton(iconName: "chevron_left_icon") {
-                        dismiss()
+                if presentationMode.wrappedValue.isPresented {
+                    HStack(spacing: 16) {
+                        NavigationButton(iconName: "chevron_left_icon") {
+                            dismiss()
+                        }
+                        .padding(.bottom, 2)
+                        
+                        Text("My bingos")
+                            .font(AveFont.headline3)
+                            .foregroundStyle(AveColor.content)
                     }
-                    .padding(.bottom, 2)
-                    
-                    Text("My bingos")
-                        .font(AveFont.headline3)
-                        .foregroundStyle(AveColor.content)
                 }
             }
-//            #endif
             
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 6) {
-//                    #if !APP_CLIP
-                    NavigationButton(
-                        iconName: "pencil_icon",
-                        onTap: editBingo
-                    )
-//                    #endif
+                    if viewModel.isMyBingo {
+                        NavigationButton(
+                            iconName: "pencil_icon",
+                            onTap: editBingo
+                        )
+                    }
                     NavigationButton(
                         iconName: "share_icon",
                         onTap: {
@@ -87,7 +91,12 @@ public struct PlayBingoView: View {
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6535681093", position: .bottom)
         }
+        .onContinueUserActivity("NSUserActivityTypeBrowsingWeb", perform: { userActivity in
+            viewModel.bingoURL = userActivity.webpageURL
+            viewModel.loadBingo()
+        })
 //        #endif
+        
     }
     
     private func bingoImage() -> UIImage? {

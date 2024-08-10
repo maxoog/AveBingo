@@ -2,15 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need to write photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gilroy-Semibold.ttf</string>
-		<string>Gilroy-Regular.ttf</string>
 		<string>Gilroy-Medium.ttf</string>
-		<string>Gilroy-Light.ttf</string>
-		<string>Gilroy-Bold.ttf</string>
 		<string>Gilroy-Black.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

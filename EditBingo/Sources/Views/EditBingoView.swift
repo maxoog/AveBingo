@@ -66,18 +66,24 @@ public struct EditBingoView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            AveButton(
-                iconName: nil,
-                text: viewModel.isEditMode ? "Save changes" : "Create card",
-                isLoading: viewModel.isLoading,
-                onTap: {
-                    Task {
-                        UIApplication.shared.endEditing()
-                        await viewModel.saveBingo()
+            VStack(spacing: 16) {
+                PopupErrorView(visible: $viewModel.savingError)
+                    .padding(.horizontal, 16)
+                
+                AveButton(
+                    iconName: nil,
+                    text: viewModel.isEditMode ? "Save changes" : "Create card",
+                    isLoading: viewModel.isLoading,
+                    enabled: viewModel.hasChanges,
+                    onTap: {
+                        Task {
+                            UIApplication.shared.endEditing()
+                            await viewModel.saveBingo()
+                        }
                     }
-                }
-            )
-            .padding(.vertical, 16)
+                )
+                .padding(.vertical, 16)
+            }
         }
         .navigationBarBackButtonHidden()
         .toolbar {

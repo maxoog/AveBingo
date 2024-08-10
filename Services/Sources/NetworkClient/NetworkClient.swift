@@ -3,7 +3,7 @@ import Foundation
 import NetworkCore
 import TokenStorage
 
-public class NetworkClient: SessionDelegate {
+public final class NetworkClient: SessionDelegate {
     private let tokenLoader: TokenLoader = TokenLoader()
     
     public var host: String {
