@@ -13,7 +13,6 @@ import StoreKit
 import CommonModels
 
 public struct PlayBingoView: View {
-    @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: PlayBingoViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -55,7 +54,7 @@ public struct PlayBingoView: View {
                 if presentationMode.wrappedValue.isPresented {
                     HStack(spacing: 16) {
                         NavigationButton(iconName: "chevron_left_icon") {
-                            dismiss()
+                            presentationMode.wrappedValue.dismiss()
                         }
                         .padding(.bottom, 2)
                         
@@ -87,16 +86,13 @@ public struct PlayBingoView: View {
             ShareBingoViewController(bingoURL: viewModel.bingoURL, image: bingoImage())
                 .ignoresSafeArea(edges: .bottom)
         }
-//        #if !APP_CLIP
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
-            SKOverlay.AppConfiguration(appIdentifier: "6535681093", position: .bottom)
+            SKOverlay.AppConfiguration(appIdentifier: "6621254236", position: .bottom)
         }
         .onContinueUserActivity("NSUserActivityTypeBrowsingWeb", perform: { userActivity in
             viewModel.bingoURL = userActivity.webpageURL
             viewModel.loadBingo()
         })
-//        #endif
-        
     }
     
     private func bingoImage() -> UIImage? {
@@ -147,10 +143,11 @@ public struct PlayBingoView: View {
                 passTouchesToContent: false
             ) { (index, tile) in
                 Text(tile.description)
-                    .font(AveFont.content2)
+                    .font(bingoModel.size.textFont)
                     .foregroundStyle(AveColor.content)
                     .padding(8)
                     .multilineTextAlignment(.center)
+                    .lineLimit(bingoModel.size.maxNumberOfLinesInTextField)
             }
             .padding(.top, 32)
         }

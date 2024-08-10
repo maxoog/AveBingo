@@ -30,6 +30,8 @@ public final class PlayBingoViewModel: ObservableObject {
     private let bingoProvider: BingoProviderProtocol
     var bingoURL: URL?
     let isMyBingo: Bool
+    
+    @Published var state: PlayBingoViewState
 
     public init(openType: PlayBingoOpenType, bingoProvider: BingoProviderProtocol) {
         self.bingoProvider = bingoProvider
@@ -46,8 +48,6 @@ public final class PlayBingoViewModel: ObservableObject {
         }
     }
     
-    @Published private(set) var state: PlayBingoViewState
-    
     func loadBingo() {
         guard let bingoURL = self.bingoURL, state.canLoadBingo else {
             return
@@ -63,6 +63,7 @@ public final class PlayBingoViewModel: ObservableObject {
                 let bingoModel = try await self.bingoProvider.getBingo(url: bingoURL)
                 
                 self.state = .content(bingoModel)
+                objectWillChange.send()
             } catch {
                 self.state = .error(error)
             }

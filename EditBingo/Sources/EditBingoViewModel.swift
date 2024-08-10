@@ -12,6 +12,7 @@ import CommonModels
 @MainActor
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
+    private let onSave: (BingoModel) -> Void
     
     @Published var model: EditableBingoModel {
         didSet {
@@ -35,8 +36,13 @@ public final class EditBingoViewModel: ObservableObject {
     
     @Published private var bingoID: String? = nil
     
-    public init(openType: EditBingoOpenType, bingoService: BingoService) {
+    public init(
+        openType: EditBingoOpenType,
+        bingoService: BingoService,
+        onSave: @escaping (BingoModel) -> Void
+    ) {
         self.bingoService = bingoService
+        self.onSave = onSave
         
         switch openType {
         case .createNew:
@@ -63,13 +69,16 @@ public final class EditBingoViewModel: ObservableObject {
             if let bingoID {
                 let bingoModel = model.toBingoModel(id: bingoID)
                 try await bingoService.editBingo(bingoModel)
+                onSave(bingoModel)
             } else {
-                self.bingoID = try await bingoService.createBingo(
+                let bingoID = try await bingoService.createBingo(
                     name: model.title,
                     style: model.style,
                     emoji: model.emoji,
                     tiles: model.tiles.map { .init(description: $0) }
                 )
+                self.bingoID = bingoID
+                onSave(model.toBingoModel(id: bingoID))
             }
             hasChanges = false
         } catch {

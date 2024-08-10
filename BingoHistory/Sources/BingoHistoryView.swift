@@ -35,14 +35,17 @@ public struct BingoHistoryView: View {
         VStack(spacing: 0) {
             AveNavigationLink(
                 item: $openEditBingoItem) { item in
-                    screenFactory.editBingoView(openType: item)
+                    EditablePlayBingoView(
+                        screenFactory: screenFactory,
+                        screenType: .editBingo(item)
+                    ).anyView()
                 }
             
             AveNavigationLink(
                 item: $openPlayBingoItem) { item in
                     EditablePlayBingoView(
                         screenFactory: screenFactory,
-                        openType: item
+                        screenType: .playBingo(item)
                     ).anyView()
                 }
             

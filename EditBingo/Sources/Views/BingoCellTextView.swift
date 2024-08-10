@@ -69,7 +69,7 @@ struct BingoCellTextView: UIViewRepresentable {
         placeholderLabel.text = "Type text\nhere"
         placeholderLabel.numberOfLines = 2
         placeholderLabel.textAlignment = .center
-        placeholderLabel.font = gridSize.textFont
+        placeholderLabel.font = gridSize.textUIFont
         placeholderLabel.sizeToFit()
         textView.addSubview(placeholderLabel)
         placeholderLabel.textColor = .tertiaryLabel
@@ -84,7 +84,7 @@ struct BingoCellTextView: UIViewRepresentable {
         textView.textAlignment = .center
         textView.keyboardType = .default
         
-        textView.font = gridSize.textFont
+        textView.font = gridSize.textUIFont
         textView.tintColor = UIColor(AveColor.content)
         textView.textContainer.maximumNumberOfLines = gridSize.maxNumberOfLinesInTextField
         textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -129,28 +129,8 @@ struct BingoCellTextView: UIViewRepresentable {
         placeholder: UILabel?,
         size: BingoGridSize
     ) {
-        placeholder?.font = gridSize.textFont
-        textView.font = gridSize.textFont
+        placeholder?.font = gridSize.textUIFont
+        textView.font = gridSize.textUIFont
         textView.textContainer.maximumNumberOfLines = gridSize.maxNumberOfLinesInTextField
-    }
-}
-
-private extension BingoGridSize {
-    var textFont: UIFont {
-        switch self {
-        case ._3x3:
-            AveFont.content2_uifont
-        case ._4x4:
-            AveFont.content3_uifont
-        }
-    }
-    
-    var maxNumberOfLinesInTextField: Int {
-        switch self {
-        case ._3x3:
-            5
-        case ._4x4:
-            4
-        }
     }
 }

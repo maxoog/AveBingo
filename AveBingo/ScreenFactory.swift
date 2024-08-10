@@ -18,12 +18,14 @@ import CommonModels
 @MainActor
 final class ScreenFactory: ScreenFactoryProtocol {
     fileprivate let appFactory = AppFactory()
-    
     static let shared = ScreenFactory()
     
-    func editBingoView(openType: EditBingoOpenType) -> AnyView {
+    func editBingoView(openType: EditBingoOpenType, onSave: @escaping (BingoModel) -> Void) -> AnyView {
         EditBingoView(
-            viewModel: appFactory.editBingoViewModel(openType: openType)
+            viewModel: appFactory.editBingoViewModel(
+                openType: openType,
+                onSave: onSave
+            )
         ).anyView()
     }
     
@@ -53,8 +55,15 @@ fileprivate final class AppFactory {
     
     lazy var analyticsService = AnalyticsService()
     
-    func editBingoViewModel(openType: EditBingoOpenType) -> EditBingoViewModel {
-        EditBingoViewModel(openType: openType, bingoService: bingoService)
+    func editBingoViewModel(
+        openType: EditBingoOpenType,
+        onSave: @escaping (BingoModel) -> Void
+    ) -> EditBingoViewModel {
+        EditBingoViewModel(
+            openType: openType,
+            bingoService: bingoService,
+            onSave: onSave
+        )
     }
     
     func bingoHistoryViewModel(bingoURLToOpen: URL?) -> BingoHistoryViewModel {

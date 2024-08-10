@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Maksim Zenkov on 08.08.2024.
 //
@@ -12,30 +12,35 @@ import CommonModels
 
 public struct EditablePlayBingoView: View {
     let screenFactory: ScreenFactoryProtocol
-    let playBingoOpenType: PlayBingoOpenType
     
-    @State var bingoToEdit: BingoModel? = nil
+    @State var screenType: ScreenType
     
     public init(
         screenFactory: ScreenFactoryProtocol,
-        openType: PlayBingoOpenType
+        screenType: ScreenType
     ) {
         self.screenFactory = screenFactory
-        self.playBingoOpenType = openType
+        self.screenType = screenType
     }
     
     public var body: some View {
-        Group {
-            if let bingoToEdit {
-                screenFactory.editBingoView(openType: .edit(bingoToEdit))
-            } else {
+//        Group {
+            switch screenType {
+            case .playBingo(let playBingoOpenType):
                 screenFactory.playBingoView(
                     openType: playBingoOpenType,
                     onEdit: { bingo in
-                        bingoToEdit = bingo
+                        screenType = .editBingo(.edit(bingo))
+                    }
+                )
+            case .editBingo(let editBingoOpenType):
+                screenFactory.editBingoView(
+                    openType: editBingoOpenType,
+                    onSave: { bingo in
+                        screenType = .playBingo(.card(bingo))
                     }
                 )
             }
-        }.animation(.easeOut, value: bingoToEdit)
+//        }.animation(.easeOut, value: screenType)
     }
 }

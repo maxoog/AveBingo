@@ -93,3 +93,32 @@ extension BingoGridSize {
             AveColor.green
         ]
 }
+
+extension BingoGridSize {
+    public var textFont: Font {
+        switch self {
+        case ._3x3:
+            AveFont.content2
+        case ._4x4:
+            AveFont.content3
+        }
+    }
+    
+    public var textUIFont: UIFont {
+        switch self {
+        case ._3x3:
+            AveFont.content2_uifont
+        case ._4x4:
+            AveFont.content3_uifont
+        }
+    }
+    
+    public var maxNumberOfLinesInTextField: Int {
+        switch self {
+        case ._3x3:
+            5
+        case ._4x4:
+            4
+        }
+    }
+}
