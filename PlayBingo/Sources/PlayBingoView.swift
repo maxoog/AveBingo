@@ -13,7 +13,7 @@ import StoreKit
 import CommonModels
 
 public struct PlayBingoView: View {
-    @ObservedObject var viewModel: PlayBingoViewModel
+    @StateObject var viewModel: PlayBingoViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -24,7 +24,7 @@ public struct PlayBingoView: View {
     private let onEdit: ((BingoModel) -> Void)?
     
     public init(viewModel: PlayBingoViewModel, onEdit: ((BingoModel) -> Void)?) {
-        self.viewModel = viewModel
+        _viewModel = .init(wrappedValue: viewModel)
         self.onEdit = onEdit
     }
     
@@ -89,10 +89,6 @@ public struct PlayBingoView: View {
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6621254236", position: .bottom)
         }
-        .onContinueUserActivity("NSUserActivityTypeBrowsingWeb", perform: { userActivity in
-            viewModel.bingoURL = userActivity.webpageURL
-            viewModel.loadBingo()
-        })
     }
     
     private func bingoImage() -> UIImage? {

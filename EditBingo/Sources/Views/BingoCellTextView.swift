@@ -25,7 +25,7 @@ struct BingoCellTextView: UIViewRepresentable {
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            onPreferredHeightUpdated(textView.sizeThatFits(textView.frame.size).height)
+//            onPreferredHeightUpdated(textView.sizeThatFits(textView.frame.size).height)
             placeholder?.isHidden = !textView.text.isEmpty || textView.isFirstResponder
         }
         
@@ -47,9 +47,6 @@ struct BingoCellTextView: UIViewRepresentable {
     let onPreferredHeightUpdated: (CGFloat) -> Void
     let onTapPublisher: AnyPublisher<Void, Never>
     
-    @StaticState
-    private var heightUpdated: Bool = false
-    
     init(
         text: Binding<String>,
         gridSize: BingoGridSize,
@@ -63,7 +60,7 @@ struct BingoCellTextView: UIViewRepresentable {
     }
 
     func makeUIView(context: UIViewRepresentableContext<BingoCellTextView>) -> UITextView {
-        let textView = UITextView(frame: .zero)
+        let textView = CustomTextView(onPreferredHeightUpdated: onPreferredHeightUpdated)
         
         let placeholderLabel = UILabel()
         placeholderLabel.text = "Type text\nhere"
@@ -88,7 +85,6 @@ struct BingoCellTextView: UIViewRepresentable {
         textView.tintColor = UIColor(AveColor.content)
         textView.textContainer.maximumNumberOfLines = gridSize.maxNumberOfLinesInTextField
         textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        textView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         textView.textAlignment = .center
         textView.textContainer.lineBreakMode = .byTruncatingTail
         textView.backgroundColor = .clear
@@ -115,13 +111,6 @@ struct BingoCellTextView: UIViewRepresentable {
             placeholder: context.coordinator.placeholder,
             size: gridSize
         )
-        
-        if !text.isEmpty && !heightUpdated {
-            Task { @MainActor in
-                onPreferredHeightUpdated(uiView.sizeThatFits(uiView.frame.size).height)
-                heightUpdated = true
-            }
-        }
     }
     
     private func updateForSize(
@@ -132,5 +121,25 @@ struct BingoCellTextView: UIViewRepresentable {
         placeholder?.font = gridSize.textUIFont
         textView.font = gridSize.textUIFont
         textView.textContainer.maximumNumberOfLines = gridSize.maxNumberOfLinesInTextField
+    }
+}
+
+private final class CustomTextView: UITextView {
+    let onPreferredHeightUpdated: (CGFloat) -> Void
+    
+    init(onPreferredHeightUpdated: @escaping (CGFloat) -> Void) {
+        self.onPreferredHeightUpdated = onPreferredHeightUpdated
+        super.init(frame: .zero, textContainer: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let newHeight = sizeThatFits( .init(width: frame.size.width, height: .infinity)).height
+        onPreferredHeightUpdated(newHeight)
     }
 }
