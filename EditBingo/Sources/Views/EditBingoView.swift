@@ -9,8 +9,10 @@ import SwiftUI
 import SharedUI
 import Combine
 import CommonModels
+import ServicesContracts
 
 public struct EditBingoView: View {
+    let analyticsService: AnalyticsServiceProtocol
     @Environment(\.dismiss) private var dismiss
     
     @StateObject var viewModel: EditBingoViewModel
@@ -18,20 +20,26 @@ public struct EditBingoView: View {
     @State private var currentlySelectedCell: Int = 0
     @FocusState private var emojiFieldIsFocused: Bool
 
-    public init(viewModel: EditBingoViewModel) {
+    public init(
+        viewModel: EditBingoViewModel,
+        analyticsService: AnalyticsServiceProtocol
+    ) {
         _viewModel = .init(wrappedValue: viewModel)
+        self.analyticsService = analyticsService
     }
     
     public var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                EmojiFieldView(text: $viewModel.model.emoji)
-                    .frame(width: 100, height: 100)
-                    .padding(.top, 16)
-                    .focused($emojiFieldIsFocused)
-                    .onTapGesture {
-                        emojiFieldIsFocused = true
-                    }
+                if UITextInputMode.emojiTextInputMode != nil {
+                    EmojiFieldView(text: $viewModel.model.emoji)
+                        .frame(width: 100, height: 100)
+                        .padding(.top, 16)
+                        .focused($emojiFieldIsFocused)
+                        .onTapGesture {
+                            emojiFieldIsFocused = true
+                        }
+                }
                 
                 TitleTextField(text: $viewModel.model.title, error: viewModel.bingoValidationError)
                     .padding(.top, 16)
@@ -89,6 +97,7 @@ public struct EditBingoView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 NavigationButton(iconName: "chevron_left_icon") {
+                    analyticsService.logEvent(EditEvent.backButton)
                     dismiss()
                 }
                 .padding(.bottom, 2)

@@ -9,28 +9,14 @@ import Foundation
 import Mixpanel
 import ServicesContracts
 
-fileprivate extension AnalyticsEvent {
-    var analyticsName: String {
-        switch self {
-        case .openBingoCreation:
-            "Open bingo creation"
-        }
-    }
-    
-    var properties: Properties { // [String: MixpanelType]
-        switch self {
-        case .openBingoCreation:
-            [:]
-        }
-    }
-}
-
 public final class AnalyticsService: AnalyticsServiceProtocol {
     public init() {}
     
-    public func logEvent(_ event: ServicesContracts.AnalyticsEvent) {
+    public func logEvent(_ event: AnalyticsEvent) {
+        print("logging event \(event.name) with properties \(event.properties)")
+        
         Mixpanel.mainInstance().track(
-            event: event.analyticsName,
+            event: event.name,
             properties: event.properties
         )
     }

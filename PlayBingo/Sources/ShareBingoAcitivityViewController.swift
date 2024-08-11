@@ -1,10 +1,12 @@
 import SwiftUI
 import UIKit
 import LinkPresentation
+import ServicesContracts
 
 struct ShareBingoViewController: UIViewControllerRepresentable {
     let bingoURL: URL?
     let image: UIImage?
+    let analyticsService: AnalyticsServiceProtocol
     
     @Environment(\.dismiss) private var dismissAction
 
@@ -14,10 +16,10 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
         
         var activityItems: [Any] = []
         image.map {
-            activityItems.append(ImageActivityItemSource(image: $0))
+            activityItems.append($0)
         }
         bingoURL.map {
-            activityItems.append($0)
+            activityItems.append(LinkItemSource(url: $0))
         }
         
         let controller = UIActivityViewController(
@@ -26,6 +28,8 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
         )
 
         controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+            analyticsService.logEvent(PlayEvent.share(activity: activityType?.rawValue ?? "unknown"))
+            
             self.dismissAction()
         }
         return controller
@@ -39,26 +43,28 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
     }
 }
 
-final class ImageActivityItemSource: NSObject, UIActivityItemSource {
-    let image: UIImage
+final class LinkItemSource: NSObject, UIActivityItemSource {
+    let url: URL
     
-    init(image: UIImage) {
-        self.image = image
+    init(url: URL) {
+        self.url = url
     }
     
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return image
+        return url
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        return image
+        if activityType?.rawValue == "ph.telegra.Telegraph.Share" {
+            return url.absoluteString
+        } else {
+            return url
+        }
     }
     
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        let imageProvider = NSItemProvider(object: image)
         
         let metadata = LPLinkMetadata()
-        metadata.imageProvider = imageProvider
         metadata.title = "Share you bingo!"
         return metadata
     }

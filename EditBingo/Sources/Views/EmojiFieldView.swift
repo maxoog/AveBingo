@@ -81,13 +81,10 @@ final class EmojiInputField: UIView, UIKeyInput {
     }
     
     override var textInputMode: UITextInputMode? {
-        for mode in UITextInputMode.activeInputModes {
-            if mode.primaryLanguage == "emoji" {
-                return mode
-            }
-        }
-        return nil
+        UITextInputMode.emojiTextInputMode
     }
+    
+    override var textInputContextIdentifier: String? { "" }
 }
 
 struct EmojiFieldView: UIViewRepresentable {
@@ -116,5 +113,17 @@ struct EmojiFieldView: UIViewRepresentable {
                 self?.parent.text = textField.text ?? ""
             }
         }
+    }
+}
+
+
+extension UITextInputMode {
+    static var emojiTextInputMode: UITextInputMode? {
+        for mode in UITextInputMode.activeInputModes {
+            if mode.primaryLanguage == "emoji" {
+                return mode
+            }
+        }
+        return nil
     }
 }

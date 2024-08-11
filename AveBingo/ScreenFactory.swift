@@ -25,7 +25,8 @@ final class ScreenFactory: ScreenFactoryProtocol {
             viewModel: appFactory.editBingoViewModel(
                 openType: openType,
                 onSave: onSave
-            )
+            ),
+            analyticsService: appFactory.analyticsService
         ).anyView()
     }
     
@@ -42,6 +43,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     func playBingoView(openType: PlayBingoOpenType, onEdit: ((BingoModel) -> Void)?) -> AnyView {
         PlayBingoView(
             viewModel: appFactory.playBingoViewModel(openType: openType),
+            analyticsService: appFactory.analyticsService,
             onEdit: onEdit
         ).anyView()
     }
@@ -62,6 +64,7 @@ fileprivate final class AppFactory {
         EditBingoViewModel(
             openType: openType,
             bingoService: bingoService,
+            analyticsService: analyticsService,
             onSave: onSave
         )
     }

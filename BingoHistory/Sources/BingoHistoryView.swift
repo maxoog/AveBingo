@@ -70,7 +70,7 @@ public struct BingoHistoryView: View {
                     centeredView {
                         EmptyHistoryView(onAddBingoTap: {
                             self.openEditBingoItem = .createNew
-                            analyticsService.logEvent(.openBingoCreation)
+                            analyticsService.logEvent(HistoryEvent.openCreateBingo)
                         })
                     }
                 } else {
@@ -86,6 +86,7 @@ public struct BingoHistoryView: View {
                 
                 if viewModel.state.hasContent {
                     AveButton(iconName: "add_icon", text: "Add new") {
+                        analyticsService.logEvent(HistoryEvent.openCreateBingo)
                         self.openEditBingoItem = .createNew
                     }
                 }
@@ -114,13 +115,16 @@ public struct BingoHistoryView: View {
                         BingoSnippetView(
                             model: card,
                             onTap: {
+                                analyticsService.logEvent(HistoryEvent.openPlayBingo)
                                 self.openPlayBingoItem = .card(card)
                                 viewModel.objectWillChange.send()
                             },
                             onEdit: {
+                                analyticsService.logEvent(HistoryEvent.openEditBingo)
                                 self.openEditBingoItem = .edit(card)
                             },
                             onDelete: {
+                                analyticsService.logEvent(HistoryEvent.deleteBingo)
                                 viewModel.deleteBingo(model: card)
                             }
                         )

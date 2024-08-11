@@ -12,6 +12,7 @@ import CommonModels
 @MainActor
 public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
+    private let analyticsService: AnalyticsServiceProtocol
     private let onSave: (BingoModel) -> Void
     
     @Published var model: EditableBingoModel {
@@ -39,9 +40,11 @@ public final class EditBingoViewModel: ObservableObject {
     public init(
         openType: EditBingoOpenType,
         bingoService: BingoService,
+        analyticsService: AnalyticsServiceProtocol,
         onSave: @escaping (BingoModel) -> Void
     ) {
         self.bingoService = bingoService
+        self.analyticsService = analyticsService
         self.onSave = onSave
         
         switch openType {
@@ -69,6 +72,7 @@ public final class EditBingoViewModel: ObservableObject {
             if let bingoID {
                 let bingoModel = model.toBingoModel(id: bingoID)
                 try await bingoService.editBingo(bingoModel)
+                analyticsService.logEvent(EditEvent.saveBingo(success: true))
                 onSave(bingoModel)
             } else {
                 let bingoID = try await bingoService.createBingo(
@@ -78,10 +82,12 @@ public final class EditBingoViewModel: ObservableObject {
                     tiles: model.tiles.map { .init(description: $0) }
                 )
                 self.bingoID = bingoID
+                analyticsService.logEvent(EditEvent.saveBingo(success: true))
                 onSave(model.toBingoModel(id: bingoID))
             }
             hasChanges = false
         } catch {
+            analyticsService.logEvent(EditEvent.saveBingo(success: false))
             self.savingError = true
         }
     }

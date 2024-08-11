@@ -31,17 +31,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupApplication() {
-        
         // Initializing Mixpanel
-
         #if DEBUG
             Mixpanel.initialize(
-                token: "c7ba3e1f543561d977a2b217f14d0bc2",
+                token: "383b3217aefa52e70b15fa52d92d56ed",
                 trackAutomaticEvents: false
             )
         #else
             Mixpanel.initialize(
-                token: "e60ba5c18fa543ebec29c038ed60179e",
+                token: "0aea82bb50aa9f21a0d9775d08983485",
                 trackAutomaticEvents: false
             )
         #endif

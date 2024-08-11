@@ -11,8 +11,10 @@ import SharedUI
 import Resources
 import StoreKit
 import CommonModels
+import ServicesContracts
 
 public struct PlayBingoView: View {
+    let analyticsService: AnalyticsServiceProtocol
     @StateObject var viewModel: PlayBingoViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -23,8 +25,13 @@ public struct PlayBingoView: View {
     
     private let onEdit: ((BingoModel) -> Void)?
     
-    public init(viewModel: PlayBingoViewModel, onEdit: ((BingoModel) -> Void)?) {
+    public init(
+        viewModel: PlayBingoViewModel,
+        analyticsService: AnalyticsServiceProtocol,
+        onEdit: ((BingoModel) -> Void)?
+    ) {
         _viewModel = .init(wrappedValue: viewModel)
+        self.analyticsService = analyticsService
         self.onEdit = onEdit
     }
     
@@ -54,6 +61,7 @@ public struct PlayBingoView: View {
                 if presentationMode.wrappedValue.isPresented {
                     HStack(spacing: 16) {
                         NavigationButton(iconName: "chevron_left_icon") {
+                            analyticsService.logEvent(PlayEvent.backButton)
                             presentationMode.wrappedValue.dismiss()
                         }
                         .padding(.bottom, 2)
@@ -83,7 +91,11 @@ public struct PlayBingoView: View {
             }
         }
         .sheet(isPresented: $shareActivityPresented) {
-            ShareBingoViewController(bingoURL: viewModel.bingoURL, image: bingoImage())
+            ShareBingoViewController(
+                bingoURL: viewModel.bingoURL,
+                image: bingoImage(),
+                analyticsService: analyticsService
+            )
                 .ignoresSafeArea(edges: .bottom)
         }
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
@@ -108,6 +120,7 @@ public struct PlayBingoView: View {
             assertionFailure("Cannot find bingo")
             return
         }
+        analyticsService.logEvent(PlayEvent.edit)
         onEdit?(bingo)
     }
     

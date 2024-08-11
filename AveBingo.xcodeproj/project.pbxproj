@@ -14,6 +14,7 @@
 		B15746BF2C63B3790091DF61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B15746BE2C63B3790091DF61 /* Assets.xcassets */; };
 		B15A47EF2C680F2A00F212E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A47EE2C680F2A00F212E4 /* SceneDelegate.swift */; };
 		B15A47F12C680F3C00F212E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A47F02C680F3C00F212E4 /* AppDelegate.swift */; };
+		B15A47F32C6936F400F212E4 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = B15A47F22C6936F400F212E4 /* Analytics */; };
 		B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569A2C516F7C00CC0004 /* BingoHistory */; };
 		B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */; };
 		B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */; };
@@ -99,6 +100,7 @@
 				B1EDC6A92C4187290088BE33 /* PlayBingo in Frameworks */,
 				B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */,
 				B11EE83D2C5583D100856436 /* ServicesContracts in Frameworks */,
+				B15A47F32C6936F400F212E4 /* Analytics in Frameworks */,
 				B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,6 +216,7 @@
 				B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */,
 				B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */,
 				B11EE83C2C5583D100856436 /* ServicesContracts */,
+				B15A47F22C6936F400F212E4 /* Analytics */,
 			);
 			productName = BingoMeisterAppClip;
 			productReference = B19AD7422C4144F400A199C3 /* AveBingoAppClip.app */;
@@ -617,6 +620,10 @@
 		B11EE83C2C5583D100856436 /* ServicesContracts */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ServicesContracts;
+		};
+		B15A47F22C6936F400F212E4 /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Analytics;
 		};
 		B17C569A2C516F7C00CC0004 /* BingoHistory */ = {
 			isa = XCSwiftPackageProductDependency;

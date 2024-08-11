@@ -9,6 +9,7 @@ import SwiftUI
 import PlayBingo
 import BingoServicesForAppClip
 import CommonModels
+import Analytics
 
 @MainActor
 final class ScreenFactory {
@@ -17,6 +18,7 @@ final class ScreenFactory {
     func playBingoView(bingoUrl url: URL?) -> some View {
         PlayBingoView(
             viewModel: AppFactory.shared.playBingoViewModel(bingoUrl: url),
+            analyticsService: AppFactory.shared.analyticsService,
             onEdit: nil
         )
     }
@@ -25,6 +27,8 @@ final class ScreenFactory {
 @MainActor
 final class AppFactory {
     static let shared = AppFactory()
+    
+    lazy var analyticsService: AnalyticsService = AnalyticsService()
     
     private lazy var bingoService = BingoServiceForAppClip()
     
