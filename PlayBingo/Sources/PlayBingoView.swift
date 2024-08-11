@@ -101,6 +101,14 @@ public struct PlayBingoView: View {
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6621254236", position: .bottom)
         }
+        .onFirstAppear {
+            Task {
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                if !presentationMode.wrappedValue.isPresented {
+                    showFullAppPromo()
+                }
+            }
+        }
     }
     
     private func bingoImage() -> UIImage? {
@@ -125,9 +133,10 @@ public struct PlayBingoView: View {
     }
     
     private func showFullAppPromo() {
-        fullAppPromoPresented = true
         Task {
-            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            try? await Task.sleep(nanoseconds: 6_000_000_000)
+            fullAppPromoPresented = true
+            try? await Task.sleep(nanoseconds: 45_000_000_000)
             fullAppPromoPresented = false
         }
     }
