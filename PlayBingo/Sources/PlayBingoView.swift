@@ -17,7 +17,7 @@ public struct PlayBingoView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var screenshotMaker: ScreenshotMaker?
+    @StaticState private var screenshotMaker: ScreenshotMaker?
     @State private var fullAppPromoPresented: Bool = false
     @State private var shareActivityPresented: Bool = false
     

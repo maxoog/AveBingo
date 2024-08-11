@@ -1,19 +1,20 @@
 import SwiftUI
 import UIKit
+import LinkPresentation
 
 struct ShareBingoViewController: UIViewControllerRepresentable {
     let bingoURL: URL?
     let image: UIImage?
     
-    var applicationActivities: [UIActivity]? = nil
     @Environment(\.dismiss) private var dismissAction
 
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<ShareBingoViewController>) -> UIActivityViewController
     {
+        
         var activityItems: [Any] = []
         image.map {
-            activityItems.append($0)
+            activityItems.append(ImageActivityItemSource(image: $0))
         }
         bingoURL.map {
             activityItems.append($0)
@@ -21,7 +22,7 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
         
         let controller = UIActivityViewController(
             activityItems: activityItems,
-            applicationActivities: applicationActivities
+            applicationActivities: nil
         )
 
         controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
@@ -36,5 +37,29 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
     ) {
         
     }
+}
 
+final class ImageActivityItemSource: NSObject, UIActivityItemSource {
+    let image: UIImage
+    
+    init(image: UIImage) {
+        self.image = image
+    }
+    
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return image
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return image
+    }
+    
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let imageProvider = NSItemProvider(object: image)
+        
+        let metadata = LPLinkMetadata()
+        metadata.imageProvider = imageProvider
+        metadata.title = "Share you bingo!"
+        return metadata
+    }
 }
