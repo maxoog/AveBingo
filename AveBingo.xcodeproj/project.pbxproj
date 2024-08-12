@@ -16,7 +16,6 @@
 		B15A47F12C680F3C00F212E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A47F02C680F3C00F212E4 /* AppDelegate.swift */; };
 		B15A47F32C6936F400F212E4 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = B15A47F22C6936F400F212E4 /* Analytics */; };
 		B17C569B2C516F7C00CC0004 /* BingoHistory in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569A2C516F7C00CC0004 /* BingoHistory */; };
-		B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */; };
 		B17C56A42C5185CF00CC0004 /* ScreenFactoryContracts in Frameworks */ = {isa = PBXBuildFile; productRef = B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */; };
 		B19AD6CF2C41331E00A199C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6CE2C41331E00A199C3 /* AppDelegate.swift */; };
 		B19AD6D12C41331E00A199C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19AD6D02C41331E00A199C3 /* SceneDelegate.swift */; };
@@ -101,7 +100,6 @@
 				B11365782C52C5BC00E0D2EC /* BingoServicesForAppClip in Frameworks */,
 				B11EE83D2C5583D100856436 /* ServicesContracts in Frameworks */,
 				B15A47F32C6936F400F212E4 /* Analytics in Frameworks */,
-				B17C569E2C5185A800CC0004 /* ScreenFactoryContracts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +211,6 @@
 			name = AveBingoAppClip;
 			packageProductDependencies = (
 				B1EDC6A82C4187290088BE33 /* PlayBingo */,
-				B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */,
 				B11365772C52C5BC00E0D2EC /* BingoServicesForAppClip */,
 				B11EE83C2C5583D100856436 /* ServicesContracts */,
 				B15A47F22C6936F400F212E4 /* Analytics */,
@@ -471,7 +468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -499,7 +496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -530,7 +527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -564,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = maxood.AveBingo.AppClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,10 +625,6 @@
 		B17C569A2C516F7C00CC0004 /* BingoHistory */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BingoHistory;
-		};
-		B17C569D2C5185A800CC0004 /* ScreenFactoryContracts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ScreenFactoryContracts;
 		};
 		B17C56A32C5185CF00CC0004 /* ScreenFactoryContracts */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -104,7 +104,7 @@ public struct PlayBingoView: View {
         .onFirstAppear {
             Task {
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
-                if !presentationMode.wrappedValue.isPresented {
+                if !presentationMode.wrappedValue.isPresented && !UserDefaults.standard.hasSeenFullAppPromo {
                     showFullAppPromo()
                 }
             }
@@ -113,14 +113,6 @@ public struct PlayBingoView: View {
     
     private func bingoImage() -> UIImage? {
         return screenshotMaker?.screenshot()
-    }
-    
-    private func makeScreenshot() {
-        if case .content = viewModel.state,
-           let image = bingoImage()
-        {
-            self.copyImageToClipboard(image: image)
-        }
     }
      
     private func editBingo() {
@@ -136,7 +128,8 @@ public struct PlayBingoView: View {
         Task {
             try? await Task.sleep(nanoseconds: 6_000_000_000)
             fullAppPromoPresented = true
-            try? await Task.sleep(nanoseconds: 45_000_000_000)
+            UserDefaults.standard.hasSeenFullAppPromo = true
+            try? await Task.sleep(nanoseconds: 30_000_000_000)
             fullAppPromoPresented = false
         }
     }
@@ -173,18 +166,17 @@ public struct PlayBingoView: View {
     }
 }
 
-extension View {
-    func copyImageToClipboard(image: UIImage) {
-        let pasteboard = UIPasteboard.general
-        pasteboard.image = image
-        
-        // To check if the image was successfully set in the clipboard.
-        if pasteboard.image != nil {
-            // If the image is not nil, it means it was successfully copied to the clipboard.
-            print("Image copied to clipboard!")
-        } else {
-            // If the image is nil, print a failure message.
-            print("Failed to copy image to clipboard.")
+extension UserDefaults {
+    public enum Keys {
+        static let hasSeenAppIntroduction = "has_seen_full_app_promo"
+    }
+
+    var hasSeenFullAppPromo: Bool {
+        set {
+            set(newValue, forKey: Keys.hasSeenAppIntroduction)
+        }
+        get {
+            return bool(forKey: Keys.hasSeenAppIntroduction)
         }
     }
 }

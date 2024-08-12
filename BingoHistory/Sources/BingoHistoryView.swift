@@ -80,18 +80,23 @@ public struct BingoHistoryView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .overlay(alignment: .bottom) {
-            VStack(spacing: 24) {
-                PopupErrorView(visible: $viewModel.bingoActionError)
-                    .padding(.horizontal, 16)
-                
-                if viewModel.state.hasContent {
-                    AveButton(iconName: "add_icon", text: "Add new") {
-                        analyticsService.logEvent(HistoryEvent.openCreateBingo)
-                        self.openEditBingoItem = .createNew
+            GeometryReader { proxy in
+                VStack(spacing: 24) {
+                    Spacer()
+                    
+                    PopupErrorView(visible: $viewModel.bingoActionError)
+                        .padding(.horizontal, 16)
+                    
+                    if viewModel.state.hasContent {
+                        AveButton(iconName: "add_icon", text: "Add new") {
+                            analyticsService.logEvent(HistoryEvent.openCreateBingo)
+                            self.openEditBingoItem = .createNew
+                        }
+                        .padding(.bottom, proxy.safeAreaInsets.bottom == 0 ? 16 : 0)
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .center)
             }
-            .frame(maxWidth: .infinity, alignment: .center)
         }
         .ignoresSafeArea(.keyboard)
         .animation(.default, value: viewModel.state)
