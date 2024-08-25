@@ -79,6 +79,7 @@ public struct BingoHistoryView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .center)
+        .navigationBarTitleDisplayMode(.inline)
         .overlay(alignment: .bottom) {
             GeometryReader { proxy in
                 VStack(spacing: 24) {

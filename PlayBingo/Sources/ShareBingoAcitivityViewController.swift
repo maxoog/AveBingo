@@ -5,7 +5,7 @@ import ServicesContracts
 
 struct ShareBingoViewController: UIViewControllerRepresentable {
     let bingoURL: URL?
-    let image: UIImage?
+    let getImage: () -> UIImage?
     let analyticsService: AnalyticsServiceProtocol
     
     @Environment(\.dismiss) private var dismissAction
@@ -15,7 +15,7 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
     {
         
         var activityItems: [Any] = []
-        image.map {
+        getImage().map {
             activityItems.append($0)
         }
         bingoURL.map {

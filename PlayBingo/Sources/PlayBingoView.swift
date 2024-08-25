@@ -93,10 +93,10 @@ public struct PlayBingoView: View {
         .sheet(isPresented: $shareActivityPresented) {
             ShareBingoViewController(
                 bingoURL: viewModel.bingoURL,
-                image: bingoImage(),
+                getImage: { bingoImage() },
                 analyticsService: analyticsService
             )
-                .ignoresSafeArea(edges: .bottom)
+            .ignoresSafeArea(edges: .bottom)
         }
         .appStoreOverlay(isPresented: $fullAppPromoPresented) {
             SKOverlay.AppConfiguration(appIdentifier: "6621254236", position: .bottom)

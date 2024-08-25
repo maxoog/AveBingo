@@ -104,9 +104,10 @@ public struct EditBingoView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Text("Create new card")
+                Text("Edit card")
                     .font(AveFont.headline3)
                     .foregroundStyle(AveColor.content)
+                    .lineLimit(1)
             }
         }
     }
