@@ -17,10 +17,10 @@ public struct BingoHistoryView: View {
     let analyticsService: AnalyticsServiceProtocol
     @ObservedObject var viewModel: BingoHistoryViewModel
     let screenFactory: ScreenFactoryProtocol
-    
+
     @State var openEditBingoItem: EditBingoOpenType? = nil
     @State var openPlayBingoItem: PlayBingoOpenType? = nil
-    
+
     public init(
         viewModel: BingoHistoryViewModel,
         analyticsService: AnalyticsServiceProtocol,
@@ -30,7 +30,7 @@ public struct BingoHistoryView: View {
         self.analyticsService = analyticsService
         self.screenFactory = screenFactory
     }
-    
+
     public var body: some View {
         VStack(spacing: 0) {
             AveNavigationLink(
@@ -40,7 +40,7 @@ public struct BingoHistoryView: View {
                         screenType: .editBingo(item)
                     ).anyView()
                 }
-            
+
             AveNavigationLink(
                 item: $openPlayBingoItem) { item in
                     EditablePlayBingoView(
@@ -48,16 +48,16 @@ public struct BingoHistoryView: View {
                         screenType: .playBingo(item)
                     ).anyView()
                 }
-            
+
             Text("MY BINGOS")
                 .font(AveFont.headline1)
                 .foregroundStyle(AveColor.content)
                 .padding(.top, 8)
-            
+
             switch viewModel.state {
             case .loading:
                centeredView { ProgressView() }
-            case .error(_):
+            case .error:
                 centeredView {
                     ErrorView(onReloadTap: {
                         Task {
@@ -84,10 +84,10 @@ public struct BingoHistoryView: View {
             GeometryReader { proxy in
                 VStack(spacing: 24) {
                     Spacer()
-                    
+   
                     PopupErrorView(visible: $viewModel.bingoActionError)
                         .padding(.horizontal, 16)
-                    
+ 
                     if viewModel.state.hasContent {
                         AveButton(iconName: "add_icon", text: "Add new") {
                             analyticsService.logEvent(HistoryEvent.openCreateBingo)
@@ -105,13 +105,13 @@ public struct BingoHistoryView: View {
             Task {
                 await viewModel.reload()
             }
-            
+
             if let bingoURL = viewModel.bingoURLToOpen {
                 openPlayBingoItem = .deeplink(bingoURL)
             }
         }
     }
-    
+
     @ViewBuilder
     private func cardsListView(cards: Cards) -> some View {
         SwipeViewGroup {
@@ -143,7 +143,7 @@ public struct BingoHistoryView: View {
             }
         }
     }
-    
+
     private func centeredView<Content: View>(content: () -> Content) -> some View {
         VStack(spacing: 0) {
             Spacer()

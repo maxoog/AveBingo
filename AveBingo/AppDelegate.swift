@@ -34,12 +34,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initializing Mixpanel
         #if DEBUG
             Mixpanel.initialize(
-                token: "383b3217aefa52e70b15fa52d92d56ed",
+                token: "XXX",
                 trackAutomaticEvents: false
             )
         #else
             Mixpanel.initialize(
-                token: "0aea82bb50aa9f21a0d9775d08983485",
+                token: "XXX",
                 trackAutomaticEvents: false
             )
         #endif

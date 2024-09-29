@@ -15,7 +15,7 @@ public extension BingoResponse {
             id: id,
             name: title,
             style: BingoCellStyle(rawValue: style) ?? .basic,
-            size: BingoGridSize(numberOfTiles: tiles.count) ?? ._3x3,
+            size: BingoGridSize(numberOfTiles: tiles.count) ?? .small,
             emoji: emoji,
             tiles: tiles.map {
                 .init(description: $0.description)

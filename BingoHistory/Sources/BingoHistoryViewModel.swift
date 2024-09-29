@@ -17,7 +17,7 @@ enum HistoryState: Equatable {
     case loading
     case error(Error)
     case content(Cards)
-    
+
     var hasContent: Bool {
         switch self {
         case .loading, .error:
@@ -26,7 +26,7 @@ enum HistoryState: Equatable {
             !cards.isEmpty
         }
     }
-    
+
     var models: [BingoModel] {
         switch self {
         case .loading, .error:
@@ -35,7 +35,7 @@ enum HistoryState: Equatable {
             cards
         }
     }
-    
+
     static func == (lhs: HistoryState, rhs: HistoryState) -> Bool {
         switch (lhs, rhs) {
         case (.loading, .loading):
@@ -53,9 +53,9 @@ enum HistoryState: Equatable {
 @MainActor
 public final class BingoHistoryViewModel: ObservableObject {
     private let bingoService: BingoService
-    
+
     let bingoURLToOpen: URL?
-    
+
     @Published var state: HistoryState = .loading
     @Published var bingoActionError: Bool = false
     private var loadingTask: Task<Void, Never>? = nil
@@ -64,7 +64,7 @@ public final class BingoHistoryViewModel: ObservableObject {
     public init(bingoService: BingoService, bingoURLToOpen: URL?) {
         self.bingoService = bingoService
         self.bingoURLToOpen = bingoURLToOpen
-        
+
         cancellable = bingoService.onChangePublisher.sink { [weak self] in
             Task {
                 await self?.reload()

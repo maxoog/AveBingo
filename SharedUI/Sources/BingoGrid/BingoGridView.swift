@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  BingoGridView.swift
+//
 //
 //  Created by Maksim Zenkov on 31.07.2024.
 //

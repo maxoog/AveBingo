@@ -22,7 +22,7 @@ public enum AveFont {
         size: 16,
         weight: .gilroyMedium
     )
-    public static let content2_uifont: UIFont = GilroyFontFactory.uiFont(
+    public static let content2UIFont: UIFont = GilroyFontFactory.uiFont(
         size: 16,
         weight: .gilroyMedium
     )
@@ -30,7 +30,7 @@ public enum AveFont {
         size: 14,
         weight: .gilroyMedium
     )
-    public static let content3_uifont: UIFont = GilroyFontFactory.uiFont(
+    public static let content3UIFont: UIFont = GilroyFontFactory.uiFont(
         size: 14,
         weight: .gilroyMedium
     )

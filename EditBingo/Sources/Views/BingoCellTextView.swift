@@ -25,7 +25,6 @@ struct BingoCellTextView: UIViewRepresentable {
         }
         
         func textViewDidChange(_ textView: UITextView) {
-//            onPreferredHeightUpdated(textView.sizeThatFits(textView.frame.size).height)
             placeholder?.isHidden = !textView.text.isEmpty || textView.isFirstResponder
         }
         

@@ -148,9 +148,9 @@ struct BingoCardView: View {
     
     private var horizontalPadding: CGFloat {
         switch gridSize {
-        case ._3x3:
+        case .small:
             8
-        case ._4x4:
+        case .medium:
             4
         }
     }

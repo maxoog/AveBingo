@@ -17,11 +17,11 @@ public enum HistoryEvent: String, AnalyticsEvent {
     case openEditBingo
     case openCreateBingo
     case deleteBingo
-    
+
     public var name: String {
         "History View Event"
     }
-    
+
     public var properties: [String: String] {
         ["name": self.rawValue]
     }
@@ -30,11 +30,11 @@ public enum HistoryEvent: String, AnalyticsEvent {
 public enum EditEvent: AnalyticsEvent {
     case saveBingo(success: Bool)
     case backButton
-    
+
     public var name: String {
         "Edit View Event"
     }
-    
+
     public var properties: [String: String] {
         switch self {
         case .saveBingo(let success):
@@ -49,11 +49,11 @@ public enum PlayEvent: AnalyticsEvent {
     case edit
     case share(activity: String)
     case backButton
-    
+
     public var name: String {
         "Play View Event"
     }
-    
+
     public var properties: [String: String] {
         switch self {
         case .edit:

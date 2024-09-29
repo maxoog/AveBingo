@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Tile.swift
 //  
 //
 //  Created by Maksim Zenkov on 21.07.2024.

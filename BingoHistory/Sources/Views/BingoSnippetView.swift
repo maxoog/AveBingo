@@ -17,7 +17,7 @@ struct BingoSnippetView: View {
     let onTap: () -> Void
     let onEdit: () -> Void
     let onDelete: () -> Void
-    
+
     var body: some View {
         SwipeView {
             Button(action: onTap) {
@@ -25,7 +25,7 @@ struct BingoSnippetView: View {
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                         .fill(AveColor.backgroundLight)
                         .frame(height: 72)
-                    
+
                     HStack(spacing: 16) {
                         bingoEmojiImage
                             .resizable()
@@ -35,11 +35,11 @@ struct BingoSnippetView: View {
                                     .clipShape(Circle())
                                     .frame(width: 32, height: 32)
                             }
-                        
+
                         Text(model.name)
                             .font(AveFont.content)
                             .foregroundStyle(AveColor.content)
-                        
+
                         Spacer()
                     }
                     .padding(.leading, 16)
@@ -47,7 +47,7 @@ struct BingoSnippetView: View {
                 }
             }
         } leadingActions: { _ in
-        } trailingActions: { context in
+        } trailingActions: { _ in
             SwipeAction {
                 onEdit()
             } label: { highlighted in
@@ -57,7 +57,7 @@ struct BingoSnippetView: View {
                 AveColor.lilac
                     .opacity(highlighted ? 0.5 : 1)
             }
-                
+
             SwipeAction {
                 withAnimation(.spring(response: 0.3, dampingFraction: 1, blendDuration: 1)) {
                     onDelete()
@@ -78,15 +78,13 @@ struct BingoSnippetView: View {
         .swipeSpacing(4)
         .swipeActionsMaskCornerRadius(0)
         .swipeActionsVisibleStartPoint(16)
-        
+
         .transition(.swipeDelete)
         .padding(.horizontal, 16)
     }
-    
+
     private var bingoEmojiImage: Image {
-        if !model.emoji.isEmpty,
-           let uiImage = model.emoji.toUIImage()
-        {
+        if !model.emoji.isEmpty, let uiImage = model.emoji.toUIImage() {
             return Image(uiImage: uiImage)
         } else {
             return Image("emoji_example", bundle: .assets)
@@ -96,7 +94,7 @@ struct BingoSnippetView: View {
 
 private struct SwipeActionLabel: View {
     let iconName: String
-    
+
     var body: some View {
         Label {
             EmptyView()

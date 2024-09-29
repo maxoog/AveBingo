@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  TokenStorage.swift
+//
 //
 //  Created by Maksim Zenkov on 04.08.2024.
 //

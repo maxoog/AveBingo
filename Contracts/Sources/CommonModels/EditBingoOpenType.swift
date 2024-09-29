@@ -10,7 +10,7 @@ import Foundation
 public enum EditBingoOpenType: Hashable {
     case createNew
     case edit(BingoModel)
-    
+
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .createNew:

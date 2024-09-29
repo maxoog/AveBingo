@@ -14,7 +14,7 @@ struct EditableBingoModel: Equatable {
     var style: BingoCellStyle
     
     static var initDefault: EditableBingoModel {
-        let size = BingoGridSize._3x3
+        let size = BingoGridSize.small
         
         return EditableBingoModel(
             title: "",

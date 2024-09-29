@@ -47,9 +47,9 @@ import CommonModels
             Color.clear
         case .retro:
             switch size {
-            case ._3x3:
+            case .small:
                 BingoGridSize.colors3x3[index]
-            case ._4x4:
+            case .medium:
                 BingoGridSize.colors4x4[index]
             }
         }
@@ -97,36 +97,36 @@ extension BingoGridSize {
 extension BingoGridSize {
     public var textFont: Font {
         switch self {
-        case ._3x3:
+        case .small:
             AveFont.content2
-        case ._4x4:
+        case .medium:
             AveFont.content3
         }
     }
     
     public var textUIFont: UIFont {
         switch self {
-        case ._3x3:
-            AveFont.content2_uifont
-        case ._4x4:
-            AveFont.content3_uifont
+        case .small:
+            AveFont.content2UIFont
+        case .medium:
+            AveFont.content3UIFont
         }
     }
     
     public var maxNumberOfLinesInTextField: Int {
         switch self {
-        case ._3x3:
+        case .small:
             5
-        case ._4x4:
+        case .medium:
             4
         }
     }
     
     public var horizontalPadding: CGFloat {
         switch self {
-        case ._3x3:
+        case .small:
             8
-        case ._4x4:
+        case .medium:
             6
         }
     }

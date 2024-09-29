@@ -12,7 +12,7 @@ import SharedUI
 struct AveNavigationLink<Item>: View {
     @Binding var item: Item?
     let destination: (Item) -> AnyView
-    
+
     var body: some View {
         NavigationLink(
             isActive: .init(get: {

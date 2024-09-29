@@ -29,6 +29,8 @@
  SOFTWARE.
  */
 
+// swiftlint:disable all
+
 import SwiftUI
 
 // MARK: - Structures
@@ -1392,4 +1394,4 @@ struct AllowSwipeToTriggerKey: PreferenceKey {
     static func reduce(value: inout Bool?, nextValue: () -> Bool?) { value = nextValue() }
 }
 
-
+// swiftlint:enable all
