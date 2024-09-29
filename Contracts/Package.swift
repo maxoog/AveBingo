@@ -14,7 +14,7 @@ let package = Package(
             targets: ["ScreenFactoryContracts"]),
         .library(
             name: "CommonModels",
-            targets: ["CommonModels"]),
+            targets: ["CommonModels"])
     ],
     dependencies: [
     ],
@@ -42,4 +42,3 @@ let package = Package(
         )
     ]
 )
-

@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "Resources",
-            targets: ["Resources"]),
+            targets: ["Resources"])
     ],
     dependencies: [
     ],

@@ -14,7 +14,7 @@ import Analytics
 @MainActor
 final class ScreenFactory {
     static let shared = ScreenFactory()
-    
+
     func playBingoView(bingoUrl url: URL?) -> some View {
         PlayBingoView(
             viewModel: AppFactory.shared.playBingoViewModel(bingoUrl: url),
@@ -27,13 +27,12 @@ final class ScreenFactory {
 @MainActor
 final class AppFactory {
     static let shared = AppFactory()
-    
+
     lazy var analyticsService: AnalyticsService = AnalyticsService()
-    
+
     private lazy var bingoService = BingoServiceForAppClip()
-    
+
     func playBingoViewModel(bingoUrl url: URL?) -> PlayBingoViewModel {
         PlayBingoViewModel(openType: .deeplink(url), bingoProvider: bingoService)
     }
 }
-

@@ -12,12 +12,12 @@ import Resources
 public struct NavigationButton: View {
     let iconName: String
     let onTap: () -> Void
-    
+
     public init(iconName: String, onTap: @escaping () -> Void) {
         self.iconName = iconName
         self.onTap = onTap
     }
-    
+
     public var body: some View {
         Button(action: onTap) {
             ZStack {

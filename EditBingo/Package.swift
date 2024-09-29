@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "EditBingo",
-            targets: ["EditBingo"]),
+            targets: ["EditBingo"])
     ],
     dependencies: [
         .package(path: "../SharedUI"),
@@ -27,4 +27,3 @@ let package = Package(
         )
     ]
 )
-

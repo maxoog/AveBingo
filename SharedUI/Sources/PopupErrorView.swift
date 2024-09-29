@@ -10,17 +10,17 @@ import SwiftUI
 
 public struct PopupErrorView: View {
     @Binding var visible: Bool
-    
+
     public init(visible: Binding<Bool>) {
         _visible = visible
     }
-    
+
     public var body: some View {
         Group {
             if visible {
                 HStack(spacing: 16) {
                     Image("error_icon", bundle: .assets)
-                    
+
                     Text("Something went wrong :(")
                         .font(AveFont.content)
                         .foregroundStyle(AveColor.red)

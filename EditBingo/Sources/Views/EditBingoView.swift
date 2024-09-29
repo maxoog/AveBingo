@@ -14,9 +14,9 @@ import ServicesContracts
 public struct EditBingoView: View {
     let analyticsService: AnalyticsServiceProtocol
     @Environment(\.dismiss) private var dismiss
-    
+
     @StateObject var viewModel: EditBingoViewModel
-    
+
     @State private var currentlySelectedCell: Int = 0
     @FocusState private var emojiFieldIsFocused: Bool
 
@@ -27,7 +27,7 @@ public struct EditBingoView: View {
         _viewModel = .init(wrappedValue: viewModel)
         self.analyticsService = analyticsService
     }
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .center) {
@@ -40,20 +40,20 @@ public struct EditBingoView: View {
                             emojiFieldIsFocused = true
                         }
                 }
-                
+
                 TitleTextField(text: $viewModel.model.title, error: viewModel.bingoValidationError)
                     .padding(.top, 16)
-                
+
                 GridSizePickerView(sizeSelection: $viewModel.model.size)
                     .padding(.top, 24)
-                
+
                 BingoGridView(
                     tiles: viewModel.model.tiles,
                     style: viewModel.model.style,
                     size: viewModel.model.size,
                     selectable: false,
                     passTouchesToContent: true
-                ) { (index, tile) in
+                ) { (index, _) in
                     BingoCardView(
                         textValue: $viewModel.model.tiles[index],
                         gridSize: viewModel.model.size
@@ -62,7 +62,7 @@ public struct EditBingoView: View {
                 .padding(.top, 16)
                 .animation(.default, value: viewModel.model.style)
                 .animation(.default, value: viewModel.model.size)
-                
+
                 StylePickerView(sizeSelection: $viewModel.model.style)
                     .padding(.top, 24)
                     .padding(.bottom, 132)
@@ -77,7 +77,7 @@ public struct EditBingoView: View {
             VStack(spacing: 16) {
                 PopupErrorView(visible: $viewModel.savingError)
                     .padding(.horizontal, 16)
-                
+
                 AveButton(
                     iconName: nil,
                     text: viewModel.isEditMode ? "Save changes" : "Create card",
@@ -102,7 +102,7 @@ public struct EditBingoView: View {
                 }
                 .padding(.bottom, 2)
             }
-            
+
             ToolbarItem(placement: .principal) {
                 Text("Edit card")
                     .font(AveFont.headline3)
@@ -120,11 +120,11 @@ struct BingoCardView: View {
 
     @Binding var textValue: String
     let gridSize: BingoGridSize
-    
+
     var body: some View {
         ZStack {
             Color.clear
-            
+
             BingoCellTextView(
                 text: $textValue,
                 gridSize: gridSize,
@@ -145,7 +145,7 @@ struct BingoCardView: View {
             onTapPublisher.send(())
         }
     }
-    
+
     private var horizontalPadding: CGFloat {
         switch gridSize {
         case .small:

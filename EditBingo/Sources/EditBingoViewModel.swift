@@ -14,7 +14,7 @@ public final class EditBingoViewModel: ObservableObject {
     private let bingoService: BingoService
     private let analyticsService: AnalyticsServiceProtocol
     private let onSave: (BingoModel) -> Void
-    
+
     @Published var model: EditableBingoModel {
         didSet {
             if !model.title.isEmpty {
@@ -28,15 +28,15 @@ public final class EditBingoViewModel: ObservableObject {
     @Published var savingError: Bool = false
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var bingoValidationError: Bool = false
-    
+
     @Published var hasChanges: Bool = false
-    
+
     var isEditMode: Bool {
         bingoID != nil
     }
-    
-    @Published private var bingoID: String? = nil
-    
+
+    @Published private var bingoID: String?
+
     public init(
         openType: EditBingoOpenType,
         bingoService: BingoService,
@@ -46,7 +46,7 @@ public final class EditBingoViewModel: ObservableObject {
         self.bingoService = bingoService
         self.analyticsService = analyticsService
         self.onSave = onSave
-        
+
         switch openType {
         case .createNew:
             self.model = .initDefault
@@ -61,13 +61,13 @@ public final class EditBingoViewModel: ObservableObject {
             bingoValidationError = true
             return
         }
-        
+
         isLoading = true
-        
+
         defer {
             isLoading = false
         }
-        
+
         do {
             if let bingoID {
                 let bingoModel = model.toBingoModel(id: bingoID)
@@ -92,6 +92,3 @@ public final class EditBingoViewModel: ObservableObject {
         }
     }
 }
-
-
-

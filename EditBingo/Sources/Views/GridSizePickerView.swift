@@ -13,13 +13,13 @@ import CommonModels
 
 struct GridSizePickerView: View {
     @Binding var sizeSelection: BingoGridSize
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Grid")
                 .font(AveFont.content2)
                 .foregroundStyle(AveColor.content)
-            
+
             HStack(spacing: 8) {
                 ForEach(BingoGridSize.allCases, id: \.rawValue) { size in
                     SizePickerButton(size: size, currentSize: sizeSelection)
@@ -37,7 +37,7 @@ struct GridSizePickerView: View {
 private struct SizePickerButton: View {
     let size: BingoGridSize
     let currentSize: BingoGridSize
-    
+
     var body: some View {
         HStack(spacing: 8) {
             if chosen {
@@ -45,7 +45,7 @@ private struct SizePickerButton: View {
                     .resizable()
                     .frame(width: 18, height: 18)
             }
-            
+
             Text(size.rawValue)
                 .font(AveFont.content2)
         }
@@ -57,7 +57,7 @@ private struct SizePickerButton: View {
                 .clipShape(RoundedRectangle(cornerRadius: 40))
         }
     }
-    
+
     private var chosen: Bool {
         return size == currentSize
     }

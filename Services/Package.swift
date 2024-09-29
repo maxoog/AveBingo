@@ -25,7 +25,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Contracts"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.9.1"),
-        .package(url: "https://github.com/mixpanel/mixpanel-swift.git", exact: "4.3.0"),
+        .package(url: "https://github.com/mixpanel/mixpanel-swift.git", exact: "4.3.0")
     ],
     targets: [
         .target(
@@ -69,7 +69,7 @@ let package = Package(
             name: "Analytics",
             dependencies: [
                 .product(name: "Mixpanel", package: "mixpanel-swift"),
-                .product(name: "ServicesContracts", package: "Contracts"),
+                .product(name: "ServicesContracts", package: "Contracts")
             ],
             path: "Sources/Analytics"
         ),
@@ -80,4 +80,3 @@ let package = Package(
         )
     ]
 )
-

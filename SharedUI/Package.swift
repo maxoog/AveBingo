@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "SharedUI",
-            targets: ["SharedUI"]),
+            targets: ["SharedUI"])
     ],
     dependencies: [
         .package(path: "../Resources"),

@@ -9,7 +9,7 @@ import Foundation
 
 public struct AddBingoResponse: Decodable {
     public let id: String
-    
+
     public init(id: String) {
         self.id = id
     }

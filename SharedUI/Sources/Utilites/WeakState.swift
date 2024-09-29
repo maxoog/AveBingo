@@ -22,4 +22,3 @@ public struct WeakState<Value: AnyObject>: DynamicProperty {
 private struct WeakReference<Value: AnyObject> {
     weak var value: Value?
 }
-

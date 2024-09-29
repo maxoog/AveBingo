@@ -11,10 +11,10 @@ import ServicesContracts
 
 public final class AnalyticsService: AnalyticsServiceProtocol {
     public init() {}
-    
+
     public func logEvent(_ event: AnalyticsEvent) {
         print("logging event \(event.name) with properties \(event.properties)")
-        
+
         Mixpanel.mainInstance().track(
             event: event.name,
             properties: event.properties

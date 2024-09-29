@@ -9,7 +9,7 @@ import Foundation
 
 public struct Tile: Codable {
     public let description: String
-    
+
     public init(description: String) {
         self.description = description
     }

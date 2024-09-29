@@ -19,7 +19,7 @@ import CommonModels
 final class ScreenFactory: ScreenFactoryProtocol {
     fileprivate let appFactory = AppFactory()
     static let shared = ScreenFactory()
-    
+
     func editBingoView(openType: EditBingoOpenType, onSave: @escaping (BingoModel) -> Void) -> AnyView {
         EditBingoView(
             viewModel: appFactory.editBingoViewModel(
@@ -29,7 +29,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
             analyticsService: appFactory.analyticsService
         ).anyView()
     }
-    
+
     func bingoHistoryView(bingoURLToOpen: URL?) -> AnyView {
         NavigationView {
             BingoHistoryView(
@@ -39,7 +39,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
             )
         }.anyView()
     }
-    
+
     func playBingoView(openType: PlayBingoOpenType, onEdit: ((BingoModel) -> Void)?) -> AnyView {
         PlayBingoView(
             viewModel: appFactory.playBingoViewModel(openType: openType),
@@ -50,13 +50,13 @@ final class ScreenFactory: ScreenFactoryProtocol {
 }
 
 @MainActor
-fileprivate final class AppFactory {
+private final class AppFactory {
     private lazy var networkClient = NetworkClient()
-    
+
     private lazy var bingoService = BingoService(client: networkClient)
-    
+
     lazy var analyticsService = AnalyticsService()
-    
+
     func editBingoViewModel(
         openType: EditBingoOpenType,
         onSave: @escaping (BingoModel) -> Void
@@ -68,11 +68,11 @@ fileprivate final class AppFactory {
             onSave: onSave
         )
     }
-    
+
     func bingoHistoryViewModel(bingoURLToOpen: URL?) -> BingoHistoryViewModel {
         BingoHistoryViewModel(bingoService: bingoService, bingoURLToOpen: bingoURLToOpen)
     }
-    
+
     func playBingoViewModel(openType type: PlayBingoOpenType) -> PlayBingoViewModel {
         PlayBingoViewModel(openType: type, bingoProvider: bingoService)
     }

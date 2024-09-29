@@ -8,12 +8,12 @@ let package = Package(
     products: [
         .library(
             name: "PlayBingo",
-            targets: ["PlayBingo"]),
+            targets: ["PlayBingo"])
     ],
     dependencies: [
         .package(path: "../SharedUI"),
         .package(path: "../Resources"),
-        .package(path: "../Contracts"),
+        .package(path: "../Contracts")
     ],
     targets: [
         .target(
@@ -21,11 +21,9 @@ let package = Package(
             dependencies: [
                 .product(name: "SharedUI", package: "SharedUI"),
                 .product(name: "ServicesContracts", package: "Contracts"),
-                .product(name: "Resources", package: "Resources"),
+                .product(name: "Resources", package: "Resources")
             ],
             path: "Sources"
         )
     ]
 )
-
-

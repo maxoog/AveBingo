@@ -13,9 +13,9 @@ import CommonModels
 public final class BingoServiceForAppClip: BingoProviderProtocol {
     private let urlParser = URLParser()
     private let client = URLSession.shared
-    
+
     public init() {}
-    
+
     public func getBingo(url: URL?) async throws -> BingoModel {
         guard let id = url.flatMap({ urlParser.bingoId(from: $0) }),
               let url = URL(string: "\(NetworkConstants.apiBaseAddress)/api/v1/bingo/\(id)")
@@ -23,15 +23,15 @@ public final class BingoServiceForAppClip: BingoProviderProtocol {
             assertionFailure("Wrong bingo url")
             throw BingoError.wrongUrl
         }
-        
+
         return try await withUnsafeThrowingContinuation { [weak self] continuation in
             guard let self else {
                 return
             }
-            
+
             let urlRequest = URLRequest(url: url)
 
-            client.dataTask(with: urlRequest) { data, response, error in
+            client.dataTask(with: urlRequest) { data, _, error in
                 if let error = error {
                     continuation.resume(throwing: error)
                 } else if let data = data {
@@ -50,4 +50,3 @@ public final class BingoServiceForAppClip: BingoProviderProtocol {
         }
     }
 }
-

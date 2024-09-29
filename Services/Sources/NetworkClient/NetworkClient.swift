@@ -5,14 +5,14 @@ import TokenStorage
 
 public final class NetworkClient: SessionDelegate {
     private let tokenLoader: TokenLoader = TokenLoader()
-    
+
     public var host: String {
         NetworkConstants.apiBaseAddress
     }
-    
+
     public lazy var session: Session = {
         let evaluator: ServerTrustEvaluating
-        
+
         let trustManager = ServerTrustManager(
             evaluators: [
                 "avebingo.com": DisabledTrustEvaluator()
@@ -30,14 +30,18 @@ public final class NetworkClient: SessionDelegate {
 
 final class RequestInterceptor: Alamofire.RequestInterceptor {
     let tokenLoader: TokenLoader
-    
+
     init(tokenLoader: TokenLoader) {
         self.tokenLoader = tokenLoader
     }
-    
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+
+    func adapt(
+        _ urlRequest: URLRequest,
+        for session: Session,
+        completion: @escaping (Result<URLRequest, Error>
+    ) -> Void) {
         var urlRequest = urlRequest
-        
+
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue(tokenLoader.loadedToken, forHTTPHeaderField: "x-api-key")
 
@@ -48,7 +52,7 @@ final class RequestInterceptor: Alamofire.RequestInterceptor {
 extension DataRequest {
     public func decodable<Value: Decodable>() async throws -> Value {
         let data = try await serializingData().value
-        
+
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let object = try decoder.decode(Value.self, from: data)

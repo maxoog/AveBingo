@@ -12,13 +12,13 @@ import CommonModels
 
 struct StylePickerView: View {
     @Binding var sizeSelection: BingoCellStyle
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Style")
                 .font(AveFont.content2)
                 .foregroundStyle(AveColor.content)
-            
+
             HStack(spacing: 16) {
                 ForEach(BingoCellStyle.allCases, id: \.rawValue) { style in
                     BingoStyleView(
@@ -38,7 +38,7 @@ struct StylePickerView: View {
 private struct BingoStyleView: View {
     let style: BingoCellStyle
     let selected: Bool
-    
+
     var body: some View {
         VStack(spacing: 8) {
             Image(style.previewImageName, bundle: .assets)

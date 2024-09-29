@@ -20,7 +20,7 @@ import CommonModels
             "retro_style"
         }
     }
-    
+
     var strokeColor: Color {
         switch self {
         case .basic:
@@ -29,7 +29,7 @@ import CommonModels
             AveColor.content
         }
     }
-    
+
     var checkIconName: String {
         switch self {
         case .basic, .stroke:
@@ -38,7 +38,7 @@ import CommonModels
             "check_icon_white"
         }
     }
-    
+
     func backgroundColor(index: Int, size: BingoGridSize) -> Color {
         switch self {
         case .basic:
@@ -61,32 +61,32 @@ extension BingoGridSize {
             AveColor.lilac2,
             AveColor.orange,
             AveColor.pang,
-            
+
             AveColor.orange,
             AveColor.green,
             AveColor.pink,
-            
+
             AveColor.red2,
             AveColor.lilac2,
             AveColor.orange
         ]
-    
+
     static let colors4x4: [Color] = [
             AveColor.lilac2,
             AveColor.orange,
             AveColor.green,
             AveColor.orange,
-            
+
             AveColor.lilac2,
             AveColor.pink,
             AveColor.orange,
             AveColor.red2,
-            
+
             AveColor.red2,
             AveColor.orange,
             AveColor.lilac2,
             AveColor.pang,
-            
+
             AveColor.pink,
             AveColor.orange,
             AveColor.pink,
@@ -103,7 +103,7 @@ extension BingoGridSize {
             AveFont.content3
         }
     }
-    
+
     public var textUIFont: UIFont {
         switch self {
         case .small:
@@ -112,7 +112,7 @@ extension BingoGridSize {
             AveFont.content3UIFont
         }
     }
-    
+
     public var maxNumberOfLinesInTextField: Int {
         switch self {
         case .small:
@@ -121,7 +121,7 @@ extension BingoGridSize {
             4
         }
     }
-    
+
     public var horizontalPadding: CGFloat {
         switch self {
         case .small:

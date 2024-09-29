@@ -13,10 +13,14 @@ import NetworkCore
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
+
     private let urlParser = URLParser()
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let scene = scene as? UIWindowScene else {
             return
         }
@@ -33,11 +37,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
     }
-    
+
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         if let activityUrl = userActivity.webpageURL,
-           urlParser.isBingoURL(activityUrl)
-        {
+           urlParser.isBingoURL(activityUrl) {
             window?.rootViewController = UIHostingController(
                 rootView: ScreenFactory.shared.playBingoView(bingoUrl: activityUrl)
             )

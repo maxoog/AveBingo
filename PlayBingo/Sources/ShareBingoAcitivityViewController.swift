@@ -7,13 +7,12 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
     let bingoURL: URL?
     let getImage: () -> UIImage?
     let analyticsService: AnalyticsServiceProtocol
-    
+
     @Environment(\.dismiss) private var dismissAction
 
     func makeUIViewController(
-        context: UIViewControllerRepresentableContext<ShareBingoViewController>) -> UIActivityViewController
-    {
-        
+        context: UIViewControllerRepresentableContext<ShareBingoViewController>) -> UIActivityViewController {
+
         var activityItems: [Any] = []
         getImage().map {
             activityItems.append($0)
@@ -21,15 +20,15 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
         bingoURL.map {
             activityItems.append(LinkItemSource(url: $0))
         }
-        
+
         let controller = UIActivityViewController(
             activityItems: activityItems,
             applicationActivities: nil
         )
 
-        controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+        controller.completionWithItemsHandler = { (activityType, _, _, _) in
             analyticsService.logEvent(PlayEvent.share(activity: activityType?.rawValue ?? "unknown"))
-            
+
             self.dismissAction()
         }
         return controller
@@ -39,31 +38,34 @@ struct ShareBingoViewController: UIViewControllerRepresentable {
         _ uiViewController: UIActivityViewController,
         context: UIViewControllerRepresentableContext<ShareBingoViewController>
     ) {
-        
+
     }
 }
 
 final class LinkItemSource: NSObject, UIActivityItemSource {
     let url: URL
-    
+
     init(url: URL) {
         self.url = url
     }
-    
+
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return url
     }
-    
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+
+    func activityViewController(
+        _ activityViewController: UIActivityViewController,
+        itemForActivityType activityType: UIActivity.ActivityType?
+    ) -> Any? {
         if activityType?.rawValue == "ph.telegra.Telegraph.Share" {
             return url.absoluteString
         } else {
             return url
         }
     }
-    
+
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        
+
         let metadata = LPLinkMetadata()
         metadata.title = "Share you bingo!"
         return metadata

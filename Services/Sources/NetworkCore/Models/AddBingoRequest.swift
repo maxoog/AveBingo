@@ -12,7 +12,7 @@ public struct AddBingoRequest: Encodable {
     public let style: String
     public let emoji: String
     public let tiles: [Tile]
-    
+
     public init(
         title: String,
         style: String,

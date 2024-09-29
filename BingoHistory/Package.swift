@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "BingoHistory",
-            targets: ["BingoHistory"]),
+            targets: ["BingoHistory"])
     ],
     dependencies: [
         .package(path: "../SharedUI"),
@@ -31,6 +31,3 @@ let package = Package(
         )
     ]
 )
-
-
-

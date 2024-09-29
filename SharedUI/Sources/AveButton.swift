@@ -15,7 +15,7 @@ public struct AveButton: View {
     private let isLoading: Bool?
     private var enabled: Bool
     private let onTap: () -> Void
-    
+
     public init(
         iconName: String?,
         text: String,
@@ -29,14 +29,14 @@ public struct AveButton: View {
         self.enabled = enabled
         self.onTap = onTap
     }
-    
+
     public var body: some View {
         Button(action: onTap, label: {
             HStack(spacing: 12) {
                 if let iconName {
                     Image(iconName, bundle: .assets)
                 }
-                
+
                 if isLoading == true {
                     ProgressView()
                 } else {
@@ -55,7 +55,7 @@ public struct AveButton: View {
         .disabled(!enabled)
         .animation(.default, value: isLoading)
     }
-    
+
     private var backgroundColor: Color {
         enabled ? AveColor.contentLight : AveColor.background
     }

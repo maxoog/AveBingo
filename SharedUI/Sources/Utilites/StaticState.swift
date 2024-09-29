@@ -11,7 +11,7 @@ import SwiftUI
 @propertyWrapper
 public struct StaticState<Value> {
     private let storage: InternalStorage<Value>
-    
+
     public init(wrappedValue defaultValue: Value) {
         self.storage = .init(value: defaultValue)
     }
@@ -30,6 +30,6 @@ private final class InternalStorage<Value> {
     init(value: Value) {
         self.value = value
     }
-    
+
     var value: Value
 }

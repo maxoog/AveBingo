@@ -13,7 +13,7 @@ public struct BingoResponse: Decodable {
     public let style: String
     public let emoji: String
     public let tiles: [Tile]
-    
+
     public init(
         id: String,
         title: String,

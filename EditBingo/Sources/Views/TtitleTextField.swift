@@ -11,16 +11,16 @@ import SharedUI
 
 struct TitleTextField: View {
     @FocusState var isFocused
-    
+
     @Binding var text: String
     let error: Bool
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Name")
                 .font(AveFont.content2)
                 .foregroundStyle(error ? AveColor.red : AveColor.content)
-            
+
             TextField(
                 text: $text,
                 prompt: Text("Type name")

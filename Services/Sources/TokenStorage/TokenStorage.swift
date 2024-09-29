@@ -10,9 +10,9 @@ import Foundation
 public final class TokenLoader {
     @Token
     private var token: String?
-    
+
     public init() {}
-    
+
     public var loadedToken: String {
         if let token {
             return token
@@ -22,7 +22,7 @@ public final class TokenLoader {
             return token
         }
     }
-    
+
     private func generateToken() -> String {
         UUID().uuidString
     }

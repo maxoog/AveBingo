@@ -11,18 +11,18 @@ import CommonModels
 
 public struct BingoGridView<Content: View, Tile>: View {
     public typealias CellModel = (Int, Tile)
-    
+
     let tiles: [Tile]
     let style: BingoCellStyle
     let size: BingoGridSize
     let selectable: Bool
     let passTouchesToContent: Bool
     let cellContent: (CellModel) -> Content
-    
+
     private var columns: [GridItem] {
         .init(repeating: GridItem(.flexible()), count: size.rowSize)
     }
-    
+
     public init(
         tiles: [Tile],
         style: BingoCellStyle,
@@ -38,7 +38,7 @@ public struct BingoGridView<Content: View, Tile>: View {
         self.passTouchesToContent = passTouchesToContent
         self.cellContent = cellContent
     }
-    
+
     public var body: some View {
         LazyVGrid(
             columns: columns,
@@ -64,10 +64,10 @@ private struct BingoCellView<Content: View>: View {
     let index: Int
     let selectable: Bool
     let content: () -> Content
-    
+
     @State private var width: CGFloat = 0
     @State var selected: Bool = false
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
@@ -77,7 +77,7 @@ private struct BingoCellView<Content: View>: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(style.strokeColor)
                 }
-            
+
             content()
         }
         .widthChanged { newWidth in

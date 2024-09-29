@@ -18,8 +18,8 @@ public struct BingoHistoryView: View {
     @ObservedObject var viewModel: BingoHistoryViewModel
     let screenFactory: ScreenFactoryProtocol
 
-    @State var openEditBingoItem: EditBingoOpenType? = nil
-    @State var openPlayBingoItem: PlayBingoOpenType? = nil
+    @State var openEditBingoItem: EditBingoOpenType?
+    @State var openPlayBingoItem: PlayBingoOpenType?
 
     public init(
         viewModel: BingoHistoryViewModel,
@@ -84,10 +84,10 @@ public struct BingoHistoryView: View {
             GeometryReader { proxy in
                 VStack(spacing: 24) {
                     Spacer()
-   
+
                     PopupErrorView(visible: $viewModel.bingoActionError)
                         .padding(.horizontal, 16)
- 
+
                     if viewModel.state.hasContent {
                         AveButton(iconName: "add_icon", text: "Add new") {
                             analyticsService.logEvent(HistoryEvent.openCreateBingo)

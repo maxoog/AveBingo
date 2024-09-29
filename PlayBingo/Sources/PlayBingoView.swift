@@ -16,15 +16,15 @@ import ServicesContracts
 public struct PlayBingoView: View {
     let analyticsService: AnalyticsServiceProtocol
     @StateObject var viewModel: PlayBingoViewModel
-    
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     @StaticState private var screenshotMaker: ScreenshotMaker?
     @State private var fullAppPromoPresented: Bool = false
     @State private var shareActivityPresented: Bool = false
-    
+
     private let onEdit: ((BingoModel) -> Void)?
-    
+
     public init(
         viewModel: PlayBingoViewModel,
         analyticsService: AnalyticsServiceProtocol,
@@ -34,7 +34,7 @@ public struct PlayBingoView: View {
         self.analyticsService = analyticsService
         self.onEdit = onEdit
     }
-    
+
     public var body: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
@@ -65,14 +65,14 @@ public struct PlayBingoView: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                         .padding(.bottom, 2)
-                        
+
                         Text("My bingos")
                             .font(AveFont.headline3)
                             .foregroundStyle(AveColor.content)
                     }
                 }
             }
-            
+
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 6) {
                     if viewModel.isMyBingo {
@@ -110,11 +110,11 @@ public struct PlayBingoView: View {
             }
         }
     }
-    
+
     private func bingoImage() -> UIImage? {
         return screenshotMaker?.screenshot()
     }
-     
+
     private func editBingo() {
         guard let bingo = viewModel.state.bingo else {
             assertionFailure("Cannot find bingo")
@@ -123,7 +123,7 @@ public struct PlayBingoView: View {
         analyticsService.logEvent(PlayEvent.edit)
         onEdit?(bingo)
     }
-    
+
     private func showFullAppPromo() {
         Task {
             try? await Task.sleep(nanoseconds: 6_000_000_000)
@@ -133,26 +133,26 @@ public struct PlayBingoView: View {
             fullAppPromoPresented = false
         }
     }
-    
+
     private func bingoCardView(card bingoModel: BingoModel) -> some View {
         VStack(alignment: .center) {
             Image("app_logo", bundle: .assets)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 66)
-            
+
             Text(bingoModel.name)
                 .font(AveFont.content)
                 .foregroundStyle(AveColor.content)
                 .padding(.top, 32)
-            
+
             BingoGridView(
                 tiles: bingoModel.tiles,
                 style: bingoModel.style,
                 size: bingoModel.size,
                 selectable: true,
                 passTouchesToContent: false
-            ) { (index, tile) in
+            ) { (_, tile) in
                 Text(tile.description)
                     .font(bingoModel.size.textFont)
                     .foregroundStyle(AveColor.content)
@@ -172,11 +172,11 @@ extension UserDefaults {
     }
 
     var hasSeenFullAppPromo: Bool {
-        set {
-            set(newValue, forKey: Keys.hasSeenAppIntroduction)
-        }
         get {
             return bool(forKey: Keys.hasSeenAppIntroduction)
+        }
+        set {
+            set(newValue, forKey: Keys.hasSeenAppIntroduction)
         }
     }
 }

@@ -58,7 +58,7 @@ public final class BingoHistoryViewModel: ObservableObject {
 
     @Published var state: HistoryState = .loading
     @Published var bingoActionError: Bool = false
-    private var loadingTask: Task<Void, Never>? = nil
+    private var loadingTask: Task<Void, Never>?
     private var cancellable: AnyCancellable?
 
     public init(bingoService: BingoService, bingoURLToOpen: URL?) {
@@ -71,24 +71,24 @@ public final class BingoHistoryViewModel: ObservableObject {
             }
         }
     }
-    
+
     func reload() async {
         guard loadingTask == nil else {
             await loadingTask?.value
             return
         }
-        
+
         self.state = .loading
-        
+
         loadingTask = Task.detached { @MainActor [weak self] in
             guard let self else {
                 return
             }
-            
+
             defer {
                 loadingTask = nil
             }
-            
+
             do {
                 let cards = try await bingoService.getBingoHistory()
                 self.state = .content(cards)
@@ -96,10 +96,10 @@ public final class BingoHistoryViewModel: ObservableObject {
                 self.state = .error(error)
             }
         }
-        
+
         await loadingTask?.value
     }
-    
+
     func deleteBingo(model: BingoModel) {
         var contentModels = state.models
 
@@ -120,7 +120,7 @@ public final class BingoHistoryViewModel: ObservableObject {
                 self.state = .content(contentModels)
                 bingoActionError = true
             }
-            
+
             self.state = .content(contentModels)
         }
     }
