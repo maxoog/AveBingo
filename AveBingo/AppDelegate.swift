@@ -6,9 +6,16 @@
 
 import UIKit
 import Mixpanel
+import Analytics
 
-@main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    override init() {
+        StartupMetricsProvider.shared.track(.`init`)
+
+        super.init()
+    }
+
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -24,8 +31,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         configurationForConnecting connectingSceneSession: UISceneSession,
         options: UIScene.ConnectionOptions
     ) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
