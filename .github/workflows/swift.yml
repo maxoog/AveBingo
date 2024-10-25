@@ -18,6 +18,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Dependencies
-        run: brew install swiftlint
+      run: brew install swiftlint
     - name: Build
       run: xcodebuild -scheme AveBingo -project AveBingo.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 15' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
