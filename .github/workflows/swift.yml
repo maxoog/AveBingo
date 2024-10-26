@@ -24,5 +24,7 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: RunTests
       run: xcodebuild test -project AveBingo.xcodeproj -scheme NetworkCoreTests -destination 'platform=iOS Simulator,name=iPhone 15'
