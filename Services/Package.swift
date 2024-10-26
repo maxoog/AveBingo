@@ -77,6 +77,13 @@ let package = Package(
             name: "TokenStorage",
             dependencies: [],
             path: "Sources/TokenStorage"
+        ),
+        .testTarget(
+            name: "NetworkCoreTests",
+            dependencies: [
+                "NetworkCore"
+            ],
+            path: "Tests/NetworkCoreTests"
         )
     ]
 )
