@@ -12,9 +12,7 @@ import XCTest
 final class URLParserTests: XCTestCase {
     func testUrlParserIsBingoID() {
         let url = URL(string: "https://avebingo.com/bingo/some_id")
-        
-        let urlParser = URLParser()
-        
-        XCTAssertEqual(urlParser.bingoId(from: url), "some_id")
+
+        XCTAssertEqual(URLParser().bingoId(from: url), "some_id")
     }
 }
